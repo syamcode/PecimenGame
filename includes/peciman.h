@@ -12,6 +12,7 @@ typedef struct{
     int direction;
     int posX;
     int posY;
+    int state;
 }pacmanController;
 
 void drawPacman(pacmanController peciman);
