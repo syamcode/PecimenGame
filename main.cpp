@@ -7,7 +7,7 @@
 int main()
 {
     initwindow(800, 600, "Pecimen Game");
-    pacmanController peciman;
+//    pacmanController peciman;
     CreateMap(level1);
     DrawMap();
     //peciman.direction = getch();
