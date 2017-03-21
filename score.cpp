@@ -1,23 +1,35 @@
 #include "includes/score.h"
 
-void resetScore(){
-    score=0
+void initScore(){
+    player.score=0;
 }
 
-void incScore(pacmanController *pecimen){
-    switch(level1[pecimen->posX][pecimen->posY]){
-    case FOOD1:
-        score+=FOOD1_SCORE;
+void initLives(playerControl *player){
+    player->lives=3;
+}
+
+void incScore(playerControl *player){
+    switch(levelMap[pecimen->posX][pecimen->posY].Food){
+    case RFOOD1:
+        player->score+=FOOD1_SCORE;
         break;
-    case FOOD2:
-        score+=FOOD2_SCORE;
+    case RFOOD2:
+        player->score+=FOOD2_SCORE;
         break;
-    case FOOD3:
-        score+=FOOD3_SCORE;
+    case RFOOD3:
+        player->score+=FOOD3_SCORE;
         break;
-    case FOOD4:
-        score+=FOOD4_SCORE;
+    case RFOOD4:
+        player->score+=FOOD4_SCORE;
+        break;
+    case RFOOD5:
+        player->score+=FOOD5_SCORE;
         break;
     }
-    level1[pecimen->posX][pecimen->posY]=1;
+    levelMap[pecimen->posX][pecimen->posY].Food=0;
+}
+
+
+void incLives(playerControl *player){
+
 }

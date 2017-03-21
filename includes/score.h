@@ -5,5 +5,19 @@
 #define FOOD2_SCORE 20
 #define FOOD3_SCORE 30
 #define FOOD4_SCORE 40
-int score=0;
+#define FOOD5_SCORE 50
+
+typedef struct{
+	char *name;
+	int score;
+	int lives;
+} playerController;
+
+playerController player1;
+
+void initScore();
+void initLives();
+void incScore(playerControl *player);
+void incLives(playerControl *player);
+
 #endif // SCORE_H_INCLUDED

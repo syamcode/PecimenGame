@@ -83,7 +83,7 @@ void DrawWall(int wall,int posX, int posY) {
         break;
     }
 }
-void DrawFood(int wall,int posX, int posY) {
+void DrawFood(int wall,int posX, int posY) { // masih contoh, yang dibawah belum asli
     switch(wall){
         case RWALL_HOR : readimagefile("assets/images/Wall.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
         break;
@@ -93,15 +93,15 @@ void DrawFood(int wall,int posX, int posY) {
         break;
     }
 }
-void DrawObject(int wall,int posX, int posY) {
-    switch(wall){
-        case RWALL_HOR : readimagefile("assets/images/Wall3.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
-        break;
-        case RWALL_VER : readimagefile("assets/images/wall.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
-        break;
-        case RWALL_COR_UNDERLEFT : readimagefile("assets/images/Wall2.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
-        break;
-    }
+void DrawObject(int wall,int posX, int posY) { // masih contoh, yang dibawah belum asli
+//    switch(wall){
+//        case RWALL_HOR : readimagefile("assets/images/Wall3.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+//        break;
+//        case RWALL_VER : readimagefile("assets/images/wall.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+//        break;
+//        case RWALL_COR_UNDERLEFT : readimagefile("assets/images/Wall2.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+//        break;
+//    }
 }
 
 
