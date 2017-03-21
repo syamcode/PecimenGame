@@ -1,7 +1,7 @@
 #include "includes/score.h"
 
-void initScore(){
-    player.score=0;
+void initScore(playerControl *player){
+    player->score=0;
 }
 
 void initLives(playerControl *player){
@@ -26,7 +26,7 @@ void incScore(playerControl *player){
         player->score+=FOOD5_SCORE;
         break;
     }
-    levelMap[pecimen->posX][pecimen->posY].Food=0;
+    levelMap[pecimen.posX][pecimen.posY].Food=REMPTY;
 }
 
 
