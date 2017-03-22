@@ -2,8 +2,10 @@
 #include <graphics.h>
 #include "includes/peciman.h"
 #include "includes/map.h"
+#include "includes/score.h"
 #include "map.cpp"
 #include "peciman.cpp"
+#include "score.cpp"
 #include <time.h>
 
 int main()
@@ -17,6 +19,8 @@ int main()
 
     pacmanController peciman;
     initwindow(800, 600, "Pecimen Game");
+    initScore(&player1);
+    initLives(&player1);
     CreateMap(level1, &peciman);
     char choose;
     int step = 0;
@@ -37,15 +41,18 @@ int main()
             }
         }
         if (step%200 == 0){
-            printf("%d",step);
+//            printf("%d",step);
             Move(&peciman);
+            eatFood(&peciman);
             changeState(&peciman);
+            incLives(&player1);
         }
-        printf("%d\n",step);
+//        printf("%d\n",step);
        // printf("%d %d\n",peciman.posX,peciman.posY);
         end = clock();
         time_spent = (double)(end - begin) / CLOCKS_PER_SEC; // Ulah di hapus
 //      printf("Time = %f\n",time_spent);
+        printf("%d %d\n", player1.score, player1.lives);
     }
 
     getch();

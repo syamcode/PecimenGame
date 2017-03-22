@@ -13,11 +13,10 @@ typedef struct{
 	int lives;
 } playerControl;
 
-playerControl player1;
-
 void initScore(playerControl *player);
 void initLives(playerControl *player);
-void incScore(playerControl *player);
+void incScore(int food);
+void eatFood(pacmanController *peciman);
 void incLives(playerControl *player);
 int randomise(int min, int max);
 int foodType(int x);

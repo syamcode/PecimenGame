@@ -83,13 +83,17 @@ void DrawWall(int wall,int posX, int posY) {
         break;
     }
 }
-void DrawFood(int wall,int posX, int posY) { // masih contoh, yang dibawah belum asli
-    switch(wall){
-        case RWALL_HOR : readimagefile("assets/images/Wall.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+void DrawFood(int food,int posX, int posY) { // masih contoh, yang dibawah belum asli
+    switch(food){
+        case RFOOD1 : readimagefile("assets/images/FOOD1.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
         break;
-        case RWALL_VER : readimagefile("assets/images/wallLeft.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+        case RFOOD2 : readimagefile("assets/images/FOOD2.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
         break;
-        case RWALL_COR_UNDERLEFT : readimagefile("assets/images/Wall2.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+        case RFOOD3 : readimagefile("assets/images/FOOD3.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+        break;
+        case RFOOD4 : readimagefile("assets/images/FOOD4.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+        break;
+        case RFOOD5 : readimagefile("assets/images/FOOD5.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
         break;
     }
 }
@@ -111,7 +115,7 @@ void DrawMap()
                 }
             if(levelMap[i][j].Food!=0)
                 {
-                DrawFood(levelMap[i][j].Food,j,i);
+                DrawFood(levelMap[i][j].Food,i*GRIDSIZE,j*GRIDSIZE);
                 }
     }
     }
@@ -120,24 +124,24 @@ void DrawMap()
 
 int level1[20][20]= {
                     {15, 12,12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 14},
-                    {13,  1, 2,  1,  1,  1,  1,  1,  1, 13, 13,  1,  1,  1,  1,  1,  1,  1,  1, 13},
-                    {13, 1, 15, 12, 14,  1, 15, 14,  1, 13, 13,  1, 15, 14,  1, 15, 12, 14,  1, 13},
-                    {13, 1, 17, 12, 16,  1, 17, 16,  1, 19, 19,  1, 17, 16,  1, 17, 12, 16,  1, 13},
-                    {13, 1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1, 13},
-                    {13, 1, 15, 14,  1,  18, 1, 18,  1,  1,  1,  1, 18,  1, 18,  1, 15, 14,  1, 13},
-                    {13, 1, 17, 16,  1,  13, 1, 17, 12, 12, 12, 12, 16,  1, 13,  1, 17, 16,  1, 13},
-                    {13, 1,  1,  1,  1,  13, 1,  1,   1, 1,  1,  1,  1,  1, 13,  1,  1,  1,  1, 13},
+                    {13,  7, 2,  7,  7,  7,  7,  7,  7, 13, 13,  7,  7,  7,  7,  7,  7,  7,  7, 13},
+                    {13, 7, 15, 12, 14,  7, 15, 14,  7, 13, 13,  7, 15, 14,  7, 15, 12, 14,  7, 13},
+                    {13, 7, 17, 12, 16,  7, 17, 16,  7, 19, 19,  7, 17, 16,  7, 17, 12, 16,  7, 13},
+                    {13, 7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7, 13},
+                    {13, 7, 15, 14,  7,  18, 7, 18,  7,  7,  7,  7, 18,  7, 18,  7, 15, 14,  7, 13},
+                    {13, 7, 17, 16,  7,  13, 7, 17, 12, 12, 12, 12, 16,  7, 13,  7, 17, 16,  7, 13},
+                    {13, 7,  7,  7,  7,  13, 1,  1,   1, 1,  1,  1,  1,  1, 13,  7,  7,  7,  7, 13},
                     {17,12, 12, 12, 12,  16, 1, 15,  21, 1,  1, 20, 14,  1, 17, 12, 12, 12, 12, 16},
                     { 1, 1,  1,  1,  1,   1, 1, 13,   1, 1,  1,  1, 13,  1,  1,  1,  1,  1,  1,  1},
                     { 1, 1,  1,  1,  1,   1, 1, 13,   1, 1,  1,  1, 13,  1,  1,  1,  1,  1,  1,  1},
                     {15,12, 12, 12, 12,  21, 1, 17,  12,12, 12, 12, 16,  1, 20, 12, 12, 12, 12, 14},
-                    {13, 1,  1,  1,  1,   1, 1,  1,   1, 1,  1,  1,  1,  1,  1,  1,  1,  1,  1, 13},
-                    {13, 1, 15, 21,  1,  18, 1, 20,  12,12, 12, 12, 21,  1, 18,  1, 20, 14,  1, 13},
-                    {13, 1, 13,  1,  1,  13, 1,  1,   1, 1,  1,  1,  1,  1, 13,  1,  1, 13,  1, 13},
-                    {13, 1, 13,  1, 20,  16, 1, 18,   1,18, 18,  1, 18,  1, 17, 21,  1, 13,  1, 13},
-                    {13, 1, 13,  1,  1,   1, 1, 13,   1,13, 13,  1, 13,  1,  1,  1,  1, 13,  1, 13},
-                    {13, 1, 17, 12, 21,   1,20, 16,   1,19, 19,  1, 17, 21,  1, 20, 12, 16,  1, 13},
-                    {13, 1,  1,  1,  1,   1, 1,  1,   1, 1,  1,  1,  1,  1,  1,  1,  1,  1,  1, 13},
+                    {13, 7,  7,  7,  7,   7, 1,  1,   1, 11,  1,  1,  1,  1,  7,  7,  7,  7,  7, 13},
+                    {13, 7, 15, 21,  7,  18, 7, 20,  12,12, 12, 12, 21,  7, 18,  7, 20, 14,  7, 13},
+                    {13, 7, 13,  7,  7,  13, 7,  7,   7, 7,  7,  7,  7,  7, 13,  7,  7, 13,  7, 13},
+                    {13, 7, 13,  7, 20,  16, 7, 18,   7,18, 18,  7, 18,  7, 17, 21,  7, 13,  7, 13},
+                    {13, 7, 13,  7,  7,   7, 7, 13,   7,13, 13,  7, 13,  7,  7,  7,  7, 13,  7, 13},
+                    {13, 7, 17, 12, 21,   7,20, 16,   7,19, 19,  7, 17, 21,  7, 20, 12, 16,  7, 13},
+                    {13, 7,  7,  7,  7,   7, 7,  7,   7, 7,  7,  7,  7,  7,  7,  7,  7,  7,  7, 13},
                     {17, 12, 12,12, 12,  12, 12, 12, 12, 12, 12, 12,12, 12, 12, 12, 12, 12, 12, 16}
                     };
 
