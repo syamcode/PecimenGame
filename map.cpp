@@ -30,34 +30,34 @@ int IsWall_Limit_Right(int x) {
     return x == WALL_LIMIT_RIGHT?1:0;
 }
 int IsPacman(int x) {
-    return x & PACMAN;
+    return x == PACMAN?1:0;
 }
 int IsFood1(int x) {
-    return x & FOOD1;
+    return x == FOOD1?1:0;
 }
 int IsFood2(int x) {
-    return x & FOOD2;
+    return x == FOOD2?1:0;
 }
 int IsFood3(int x) {
-    return x & FOOD3;
+    return x == FOOD3?1:0;
 }
 int IsFood4(int x) {
-    return x & FOOD4;
+    return x == FOOD4?1:0;
 }
 int IsFood5(int x) {
-    return x & FOOD5;
+    return x == FOOD5?1:0;
 }
 int IsGhost1(int x) {
-    return x & GHOST1;
+    return x == GHOST1?1:0;
 }
 int IsGhost2(int x) {
-    return x & GHOST2;
+    return x == GHOST2?1:0;
 }
 int IsGhost3(int x) {
-    return x & GHOST3;
+    return x == GHOST3?1:0;
 }
 int IsGhost4(int x) {
-    return x & GHOST4;
+    return x == GHOST4?1:0;
 }
 void DrawWall(int wall,int posX, int posY) {
     switch(wall){
@@ -93,36 +93,39 @@ void DrawFood(int wall,int posX, int posY) { // masih contoh, yang dibawah belum
         break;
     }
 }
-void DrawObject(int wall,int posX, int posY) { // masih contoh, yang dibawah belum asli
-//    switch(wall){
-//        case RWALL_HOR : readimagefile("assets/images/Wall3.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
-//        break;
-//        case RWALL_VER : readimagefile("assets/images/wall.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
-//        break;
-//        case RWALL_COR_UNDERLEFT : readimagefile("assets/images/Wall2.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
-//        break;
-//    }
+void DrawObject(int wall, int posX, int posY) { // masih contoh, yang dibawah belum asli
+    switch(wall){
+//        case RPACMAN : drawPacman(peciman);
+    }
 }
 
 
-void DrawMap()
+void DrawMap(pacmanController peciman)
 {
      int i, j;
     for (i=0;i<20;i++) {
         for(j=0;j<20;j++) {
-            {
             if(levelMap[j][i].Wall!=0)
                 {
                 DrawWall(levelMap[j][i].Wall,i*GRIDSIZE,j*GRIDSIZE);
                 }
-            }if(levelMap[j][i].Food!=0)
+            if(levelMap[j][i].Food!=0)
                 {
                 DrawFood(levelMap[j][i].Food,j,i);
                 }
-            }if(levelMap[j][i].Object!=0)
+            if(levelMap[j][i].Object!=0)
             {
-                DrawObject(levelMap[j][i].Object,j,i);
+                if (levelMap[j][i].Object == RPACMAN)
+                {
+                    peciman.posX = i;
+                    peciman.posY = j;
+
+                    drawPacman(peciman);
+                }
+                else
+                    DrawObject(levelMap[j][i].Object, i*GRIDSIZE,j*GRIDSIZE);
             }
+    }
     }
 }
 
@@ -142,7 +145,7 @@ int level1[20][20]= {
                     {13, 1, 1,  1,  1,  1,  1,  1,   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 13},
                     {13, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 13},
                     {13, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 13},
-                    {13, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 13},
+                    {13, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 13},
                     {13, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 13},
                     {13, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 13},
                     {13, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 13},
@@ -189,6 +192,7 @@ void CreateMap(int maps[20][20])
                 levelMap[j][i].Object=RGHOST4;
             }else if (IsPacman(maps[j][i])) {
                 levelMap[j][i].Object=RPACMAN;
+
             }else{
                   levelMap[j][i].Object=0;
             }

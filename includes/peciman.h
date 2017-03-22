@@ -3,10 +3,15 @@
 
 #define GRIDSIZE 30
 
-#define UP 72
-#define RIGHT 77
-#define LEFT 75
-#define DOWN 80
+#define UPARROW 72
+#define DOWNARROW 80
+#define LEFTARROW 75
+#define RIGHTARROW 77
+
+#define UP 1
+#define RIGHT 2
+#define LEFT 3
+#define DOWN 4
 
 typedef struct{
     int direction;
@@ -15,6 +20,9 @@ typedef struct{
     int state;
 }pacmanController;
 
+
+
 void drawPacman(pacmanController peciman);
+void mainPeciman(pacmanController peciman);
 
 #endif // PECIMAN_H_INCLUDED
