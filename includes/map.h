@@ -74,7 +74,7 @@ int IsGhost1(int x);
 int IsGhost2(int x);
 int IsGhost3(int x);
 int IsGhost4(int x);
-void DrawMap(pacmanController peciman);
-void CreateMap(int maps[20][20]);
+void DrawMap();
+void CreateMap(int maps[20][20], pacmanController *peciman);
 
 #endif // MAP_H_INCLUDED

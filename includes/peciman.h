@@ -22,7 +22,7 @@ typedef struct{
 
 
 
-void drawPacman(pacmanController peciman);
+void DrawPacman(pacmanController peciman);
 void mainPeciman(pacmanController peciman);
 
 #endif // PECIMAN_H_INCLUDED

@@ -100,38 +100,27 @@ void DrawObject(int wall, int posX, int posY) { // masih contoh, yang dibawah be
 }
 
 
-void DrawMap(pacmanController peciman)
+void DrawMap()
 {
      int i, j;
     for (i=0;i<20;i++) {
         for(j=0;j<20;j++) {
-            if(levelMap[j][i].Wall!=0)
+            if(levelMap[i][j].Wall!=0)
                 {
-                DrawWall(levelMap[j][i].Wall,i*GRIDSIZE,j*GRIDSIZE);
+                DrawWall(levelMap[i][j].Wall,i*GRIDSIZE,j*GRIDSIZE);
                 }
-            if(levelMap[j][i].Food!=0)
+            if(levelMap[i][j].Food!=0)
                 {
-                DrawFood(levelMap[j][i].Food,j,i);
+                DrawFood(levelMap[i][j].Food,j,i);
                 }
-            if(levelMap[j][i].Object!=0)
-            {
-                if (levelMap[j][i].Object == RPACMAN)
-                {
-                    peciman.posX = i;
-                    peciman.posY = j;
-
-                    drawPacman(peciman);
-                }
-                else
-                    DrawObject(levelMap[j][i].Object, i*GRIDSIZE,j*GRIDSIZE);
-            }
     }
     }
 }
 
+
 int level1[20][20]= {
                     {15, 12,12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 14},
-                    {13, 1, 1,  1,  1,  1,  1,  1,  1, 13, 13, 1, 1, 1, 1, 1, 1, 1, 1, 13},
+                    {13, 1, 1,  1,  1,  1,  1,  1,  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 13},
                     {13, 1, 15, 12, 14, 1,  15, 14, 1, 13, 13, 1, 15, 14, 1, 15, 12, 14, 1, 13},
                     {13, 1, 17, 12, 16, 1,  17, 16, 1, 19, 19, 1, 17, 16, 1, 17, 12, 16, 1, 13},
                     {13, 1, 1,  1,  1,  1,  1,  1,  1,  1,  1, 1,  1,  1,  1, 1, 1, 1, 1, 13},
@@ -145,71 +134,74 @@ int level1[20][20]= {
                     {13, 1, 1,  1,  1,  1,  1,  1,   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 13},
                     {13, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 13},
                     {13, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 13},
-                    {13, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 13},
                     {13, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 13},
                     {13, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 13},
                     {13, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 13},
+                    {13, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 13, 13, 13},
                     {17, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,16}
                     };
 
-void CreateMap(int maps[20][20])
+void CreateMap(int maps[20][20], pacmanController *peciman)
 {
        int i, j;
     for (i=0;i<20;i++) {
         for(j=0;j<20;j++) {
 
             if (IsWall_Hor(maps[j][i])) {
-                levelMap[j][i].Wall=RWALL_HOR;
+                levelMap[i][j].Wall=RWALL_HOR;
             }else if (IsWall_Ver(maps[j][i])) {
-                levelMap[j][i].Wall=RWALL_VER;
+                levelMap[i][j].Wall=RWALL_VER;
             }else if (IsWall_Cor_UnderLeft(maps[j][i])) {
-                levelMap[j][i].Wall=RWALL_COR_UNDERLEFT;
+                levelMap[i][j].Wall=RWALL_COR_UNDERLEFT;
             } else if (IsWall_Cor_UnderRight(maps[j][i])) {
-                levelMap[j][i].Wall=RWALL_COR_UNDERRIGHT;
+                levelMap[i][j].Wall=RWALL_COR_UNDERRIGHT;
             }else if (IsWall_Cor_UpLeft(maps[j][i])) {
-                levelMap[j][i].Wall=RWALL_COR_UPLEFT;
+                levelMap[i][j].Wall=RWALL_COR_UPLEFT;
             }else if (IsWall_Cor_UpRight(maps[j][i])) {
-                levelMap[j][i].Wall=RWALL_COR_UPRIGHT;
+                levelMap[i][j].Wall=RWALL_COR_UPRIGHT;
             }else if (IsWall_Limit_Up(maps[j][i])) {
-                levelMap[j][i].Wall=RWALL_LIMIT_UP;
+                levelMap[i][j].Wall=RWALL_LIMIT_UP;
             }else if (IsWall_Limit_Down(maps[j][i])) {
-                levelMap[j][i].Wall=RWALL_LIMIT_DOWN;
+                levelMap[i][j].Wall=RWALL_LIMIT_DOWN;
             }else if (IsWall_Limit_Left(maps[j][i])) {
-                levelMap[j][i].Wall=RWALL_LIMIT_LEFT;
+                levelMap[i][j].Wall=RWALL_LIMIT_LEFT;
             }else if (IsWall_Limit_Right(maps[j][i])) {
-                levelMap[j][i].Wall=RWALL_LIMIT_RIGHT;
+                levelMap[i][j].Wall=RWALL_LIMIT_RIGHT;
             }
             else {
-                    levelMap[j][i].Wall=REMPTY;
+                    levelMap[i][j].Wall=REMPTY;
             }
             if (IsGhost1(maps[j][i])) {
-                levelMap[j][i].Object=RGHOST1;
+                levelMap[i][j].Object=RGHOST1;
             }else if (IsGhost2(maps[j][i])) {
-                levelMap[j][i].Object=RGHOST2;
+                levelMap[i][j].Object=RGHOST2;
             }else if (IsGhost3(maps[j][i])) {
-                levelMap[j][i].Object=RGHOST3;
+                levelMap[i][j].Object=RGHOST3;
             }else if (IsGhost4(maps[j][i])) {
-                levelMap[j][i].Object=RGHOST4;
+                levelMap[i][j].Object=RGHOST4;
             }else if (IsPacman(maps[j][i])) {
-                levelMap[j][i].Object=RPACMAN;
+                levelMap[i][j].Object=RPACMAN;
+                peciman->posX = i;
+                peciman->posY = j;
+                peciman->direction = RIGHT;
+                peciman->state = 1;
 
             }else{
-                  levelMap[j][i].Object=0;
+                  levelMap[i][j].Object=0;
             }
             if (IsFood1(maps[j][i])) {
-                levelMap[j][i].Food=RFOOD1;
+                levelMap[i][j].Food=RFOOD1;
             }else if (IsFood2(maps[j][i])) {
-                levelMap[j][i].Food=RFOOD2;
+                levelMap[i][j].Food=RFOOD2;
             }else if (IsFood3(maps[j][i])) {
-                levelMap[j][i].Food=RFOOD3;
+                levelMap[i][j].Food=RFOOD3;
             }else if (IsFood4(maps[j][i])) {
-                levelMap[j][i].Food=RFOOD4;
+                levelMap[i][j].Food=RFOOD4;
             }else if (IsFood5(maps[j][i])) {
-                levelMap[j][i].Food=RFOOD5;
+                levelMap[i][j].Food=RFOOD5;
             }else{
-              levelMap[j][i].Food=0;
+              levelMap[i][j].Food=0;
             }
         }
     }
 }
-

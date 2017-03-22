@@ -1,11 +1,10 @@
 #include "includes/peciman.h"
 #include <graphics.h>
 
-void drawPacman(pacmanController peciman)
+void DrawPacman(pacmanController peciman)
 {
     int posX = peciman.posX * GRIDSIZE;
     int posY = peciman.posY * GRIDSIZE;
-     printf("%d", peciman.direction);
     switch (peciman.direction) {
       case UP:
       if (peciman.state == 1) // if open
@@ -55,7 +54,7 @@ void drawPacman(pacmanController peciman)
 }
 
 // void movePacman()
-void chageState(pacmanController *peciman)
+void changeState(pacmanController *peciman)
 {
     if (peciman->state == 0)
     {
@@ -69,10 +68,38 @@ void chageState(pacmanController *peciman)
 void mainPeciman(pacmanController peciman)
 {
     peciman.direction = getch();
-    drawPacman(peciman);
+    DrawPacman(peciman);
 }
 
-void Move()
+void Move(pacmanController *peciman)
 {
+    setfillstyle(SOLID_FILL, 0);
+    switch(peciman->direction){
+    case RIGHT : if(levelMap[peciman->posX+1][peciman->posY].Wall == 0){
+        setcolor(0);
+        bar(peciman->posX * GRIDSIZE, peciman->posY* GRIDSIZE, (peciman->posX * GRIDSIZE) + GRIDSIZE, peciman->posY*GRIDSIZE + GRIDSIZE);
+        peciman->posX++;
+        levelMap[peciman->posX+1][peciman->posY].Object = RPACMAN;
+        }break;
+    case LEFT : if(levelMap[peciman->posX-1][peciman->posY].Wall == 0){
+        setcolor(0);
+        bar(peciman->posX * GRIDSIZE, peciman->posY* GRIDSIZE, (peciman->posX * GRIDSIZE) + GRIDSIZE, peciman->posY*GRIDSIZE + GRIDSIZE);
+        peciman->posX--;
+        levelMap[peciman->posX-1][peciman->posY].Object = RPACMAN;
+        }break;
+    case UP : if(levelMap[peciman->posX][peciman->posY-1].Wall == 0){
+        setcolor(0);
+        bar(peciman->posX * GRIDSIZE, peciman->posY* GRIDSIZE, (peciman->posX * GRIDSIZE) + GRIDSIZE, peciman->posY*GRIDSIZE + GRIDSIZE);
+        peciman->posY--;
+        levelMap[peciman->posX][peciman->posY-1].Object = RPACMAN;
+        }break;
+    case DOWN : if(levelMap[peciman->posX][peciman->posY+1].Wall == 0){
+        setcolor(0);
+        bar(peciman->posX * GRIDSIZE, peciman->posY* GRIDSIZE, (peciman->posX * GRIDSIZE) + GRIDSIZE, peciman->posY*GRIDSIZE + GRIDSIZE);
+        peciman->posY++;
+        levelMap[peciman->posX][peciman->posY+1].Object = RPACMAN;
+        }break;
+    }
 
+    DrawPacman(*peciman);
 }

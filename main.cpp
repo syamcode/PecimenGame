@@ -18,7 +18,7 @@ int main()
     pacmanController peciman;
     initwindow(800, 600, "Pecimen Game");
 //    pacmanController peciman;
-    CreateMap(level1);
+    CreateMap(level1, &peciman);
     //DrawMap();
     char choose;
     //peciman.direction = getch();
@@ -26,15 +26,16 @@ int main()
     //cleardevice();
     //drawPacman(peciman);
     //mainPeciman(peciman);
-                        peciman.direction = RIGHT;
-                    peciman.state = 1;
-    int page = 1;
-    DrawMap(peciman);
+//                        peciman.direction = RIGHT;
+//                    peciman.state = 1;
+    //int page = 1;
+
+    DrawMap();
     while (true)
     {
         begin = clock();
-//        setactivepage(page);
-//        setvisualpage(1 - page);
+        //setactivepage(page);
+        //setvisualpage(1 - page);
         if(kbhit())
         {
             choose = getch();
@@ -46,10 +47,14 @@ int main()
             }
             //printf("%d", peciman.direction);
         }
-//        page = 1 - page;
+        //page = 1 - page;
+        Move(&peciman);
+        changeState(&peciman);
+        printf("%d %d\n",peciman.posX,peciman.posY);
+        //delay(100);
         end = clock();
         time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-        printf("Time = %f\n",time_spent);
+//        printf("Time = %f\n",time_spent);
     }
 
     getch();
