@@ -43,9 +43,11 @@ int main()
         if (step%200 == 0){
 //            printf("%d",step);
             Move(&peciman);
-            eatFood(&peciman);
+            if(levelMap[peciman.posX][peciman.posY].Food != 0){
+            	eatFood(&peciman);
+	            incLives(&player1);
+            }
             changeState(&peciman);
-            incLives(&player1);
         }
 //        printf("%d\n",step);
        // printf("%d %d\n",peciman.posX,peciman.posY);
