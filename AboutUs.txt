@@ -1,0 +1,38 @@
+|     AAA    BBBBBBB   OOOOO  UUUU UUUU TTTTTTT   UUUU UUUU SSSSSSS
+|    AA AA    BB   BB OO   OO  UU   UU    TTT      UU   UU  SS   SS  
+|   AA   AA   BB   BB OO   OO  UU   UU    TTT      UU   UU  SS      
+|   AAAAAAA   BBBBBB  OO   OO  UU   UU    TTT      UU   UU  SSSSSSS   
+|   AA   AA   BB   BB OO   OO  UU   UU    TTT      UU   UU       SS
+|   AA   AA   BB   BB OO   OO  UU   UU    TTT      UU   UU  SS   SS  
+|  AAAA AAAA BBBBBBB   OOOOO   UUUUUUU    TTT      UUUUUUU  SSSSSSS 
+|
+|      Game ini dibuat untuk memenuhi tugas selama mata kuliah Proyek 2.
+|
+|--------------------------------------------------------------------------
+< L E A D E R >
+Nama	: Pega Kurniawan
+NIM	:161511060
+
+--------------------------------------------------------------------------
+Nama	: Auliya Aqma Dinilah
+NIM	: 161511006
+
+-------------------------------------------------------------------------
+Nama	: Haya Utami Lutfi
+NIM	: 161511011
+
+--------------------------------------------------------------------------
+Nama	: Achmad Fadhitya Muharram
+NIM	:161511034
+
+--------------------------------------------------------------------------
+Nama     : Fahmi Rosdiansyah Mahdani
+NIM	:161511044
+
+--------------------------------------------------------------------------
+Nama	:Muhamad Hisyam Anshory
+NIM	:161511052
+
+^*^*^*^*^*^*^*^*^*^*^^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^*^**^*^**^*^*^*
+	[ 2017 - D 3 TEKNIK INFORMATIKA ]
+	 - POLITEKNIK NEGERI BANDUNG -
