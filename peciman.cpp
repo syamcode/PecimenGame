@@ -50,10 +50,16 @@ void DrawPacman(pacmanController peciman)
       }
       break;
     }
-    // readimagefile("assets/images/PacmanRightOpen.bmp", posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
 }
 
-// void movePacman()
+void InitPacman (pacmanController *peciman, int i, int j)
+{
+    peciman->posX = i;
+    peciman->posY = j;
+    peciman->direction = RIGHT;
+    peciman->state = 1;
+}
+
 void changeState(pacmanController *peciman)
 {
     if (peciman->state == 0)
@@ -65,41 +71,63 @@ void changeState(pacmanController *peciman)
       peciman->state = 0; // change to close
     }
 }
-void mainPeciman(pacmanController peciman)
+
+void BlackSquare(pacmanController *peciman)
 {
-    peciman.direction = getch();
-    DrawPacman(peciman);
+    bar(peciman->posX * GRIDSIZE, peciman->posY* GRIDSIZE, (peciman->posX * GRIDSIZE) + GRIDSIZE, peciman->posY*GRIDSIZE + GRIDSIZE);
 }
 
 void Move(pacmanController *peciman)
 {
     setfillstyle(SOLID_FILL, 0);
-    switch(peciman->direction){
-    case RIGHT : if(levelMap[peciman->posX+1][peciman->posY].Wall == 0){
-        setcolor(0);
-        bar(peciman->posX * GRIDSIZE, peciman->posY* GRIDSIZE, (peciman->posX * GRIDSIZE) + GRIDSIZE, peciman->posY*GRIDSIZE + GRIDSIZE);
-        peciman->posX++;
-        levelMap[peciman->posX+1][peciman->posY].Object = RPACMAN;
-        }break;
-    case LEFT : if(levelMap[peciman->posX-1][peciman->posY].Wall == 0){
-        setcolor(0);
-        bar(peciman->posX * GRIDSIZE, peciman->posY* GRIDSIZE, (peciman->posX * GRIDSIZE) + GRIDSIZE, peciman->posY*GRIDSIZE + GRIDSIZE);
-        peciman->posX--;
-        levelMap[peciman->posX-1][peciman->posY].Object = RPACMAN;
-        }break;
-    case UP : if(levelMap[peciman->posX][peciman->posY-1].Wall == 0){
-        setcolor(0);
-        bar(peciman->posX * GRIDSIZE, peciman->posY* GRIDSIZE, (peciman->posX * GRIDSIZE) + GRIDSIZE, peciman->posY*GRIDSIZE + GRIDSIZE);
-        peciman->posY--;
-        levelMap[peciman->posX][peciman->posY-1].Object = RPACMAN;
-        }break;
-    case DOWN : if(levelMap[peciman->posX][peciman->posY+1].Wall == 0){
-        setcolor(0);
-        bar(peciman->posX * GRIDSIZE, peciman->posY* GRIDSIZE, (peciman->posX * GRIDSIZE) + GRIDSIZE, peciman->posY*GRIDSIZE + GRIDSIZE);
-        peciman->posY++;
-        levelMap[peciman->posX][peciman->posY+1].Object = RPACMAN;
-        }break;
-    }
+    switch(peciman->direction)
+    {
+        case RIGHT : if(levelMap[peciman->posX+1][peciman->posY].Wall == 0){ // Cek apakah ada tembok atau tidak
+            setcolor(0);
+            BlackSquare(peciman);
+            peciman->posX++;
+            levelMap[peciman->posX+1][peciman->posY].Object = RPACMAN;
+            }
+            if (peciman->posX == 20){
+              peciman->posX = 0;
+              levelMap[peciman->posX][peciman->posY].Object = RPACMAN;
+            }
+            break;
 
+        case LEFT : if(levelMap[peciman->posX-1][peciman->posY].Wall == 0 ){
+            setcolor(0);
+            BlackSquare(peciman);
+            peciman->posX--;
+            levelMap[peciman->posX-1][peciman->posY].Object = RPACMAN;
+            }
+            if (peciman->posX < 0){
+              peciman->posX = 20;
+              levelMap[peciman->posX][peciman->posY].Object = RPACMAN;
+            }
+            break;
+
+        case UP : if(levelMap[peciman->posX][peciman->posY-1].Wall == 0){
+            setcolor(0);
+            BlackSquare(peciman);
+            peciman->posY--;
+            levelMap[peciman->posX][peciman->posY-1].Object = RPACMAN;
+            }
+            if (peciman->posY == 0){
+              peciman->posX = 20;
+              levelMap[peciman->posX][peciman->posY].Object = RPACMAN;
+            }
+            break;
+
+        case DOWN : if(levelMap[peciman->posX][peciman->posY+1].Wall == 0){
+            setcolor(0);
+            BlackSquare(peciman);
+            peciman->posY++;
+            levelMap[peciman->posX][peciman->posY+1].Object = RPACMAN;
+            }break;
+            if (peciman->posY == 20){
+              peciman->posY = 0;
+              levelMap[peciman->posX][peciman->posY].Object = RPACMAN;
+            }
+    }
     DrawPacman(*peciman);
 }
