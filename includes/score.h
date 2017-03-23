@@ -20,5 +20,6 @@ void eatFood(pacmanController *peciman);
 void incLives(playerControl *player);
 int randomise(int min, int max);
 int foodType(int x);
+void addBonus(MapController *map, int posX, int posY);
 
 #endif // SCORE_H_INCLUDED

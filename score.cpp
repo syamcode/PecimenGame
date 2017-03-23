@@ -53,3 +53,8 @@ int foodType(int x){
         case 91 ... 100: return RFOOD5; break;  //10%
     }
 }
+
+void addBonus(MapController *map, int posX, int posY){
+    map->Food=foodType(randomise(1,100));
+    DrawFood(map->Food,posX*GRIDSIZE,posY*GRIDSIZE);
+}
