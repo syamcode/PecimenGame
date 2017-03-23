@@ -24,5 +24,6 @@ typedef struct{
 
 void DrawPacman(pacmanController peciman);
 void mainPeciman(pacmanController peciman);
+void InitPacman(pacmanController *peciman, int i, int j);
 
 #endif // PECIMAN_H_INCLUDED

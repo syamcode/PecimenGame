@@ -176,63 +176,84 @@ void CreateMap(int maps[20][20], pacmanController *peciman)
        int i, j;
     for (i=0;i<20;i++) {
         for(j=0;j<20;j++) {
-
+            // Kondisi pengecekan untuk tembok
             if (IsWall_Hor(maps[j][i])) {
                 levelMap[i][j].Wall=RWALL_HOR;
-            }else if (IsWall_Ver(maps[j][i])) {
+            }
+            else if (IsWall_Ver(maps[j][i])) {
                 levelMap[i][j].Wall=RWALL_VER;
-            }else if (IsWall_Cor_UnderLeft(maps[j][i])) {
+            }
+            else if (IsWall_Cor_UnderLeft(maps[j][i])) {
                 levelMap[i][j].Wall=RWALL_COR_UNDERLEFT;
-            } else if (IsWall_Cor_UnderRight(maps[j][i])) {
+            }
+            else if (IsWall_Cor_UnderRight(maps[j][i])) {
                 levelMap[i][j].Wall=RWALL_COR_UNDERRIGHT;
-            }else if (IsWall_Cor_UpLeft(maps[j][i])) {
+            }
+            else if (IsWall_Cor_UpLeft(maps[j][i])) {
                 levelMap[i][j].Wall=RWALL_COR_UPLEFT;
-            }else if (IsWall_Cor_UpRight(maps[j][i])) {
+            }
+            else if (IsWall_Cor_UpRight(maps[j][i])) {
                 levelMap[i][j].Wall=RWALL_COR_UPRIGHT;
-            }else if (IsWall_Limit_Up(maps[j][i])) {
+            }
+            else if (IsWall_Limit_Up(maps[j][i])) {
                 levelMap[i][j].Wall=RWALL_LIMIT_UP;
-            }else if (IsWall_Limit_Down(maps[j][i])) {
+            }
+            else if (IsWall_Limit_Down(maps[j][i])) {
                 levelMap[i][j].Wall=RWALL_LIMIT_DOWN;
-            }else if (IsWall_Limit_Left(maps[j][i])) {
+            }
+            else if (IsWall_Limit_Left(maps[j][i])) {
                 levelMap[i][j].Wall=RWALL_LIMIT_LEFT;
-            }else if (IsWall_Limit_Right(maps[j][i])) {
+            }
+            else if (IsWall_Limit_Right(maps[j][i])) {
                 levelMap[i][j].Wall=RWALL_LIMIT_RIGHT;
-            }else if (IsWall_Ghost(maps[j][i])) {
+            }
+            else if (IsWall_Ghost(maps[j][i])) {
                 levelMap[i][j].Wall=RWALL_GHOST;
             }
             else {
-                    levelMap[i][j].Wall=REMPTY;
+                levelMap[i][j].Wall=REMPTY;
             }
+
+            // Kondisi pengecekan untuk Objek
             if (IsGhost1(maps[j][i])) {
                 levelMap[i][j].Object=RGHOST1;
-            }else if (IsGhost2(maps[j][i])) {
+            }
+            else if (IsGhost2(maps[j][i])) {
                 levelMap[i][j].Object=RGHOST2;
-            }else if (IsGhost3(maps[j][i])) {
+            }
+            else if (IsGhost3(maps[j][i])) {
                 levelMap[i][j].Object=RGHOST3;
-            }else if (IsGhost4(maps[j][i])) {
+            }
+            else if (IsGhost4(maps[j][i])) {
                 levelMap[i][j].Object=RGHOST4;
-            }else if (IsPacman(maps[j][i])) {
-                levelMap[i][j].Object=RPACMAN;
-                peciman->posX = i;
-                peciman->posY = j;
-                peciman->direction = RIGHT;
-                peciman->state = 1;
+            }
+            else if (IsPacman(maps[j][i])) {
+                levelMap[i][j].Object=RPACMAN; // Masukan RPACMAN ke record jika angka yang di map adalah angka pacman
+                InitPacman(peciman, i, j); // Kondisi pertama pacman
 
-            }else{
+            }
+            else{
                   levelMap[i][j].Object=0;
             }
+
+            // Kondisi pengecekan untuk Food
             if (IsFood1(maps[j][i])) {
                 levelMap[i][j].Food=RFOOD1;
-            }else if (IsFood2(maps[j][i])) {
+            }
+            else if (IsFood2(maps[j][i])) {
                 levelMap[i][j].Food=RFOOD2;
-            }else if (IsFood3(maps[j][i])) {
+            }
+            else if (IsFood3(maps[j][i])) {
                 levelMap[i][j].Food=RFOOD3;
-            }else if (IsFood4(maps[j][i])) {
+            }
+            else if (IsFood4(maps[j][i])) {
                 levelMap[i][j].Food=RFOOD4;
-            }else if (IsFood5(maps[j][i])) {
+            }
+            else if (IsFood5(maps[j][i])) {
                 levelMap[i][j].Food=RFOOD5;
-            }else{
-              levelMap[i][j].Food=0;
+            }
+            else{
+                levelMap[i][j].Food=0;
             }
         }
     }

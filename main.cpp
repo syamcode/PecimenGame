@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <graphics.h>
+#include <time.h>
 #include "includes/peciman.h"
 #include "includes/map.h"
 #include "includes/score.h"
 #include "map.cpp"
 #include "peciman.cpp"
 #include "score.cpp"
-#include <time.h>
+
 
 int main()
 {
@@ -41,7 +42,7 @@ int main()
             }
         }
         if (step%200 == 0){
-//          printf("%d",step);
+            delay(100);
             Move(&peciman);
             if(levelMap[peciman.posX][peciman.posY].Food != 0){
             	eatFood(&peciman);
@@ -49,8 +50,6 @@ int main()
             }
             changeState(&peciman);
         }
-//        printf("%d\n",step);
-       // printf("%d %d\n",peciman.posX,peciman.posY);
         end = clock();
         time_spent = (double)(end - begin) / CLOCKS_PER_SEC; // Ulah di hapus
 //      printf("Time = %f\n",time_spent);
