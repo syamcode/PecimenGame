@@ -31,9 +31,7 @@ void incScore(int food){
 }
 
 void eatFood(pacmanController *peciman){
-    if(levelMap[peciman->posX][peciman->posY].Food != 0){
-        incScore(levelMap[peciman->posX][peciman->posY].Food);
-    }
+    incScore(levelMap[peciman->posX][peciman->posY].Food);
     levelMap[peciman->posX][peciman->posY].Food=REMPTY;
 }
 
