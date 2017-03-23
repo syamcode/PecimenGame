@@ -1,21 +1,30 @@
 #include <stdio.h>
 #include <graphics.h>
 #include <windows.h>
-#define MAX_INPUT_LEN 25
+#define MAX_INPUT_LEN 15
 
-typedef struct{
-	char *name;
-	int score;
-	int lives;
-}playerControl;
+//typedef struct{
+	//char *name;
+	//int score;
+	//int lives;
+//}playerControl;
 
-int main() {
-    //int gd = DETECT, gm;
-    //initgraph(&gd, &gm, "");
+void inputnama();
+
+//playerControl player1.name;
+
+int main(){
+    int gd = DETECT, gm;
     initwindow(800, 600);
-    printf("%d\n",getmaxx());
-    printf("%d",getmaxy());
+    //printf("%d\n",getmaxx());
+    //printf("%d",getmaxy());
+    inputnama();
+    getch();
+    closegraph();
+    return(0);
+}
 
+void inputnama() {
     char inputbuf[MAX_INPUT_LEN];
     for(int idx=0;idx<MAX_INPUT_LEN;idx++)
         inputbuf[idx]=0;
@@ -27,7 +36,7 @@ int main() {
        cleardevice();
        readimagefile("picture/pecimen.bmp",100,10,700,160);
        rectangle(100,250,700,400);
-       settextstyle(7, HORIZ_DIR,4);
+       settextstyle(3, HORIZ_DIR,4);
        outtextxy(280,260,"Nama Player:");
        outtextxy (280, 300, inputbuf);
        c = getch();
@@ -57,5 +66,5 @@ int main() {
        }
 
     } while (!the_end);
-    //getchar(playerControl player1.name)
+    //getchar(playerControl player1.name);
 }
