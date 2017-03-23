@@ -88,13 +88,21 @@ void Move(pacmanController *peciman)
             peciman->posX++;
             levelMap[peciman->posX+1][peciman->posY].Object = RPACMAN;
             }
+            if (peciman->posX == 20){
+              peciman->posX = 0;
+              levelMap[peciman->posX][peciman->posY].Object = RPACMAN;
+            }
             break;
 
-        case LEFT : if(levelMap[peciman->posX-1][peciman->posY].Wall == 0){
+        case LEFT : if(levelMap[peciman->posX-1][peciman->posY].Wall == 0 ){
             setcolor(0);
             BlackSquare(peciman);
             peciman->posX--;
             levelMap[peciman->posX-1][peciman->posY].Object = RPACMAN;
+            }
+            if (peciman->posX < 0){
+              peciman->posX = 20;
+              levelMap[peciman->posX][peciman->posY].Object = RPACMAN;
             }
             break;
 
@@ -104,6 +112,10 @@ void Move(pacmanController *peciman)
             peciman->posY--;
             levelMap[peciman->posX][peciman->posY-1].Object = RPACMAN;
             }
+            if (peciman->posY == 0){
+              peciman->posX = 20;
+              levelMap[peciman->posX][peciman->posY].Object = RPACMAN;
+            }
             break;
 
         case DOWN : if(levelMap[peciman->posX][peciman->posY+1].Wall == 0){
@@ -112,6 +124,10 @@ void Move(pacmanController *peciman)
             peciman->posY++;
             levelMap[peciman->posX][peciman->posY+1].Object = RPACMAN;
             }break;
+            if (peciman->posY == 20){
+              peciman->posY = 0;
+              levelMap[peciman->posX][peciman->posY].Object = RPACMAN;
+            }
     }
     DrawPacman(*peciman);
 }

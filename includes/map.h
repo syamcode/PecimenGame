@@ -23,6 +23,7 @@
 #define WALL_LIMIT_LEFT 20
 #define WALL_LIMIT_RIGHT 21
 #define WALL_GHOST 22
+#define WALL_PORTAL_RIGHT 23
 
 #define RPACMAN 1
 #define RGHOST1 2
@@ -45,6 +46,7 @@
 #define RWALL_LIMIT_LEFT 9
 #define RWALL_LIMIT_RIGHT 10
 #define RWALL_GHOST 11
+#define RWALL_PORTAL_RIGHT 12 
 #define REMPTY 0
 
 typedef struct{
