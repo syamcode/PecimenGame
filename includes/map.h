@@ -26,10 +26,10 @@
 #define WALL_PORTAL_RIGHT 23
 
 #define RPACMAN 1
-#define RGHOST1 2
-#define RGHOST2 3
-#define RGHOST3 4
-#define RGHOST4 5
+#define KUNTILANAK 2
+#define POCONG 3
+#define TENGKORAK 4
+#define TUYUL 5
 #define RFOOD1 1
 #define RFOOD2 2
 #define RFOOD3 3
@@ -46,7 +46,7 @@
 #define RWALL_LIMIT_LEFT 9
 #define RWALL_LIMIT_RIGHT 10
 #define RWALL_GHOST 11
-#define RWALL_PORTAL_RIGHT 12 
+#define RWALL_PORTAL_RIGHT 12
 #define REMPTY 0
 
 typedef struct{

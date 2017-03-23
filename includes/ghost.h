@@ -1,10 +1,6 @@
 #ifndef GHOST_H_INCLUDED
 #define GHOST_H_INCLUDED
 
-#define TUYUL 1
-#define KUNTILANAK 2
-#define POCONG 3
-#define TENGKORAK 4
 typedef struct {
     int posX;
     int posY;
@@ -13,8 +9,9 @@ typedef struct {
     int ghostType;
 }ghostController;
 void DrawGhost(ghostController ghost);
-void GhostMove();
-int CanMove();
-void GhostAutoMove();
+void GhostMove(ghostController *ghost);
+int CanMove(ghostController ghost, int direction);
+void GhostAutoMove(ghostController *ghost, pacmanController pacman);
+void InitGhost(ghostController *ghost, int posX, int posY, int ghostType);
 
 #endif

@@ -72,9 +72,10 @@ void changeState(pacmanController *peciman)
     }
 }
 
-void BlackSquare(pacmanController *peciman)
+void BlackSquare(int posX, int posY)
 {
-    bar(peciman->posX * GRIDSIZE, peciman->posY* GRIDSIZE, (peciman->posX * GRIDSIZE) + GRIDSIZE, peciman->posY*GRIDSIZE + GRIDSIZE);
+    setcolor(0);
+    bar(posX * GRIDSIZE, posY* GRIDSIZE, (posX * GRIDSIZE) + GRIDSIZE, posY*GRIDSIZE + GRIDSIZE);
 }
 
 void Move(pacmanController *peciman)
@@ -83,8 +84,7 @@ void Move(pacmanController *peciman)
     switch(peciman->direction)
     {
         case RIGHT : if(levelMap[peciman->posX+1][peciman->posY].Wall == 0){ // Cek apakah ada tembok atau tidak
-            setcolor(0);
-            BlackSquare(peciman);
+            BlackSquare(peciman->posX, peciman->posY);
             peciman->posX++;
             levelMap[peciman->posX+1][peciman->posY].Object = RPACMAN;
             }
@@ -95,8 +95,7 @@ void Move(pacmanController *peciman)
             break;
 
         case LEFT : if(levelMap[peciman->posX-1][peciman->posY].Wall == 0 ){
-            setcolor(0);
-            BlackSquare(peciman);
+            BlackSquare(peciman->posX, peciman->posY);
             peciman->posX--;
             levelMap[peciman->posX-1][peciman->posY].Object = RPACMAN;
             }
@@ -107,8 +106,7 @@ void Move(pacmanController *peciman)
             break;
 
         case UP : if(levelMap[peciman->posX][peciman->posY-1].Wall == 0){
-            setcolor(0);
-            BlackSquare(peciman);
+            BlackSquare(peciman->posX, peciman->posY);
             peciman->posY--;
             levelMap[peciman->posX][peciman->posY-1].Object = RPACMAN;
             }
@@ -119,15 +117,15 @@ void Move(pacmanController *peciman)
             break;
 
         case DOWN : if(levelMap[peciman->posX][peciman->posY+1].Wall == 0){
-            setcolor(0);
-            BlackSquare(peciman);
+            BlackSquare(peciman->posX, peciman->posY);
             peciman->posY++;
             levelMap[peciman->posX][peciman->posY+1].Object = RPACMAN;
-            }break;
+            }
             if (peciman->posY == 20){
               peciman->posY = 0;
               levelMap[peciman->posX][peciman->posY].Object = RPACMAN;
-            }
+            }break;
+
     }
     DrawPacman(*peciman);
 }

@@ -121,7 +121,7 @@ void DrawMap()
                 {
                 DrawFood(levelMap[i][j].Food,i*GRIDSIZE,j*GRIDSIZE);
                 }
-    }
+        }
     }
 }
 
@@ -137,7 +137,7 @@ int level1[20][20]= {
                     {13, 7,  7,  7,  7,  13, 1,  1,   1, 1,  1,  1,  1,  1, 13,  7,  7,  7,  7, 13},
                     {17,12, 12, 12, 12,  16, 1, 15,  21,22, 22, 20, 14,  1, 17, 12, 12, 12, 12, 16},
                     { 1, 1,  1,  1,  1,   1, 1, 13,   1, 1,  1,  1, 13,  1,  1,  2,  1,  1,  1, 1},
-                    { 1, 1,  1,  1,  1,   1, 1, 13,   1, 1,  1,  1, 13,  1,  1,  1,  1,  1,  1, 1},
+                    { 1, 1,  1,  1,  1,   1, 1, 13,   1, 4,  5,  6, 13,  1,  1,  1,  1,  1,  1, 1},
                     {15,12, 12, 12, 12,  21, 1, 17,  12,12, 12, 12, 16,  1, 20, 12, 12, 12, 12, 14},
                     {13, 7,  7,  7,  7,   7, 1,  1,   1, 11,  1,  1,  1,  1,  7,  7,  7,  7,  7, 13},
                     {13, 7, 15, 21,  7,  18, 7, 20,  12,12, 12, 12, 21,  7, 18,  7, 20, 14,  7, 13},
@@ -145,7 +145,7 @@ int level1[20][20]= {
                     {13, 7, 13,  7, 20,  16, 7, 18,   7,18, 18,  7, 18,  7, 17, 21,  7, 13,  7, 13},
                     {13, 7, 13,  7,  7,   7, 7, 13,   7,13, 13,  7, 13,  7,  7,  7,  7, 13,  7, 13},
                     {13, 7, 17, 12, 21,   7,20, 16,   7,19, 19,  7, 17, 21,  7, 20, 12, 16,  7, 13},
-                    {13, 7,  7,  7,  7,   7, 7,  7,   7, 7,  7,  7,  7,  7,  7,  7,  7,  7,  7, 13},
+                    {13, 7,  7,  7,  7,   7, 7,  7,   7, 7,  7,  7,  7,  7,  7,  7,  7,  7,  3, 13},
                     {17, 12, 12,12, 12,  12, 12, 12, 12, 12, 12, 12,12, 12, 12, 12, 12, 12, 12, 16}
                     };
 int level2[20][20]= {
@@ -161,7 +161,7 @@ int level2[20][20]= {
                     { 1, 1,  1,  1,  1,  1,  1, 13,  1,  1,  1,  1, 13,  1,  1,  1,  1,  1,  1,  1},
                     { 1, 1,  1,  1,  1,  1,  1, 13,  1,  1,  1,  1, 13,  1,  1,  1,  1,  1,  1,  1},
                     {15,12, 12, 12, 12, 21,  1, 17, 12, 12, 12, 12, 16,  1, 20, 12, 12, 12, 12, 14},
-                    {13, 1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1, 13},
+                    {13, 1,  1,  1,  3,  4,  5,  6,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1, 13},
                     {13, 1, 15, 21,  1, 18,  1, 20, 12, 12, 12, 12, 21,  1, 18,  1, 20, 14,  1, 13},
                     {13, 2, 13,  1,  1, 13,  1,  1,  1,  1,  1,  1,  1,  1, 13,  1,  1, 13,  1, 13},
                     {13, 1, 13,  1, 20, 16,  1, 20, 12, 12, 12, 12, 21,  1, 17, 21,  1, 13,  1, 13},
@@ -216,16 +216,20 @@ void CreateMap(int maps[20][20], playerControl *player)
 
             // Kondisi pengecekan untuk Objek
             if (IsGhost1(maps[j][i])) {
-                levelMap[i][j].Object=RGHOST1;
+                levelMap[i][j].Object=KUNTILANAK;
+                InitGhost(&player->ghost1, i, j, KUNTILANAK);
             }
             else if (IsGhost2(maps[j][i])) {
-                levelMap[i][j].Object=RGHOST2;
+                levelMap[i][j].Object=POCONG;
+                InitGhost(&player->ghost2, i, j, POCONG);
             }
             else if (IsGhost3(maps[j][i])) {
-                levelMap[i][j].Object=RGHOST3;
+                levelMap[i][j].Object=TENGKORAK;
+                InitGhost(&player->ghost3, i, j, TENGKORAK);
             }
             else if (IsGhost4(maps[j][i])) {
-                levelMap[i][j].Object=RGHOST4;
+                levelMap[i][j].Object=TUYUL;
+                InitGhost(&player->ghost4, i, j, TUYUL);
             }
             else if (IsPacman(maps[j][i])) {
                 levelMap[i][j].Object=RPACMAN; // Masukan RPACMAN ke record jika angka yang di map adalah angka pacman
@@ -233,7 +237,7 @@ void CreateMap(int maps[20][20], playerControl *player)
 
             }
             else{
-                  levelMap[i][j].Object=0;
+                  levelMap[i][j].Object=REMPTY;
             }
 
             // Kondisi pengecekan untuk Food
