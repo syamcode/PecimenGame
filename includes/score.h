@@ -11,12 +11,13 @@ typedef struct{
 	char *name;
 	int score;
 	int lives;
+	pacmanController peciman;
 } playerControl;
 
 void initScore(playerControl *player);
 void initLives(playerControl *player);
-void incScore(int food);
-void eatFood(pacmanController *peciman);
+void incScore(int food, playerControl *player);
+void eatFood(playerControl *player);
 void incLives(playerControl *player);
 int randomise(int min, int max);
 int foodType(int x);

@@ -10,29 +10,29 @@ void initLives(playerControl *player){
     player->lives=3;
 }
 
-void incScore(int food){
+void incScore(int food, playerControl *player){
    switch(food){
    case RFOOD1:
-       player1.score+=FOOD1_SCORE;
+       player->score+=FOOD1_SCORE;
        break;
    case RFOOD2:
-       player1.score+=FOOD2_SCORE;
+       player->score+=FOOD2_SCORE;
        break;
    case RFOOD3:
-       player1.score+=FOOD3_SCORE;
+       player->score+=FOOD3_SCORE;
        break;
    case RFOOD4:
-       player1.score+=FOOD4_SCORE;
+       player->score+=FOOD4_SCORE;
        break;
    case RFOOD5:
-       player1.score+=FOOD5_SCORE;
+       player->score+=FOOD5_SCORE;
        break;
    }
 }
 
-void eatFood(pacmanController *peciman){
-    incScore(levelMap[peciman->posX][peciman->posY].Food);
-    levelMap[peciman->posX][peciman->posY].Food=REMPTY;
+void eatFood(playerControl *player){
+    incScore(levelMap[player->peciman.posX][player->peciman.posY].Food, player);
+    levelMap[player->peciman.posX][player->peciman.posY].Food=REMPTY;
 }
 
 void incLives(playerControl *player){

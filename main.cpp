@@ -18,11 +18,10 @@ int main()
     clock_t end;
     double time_spent;
 
-    pacmanController peciman;
     initwindow(800, 600, "Pecimen Game");
     initScore(&player1);
     initLives(&player1);
-    CreateMap(level1, &peciman);
+    CreateMap(level1, &player1);
     char choose;
     int step = 0;
 
@@ -35,20 +34,21 @@ int main()
         {
             choose = getch();
             switch(choose){
-            case RIGHTARROW :   peciman.direction = RIGHT;break;
-            case LEFTARROW :   peciman.direction = LEFT;break;
-            case DOWNARROW :   peciman.direction = DOWN;break;
-            case UPARROW :   peciman.direction = UP;break;
+            case RIGHTARROW :   player1.peciman.direction = RIGHT;break;
+            case LEFTARROW :   player1.peciman.direction = LEFT;break;
+            case DOWNARROW :   player1.peciman.direction = DOWN;break;
+            case UPARROW :   player1.peciman.direction = UP;break;
+            case 13: addBonus(&levelMap[9][12],9,12); break;
             }
         }
         if (step%200 == 0){
             delay(100);
-            Move(&peciman);
-            if(levelMap[peciman.posX][peciman.posY].Food != 0){
-            	eatFood(&peciman);
-	            incLives(&player1);
-            }
-            changeState(&peciman);
+            Move(&player1.peciman);
+             if(levelMap[player1.peciman.posX][player1.peciman.posY].Food != 0){
+             	eatFood(&player1);
+                incLives(&player1);
+             }
+            changeState(&player1.peciman);
         }
         end = clock();
         time_spent = (double)(end - begin) / CLOCKS_PER_SEC; // Ulah di hapus

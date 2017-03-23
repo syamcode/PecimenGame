@@ -171,7 +171,7 @@ int level2[20][20]= {
                     {17, 12, 12,12, 12,  12, 12, 12, 12, 12, 12, 12,12, 12, 12, 12, 12, 12, 12, 16}
                     };
 
-void CreateMap(int maps[20][20], pacmanController *peciman)
+void CreateMap(int maps[20][20], playerControl *player)
 {
        int i, j;
     for (i=0;i<20;i++) {
@@ -229,7 +229,7 @@ void CreateMap(int maps[20][20], pacmanController *peciman)
             }
             else if (IsPacman(maps[j][i])) {
                 levelMap[i][j].Object=RPACMAN; // Masukan RPACMAN ke record jika angka yang di map adalah angka pacman
-                InitPacman(peciman, i, j); // Kondisi pertama pacman
+                InitPacman(&player->peciman, i, j); // Kondisi pertama pacman
 
             }
             else{
