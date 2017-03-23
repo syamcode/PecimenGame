@@ -19,7 +19,7 @@ int main()
     /* here, do your time-consuming job */
 
     clock_t end;
-    double time_spent;
+    int time_spent;
 
     initwindow(800, 600, "Pecimen Game");
     initScore(&player1);
@@ -40,11 +40,11 @@ int main()
 //    DrawGhost(player1.ghost2);
 //    DrawGhost(player1.ghost3);
 //    DrawGhost(player1.ghost4);
+    begin = clock();
     while (true)
     {
 
         step++;
-        begin = clock();
         if(kbhit())
         {
             choose = getch();
@@ -74,9 +74,16 @@ int main()
         }
         delay(10);
         end = clock();
-        time_spent = (double)(end - begin) / CLOCKS_PER_SEC; // Ulah di hapus
+        time_spent = (int)(end - begin) / CLOCKS_PER_SEC; // Ulah di hapus
+        printf("%d %d %d\n", player1.score, player1.lives, time_spent);
+        if(time_spent==60){
+        	addBonus(&levelMap[9][12],9,12);
+        	begin=clock();
+        }
+        if((time_spent==20 && (levelMap[9][12].Food==RFOOD2 || levelMap[9][12].Food==RFOOD3)) || (time_spent==15 && levelMap[9][12].Food==RFOOD4) || (time_spent==10 && levelMap[9][12].Food==RFOOD5)){
+        	delBonus(&levelMap[9][12],9,12);
+        }
 //      printf("Time = %f\n",time_spent);
-        printf("%d %d\n", player1.score, player1.lives);
     }
 
     getch();

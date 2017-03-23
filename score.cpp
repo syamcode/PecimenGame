@@ -58,3 +58,9 @@ void addBonus(MapController *map, int posX, int posY){
     map->Food=foodType(randomise(1,100));
     DrawFood(map->Food,posX*GRIDSIZE,posY*GRIDSIZE);
 }
+
+void delBonus(MapController *map, int posX, int posY){
+  map->Food=REMPTY;
+  setcolor(BLACK);
+  bar(posX * GRIDSIZE, posY* GRIDSIZE, (posX * GRIDSIZE) + GRIDSIZE, posY*GRIDSIZE + GRIDSIZE);
+}
