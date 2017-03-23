@@ -41,7 +41,7 @@ int main()
             }
         }
         if (step%200 == 0){
-//            printf("%d",step);
+//          printf("%d",step);
             Move(&peciman);
             eatFood(&peciman);
             changeState(&peciman);

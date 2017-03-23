@@ -1,4 +1,3 @@
-
 int IsWall_Hor(int x) {
     return x==WALL_HOR?1:0;
 }
@@ -28,6 +27,9 @@ int IsWall_Limit_Left(int x) {
 }
 int IsWall_Limit_Right(int x) {
     return x == WALL_LIMIT_RIGHT?1:0;
+}
+int IsWall_Ghost(int x) {
+    return x == WALL_GHOST?1:0;
 }
 int IsPacman(int x) {
     return x == PACMAN?1:0;
@@ -81,6 +83,8 @@ void DrawWall(int wall,int posX, int posY) {
         break;
         case RWALL_LIMIT_RIGHT : readimagefile("assets/images/Wall_Limit_Right.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
         break;
+        case RWALL_GHOST : readimagefile("assets/images/Wall_Ghost.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+        break;
     }
 }
 void DrawFood(int food,int posX, int posY) { // masih contoh, yang dibawah belum asli
@@ -131,7 +135,7 @@ int level1[20][20]= {
                     {13, 7, 15, 14,  7,  18, 7, 18,  7,  7,  7,  7, 18,  7, 18,  7, 15, 14,  7, 13},
                     {13, 7, 17, 16,  7,  13, 7, 17, 12, 12, 12, 12, 16,  7, 13,  7, 17, 16,  7, 13},
                     {13, 7,  7,  7,  7,  13, 1,  1,   1, 1,  1,  1,  1,  1, 13,  7,  7,  7,  7, 13},
-                    {17,12, 12, 12, 12,  16, 1, 15,  21, 1,  1, 20, 14,  1, 17, 12, 12, 12, 12, 16},
+                    {17,12, 12, 12, 12,  16, 1, 15,  21,22, 22, 20, 14,  1, 17, 12, 12, 12, 12, 16},
                     { 1, 1,  1,  1,  1,   1, 1, 13,   1, 1,  1,  1, 13,  1,  1,  1,  1,  1,  1,  1},
                     { 1, 1,  1,  1,  1,   1, 1, 13,   1, 1,  1,  1, 13,  1,  1,  1,  1,  1,  1,  1},
                     {15,12, 12, 12, 12,  21, 1, 17,  12,12, 12, 12, 16,  1, 20, 12, 12, 12, 12, 14},
@@ -193,6 +197,8 @@ void CreateMap(int maps[20][20], pacmanController *peciman)
                 levelMap[i][j].Wall=RWALL_LIMIT_LEFT;
             }else if (IsWall_Limit_Right(maps[j][i])) {
                 levelMap[i][j].Wall=RWALL_LIMIT_RIGHT;
+            }else if (IsWall_Ghost(maps[j][i])) {
+                levelMap[i][j].Wall=RWALL_GHOST;
             }
             else {
                     levelMap[i][j].Wall=REMPTY;
