@@ -2,6 +2,7 @@
 #include <graphics.h>
 #include <windows.h>
 #include <stdlib.h>
+
 #define panjang 600
 #define MAX_INPUT_LEN 15
 
@@ -81,6 +82,7 @@ void tampilan()
     readimagefile("picture/pecimen.bmp",100, 10 , 700, 210);
     readimagefile("picture/pacman.bmp",50, 250, 300, 550);
 }
+
 void tampilan2()
 {
     //setbkcolor(2);
@@ -89,11 +91,12 @@ void tampilan2()
     readimagefile("picture/pacman2.bmp",0, 200, 150, 580);
     readimagefile("picture/pacman2.bmp",650, 200, 800, 580);
 }
+
 void player1()
 {
     cleardevice();
     tampilan();
-    //outtextxy(475,300,"1 player ");
+    //outtextxy(500,300,"1 player ");
     inputnama();
 }
 
@@ -101,7 +104,7 @@ void player2()
 {
     cleardevice();
     tampilan();
-    //outtextxy(475,300,"2 player ");
+    //outtextxy(500,300,"2 player ");
     inputnama();
 }
 
@@ -115,10 +118,10 @@ void menuplay()
     outtextxy(375,300, "PLAYER");
     settextstyle(8,HORIZ_DIR,1);
     setcolor(9);
-    outtextxy(390,350, "1 PLAYER");
-    outtextxy(390,375, "2 PLAYER");
+    outtextxy(390,355, "1 PLAYER");
+    outtextxy(390,382, "2 PLAYER");
     setcolor(4);
-    outtextxy(370,400, "BACK TO MENU");
+    outtextxy(370,408, "BACK TO MENU");
     setcolor(15);
     int player = kursor(3,325,350);
     switch(player) //kursor di 4 posisi, x=50, y=32
@@ -153,7 +156,7 @@ void howtoplay()
     settextstyle(8,HORIZ_DIR,1);
     outtextxy(a,b,"> Game ini dapat dimainkan 1 – 2 Orang  ");
     outtextxy(a,b+(1*c),"> Peci-men dikontrol menggunakan keyboard. ");
-    outtextxy(a,b+(2*c),"> Setiap player menggerakan 1 Peci-men. ?  ");
+    outtextxy(a,b+(2*c),"> Setiap player menggerakan 1 Peci-men. ");
     outtextxy(a,b+(3*c),"> Kontrol Player 1 :   ");
     outtextxy(a+50,b+(4*c),"o Arrow atas untuk menggerakan ke atas ");
     outtextxy(a+50,b+(5*c),"o Arrow bawah untuk menggerakan ke bawah  ");
@@ -239,16 +242,17 @@ void menuutama()
     tampilan();
     menu :
     setcolor(15);
+    rectangle(350,280,505,340);
     settextstyle(9,HORIZ_DIR,2);
     outtextxy(385,300, "MENU");
     settextstyle(8,HORIZ_DIR,1);
     setcolor(9);
-    outtextxy(400,350, "PLAY");
-    outtextxy(395,375, "SCORE");
-    outtextxy(370,400, "HOW TO PLAY");
-    outtextxy(385,425, "ABOUT US");
+    outtextxy(400,355, "PLAY");
+    outtextxy(395,380, "SCORE");
+    outtextxy(370,406, "HOW TO PLAY");
+    outtextxy(385,430, "ABOUT US");
     setcolor(4);
-    outtextxy(400,450, "EXIT");
+    outtextxy(400,458, "EXIT");
     setcolor(15);
     int menu = kursor(5,325,350);
     switch(menu) //kursor di 5 posisi, x=350, y=350
