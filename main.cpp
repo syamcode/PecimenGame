@@ -39,15 +39,16 @@ int main()
             case LEFTARROW :   peciman.direction = LEFT;break;
             case DOWNARROW :   peciman.direction = DOWN;break;
             case UPARROW :   peciman.direction = UP;break;
+            // case 13: addBonus(levelMap[9][12],9,12); break;
             }
         }
         if (step%200 == 0){
             delay(100);
             Move(&peciman);
-            if(levelMap[peciman.posX][peciman.posY].Food != 0){
-            	eatFood(&peciman);
-	            incLives(&player1);
-            }
+            // if(levelMap[peciman.posX][peciman.posY].Food != 0){
+            // 	eatFood(&peciman);
+	           //  incLives(&player1);
+            // }
             changeState(&peciman);
         }
         end = clock();
