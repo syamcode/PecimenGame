@@ -41,6 +41,7 @@ int main()
 //    DrawGhost(player1.ghost3);
 //    DrawGhost(player1.ghost4);
     begin = clock();
+    srand(time(NULL));
     while (true)
     {
 
@@ -77,11 +78,12 @@ int main()
         time_spent = (int)(end - begin) / CLOCKS_PER_SEC; // Ulah di hapus
         printf("%d %d %d\n", player1.score, player1.lives, time_spent);
         if(time_spent==60){
-        	addBonus(&levelMap[9][12],9,12);
+        	spawnFood(&levelMap[9][12],9,12);
+        	// randFoodPos();
         	begin=clock();
         }
         if((time_spent==20 && (levelMap[9][12].Food==RFOOD2 || levelMap[9][12].Food==RFOOD3)) || (time_spent==15 && levelMap[9][12].Food==RFOOD4) || (time_spent==10 && levelMap[9][12].Food==RFOOD5)){
-        	delBonus(&levelMap[9][12],9,12);
+        	despawnFood(&levelMap[9][12],9,12);
         }
 //      printf("Time = %f\n",time_spent);
     }

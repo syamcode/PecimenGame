@@ -41,7 +41,6 @@ void incLives(playerControl *player){
 }
 
 int randomise(int min, int max){
-    srand(time(NULL));
     return rand()%(max+1-min)+min;
 }
 
@@ -54,13 +53,22 @@ int foodType(int x){
     }
 }
 
-void addBonus(MapController *map, int posX, int posY){
+void spawnFood(MapController *map, int posX, int posY){
     map->Food=foodType(randomise(1,100));
     DrawFood(map->Food,posX*GRIDSIZE,posY*GRIDSIZE);
 }
 
-void delBonus(MapController *map, int posX, int posY){
+void despawnFood(MapController *map, int posX, int posY){
   map->Food=REMPTY;
   setcolor(BLACK);
   bar(posX * GRIDSIZE, posY* GRIDSIZE, (posX * GRIDSIZE) + GRIDSIZE, posY*GRIDSIZE + GRIDSIZE);
+}
+
+void randFoodPos(){
+  int posX, posY;
+  do{
+    posX=randomise(0,19);
+    posY=randomise(0,19);  
+  }while(levelMap[posX][posY].Wall!=0 || ((posX==8 || posX==9 || posX==10 || posX==11) && (posY==9 || posY==10)));
+  spawnFood(&levelMap[posX][posY],posX,posY);
 }

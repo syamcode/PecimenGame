@@ -25,7 +25,8 @@ void eatFood(playerControl *player);
 void incLives(playerControl *player);
 int randomise(int min, int max);
 int foodType(int x);
-void addBonus(MapController *map, int posX, int posY);
-void delBonus(MapController *map, int posX, int posY);
+void spawnFood(MapController *map, int posX, int posY);
+void despawnFood(MapController *map, int posX, int posY);
+void randFoodPos();
 
 #endif // SCORE_H_INCLUDED
