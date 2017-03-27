@@ -35,9 +35,28 @@ void eatFood(playerControl *player){
     levelMap[player->peciman.posX][player->peciman.posY].Food=REMPTY;
 }
 
-void incLives(playerControl *player){
-    if(player->score==2500 || player->score==5000 || player->score==15000 || player->score==25000 || player->score==40000)
-        player->lives++;
+void incLives(playerControl *player, int *liveGiven){
+    // if(player->score==2500 || player->score==5000 || player->score==15000 || player->score==25000 || player->score==40000)
+    if(player->score>=2500 && *liveGiven==0){
+      player->lives++;
+      *liveGiven=1;
+    }
+    else if(player->score>=5000 && *liveGiven==1){
+      player->lives++;
+      *liveGiven=2;
+    }
+    else if(player->score>=15000 && *liveGiven==2){
+      player->lives++;
+      *liveGiven=3;
+    }
+    else if(player->score>=25000 && *liveGiven==3){
+      player->lives++;
+      *liveGiven=4;
+    }
+    else if(player->score>=40000 && *liveGiven==4){
+      player->lives++;
+      *liveGiven=5;
+    }
 }
 
 int randomise(int min, int max){
@@ -68,7 +87,7 @@ void randFoodPos(){
   int posX, posY;
   do{
     posX=randomise(0,19);
-    posY=randomise(0,19);  
+    posY=randomise(0,19);
   }while(levelMap[posX][posY].Wall!=0 || ((posX==8 || posX==9 || posX==10 || posX==11) && (posY==9 || posY==10)));
   spawnFood(&levelMap[posX][posY],posX,posY);
 }

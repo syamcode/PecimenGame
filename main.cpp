@@ -29,6 +29,7 @@ int main()
     int step = 0;
     char scoreText[20];
     char livesText[20];
+    int liveGiven=0;
     DrawMap();
     sprintf(scoreText, "Score : %d", player1.score);
     sprintf(livesText, "Lives : %d", player1.lives);
@@ -54,15 +55,14 @@ int main()
             case LEFTARROW :   player1.peciman.direction = LEFT;break;
             case DOWNARROW :   player1.peciman.direction = DOWN;break;
             case UPARROW :   player1.peciman.direction = UP;break;
-            case 13: addBonus(&levelMap[9][12],9,12); break;
+            case 13: spawnFood(&levelMap[9][12],9,12); break;
             }
         }
         if (step%10 == 0){
-
             Move(&player1.peciman);
              if(levelMap[player1.peciman.posX][player1.peciman.posY].Food != 0){
              	eatFood(&player1);
-                incLives(&player1);
+                incLives(&player1, &liveGiven);
              }
             changeState(&player1.peciman);
         }

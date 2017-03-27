@@ -22,7 +22,7 @@ void initScore(playerControl *player);
 void initLives(playerControl *player);
 void incScore(int food, playerControl *player);
 void eatFood(playerControl *player);
-void incLives(playerControl *player);
+void incLives(playerControl *player, int *liveGiven);
 int randomise(int min, int max);
 int foodType(int x);
 void spawnFood(MapController *map, int posX, int posY);
