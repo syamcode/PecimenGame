@@ -1,66 +1,3 @@
-int IsWall_Hor(int x) {
-    return x==WALL_HOR?1:0;
-}
-int IsWall_Ver(int x) {
-    return x==WALL_VER?1:0;
-}
-int IsWall_Cor_UpRight(int x) {
-    return x == WALL_COR_UPRIGHT?1:0;
-}
-int IsWall_Cor_UpLeft(int x) {
-    return x == WALL_COR_UPLEFT?1:0;
-}
-int IsWall_Cor_UnderRight (int x) {
-    return x == WALL_COR_UNDERRIGHT?1:0;
-}
-int IsWall_Cor_UnderLeft(int x) {
-    return x == WALL_COR_UNDERLEFT?1:0;
-}
-int IsWall_Limit_Up(int x) {
-    return x == WALL_LIMIT_UP?1:0;
-}
-int IsWall_Limit_Down(int x) {
-    return x == WALL_LIMIT_DOWN?1:0;
-}
-int IsWall_Limit_Left(int x) {
-    return x == WALL_LIMIT_LEFT?1:0;
-}
-int IsWall_Limit_Right(int x) {
-    return x == WALL_LIMIT_RIGHT?1:0;
-}
-int IsWall_Ghost(int x) {
-    return x == WALL_GHOST?1:0;
-}
-int IsPacman(int x) {
-    return x == PACMAN?1:0;
-}
-int IsFood1(int x) {
-    return x == FOOD1?1:0;
-}
-int IsFood2(int x) {
-    return x == FOOD2?1:0;
-}
-int IsFood3(int x) {
-    return x == FOOD3?1:0;
-}
-int IsFood4(int x) {
-    return x == FOOD4?1:0;
-}
-int IsFood5(int x) {
-    return x == FOOD5?1:0;
-}
-int IsGhost1(int x) {
-    return x == GHOST1?1:0;
-}
-int IsGhost2(int x) {
-    return x == GHOST2?1:0;
-}
-int IsGhost3(int x) {
-    return x == GHOST3?1:0;
-}
-int IsGhost4(int x) {
-    return x == GHOST4?1:0;
-}
 void DrawWall(int wall,int posX, int posY) {
     switch(wall){
         case RWALL_HOR : readimagefile("assets/images/Wall_Hor.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
@@ -177,37 +114,37 @@ void CreateMap(int maps[20][20], playerControl *player)
     for (i=0;i<20;i++) {
         for(j=0;j<20;j++) {
             // Kondisi pengecekan untuk tembok
-            if (IsWall_Hor(maps[j][i])) {
+            if (maps[j][i]==WALL_HOR ? 1:0) {
                 levelMap[i][j].Wall=RWALL_HOR;
             }
-            else if (IsWall_Ver(maps[j][i])) {
+            else if (maps[j][i]==WALL_VER ?1:0) {
                 levelMap[i][j].Wall=RWALL_VER;
             }
-            else if (IsWall_Cor_UnderLeft(maps[j][i])) {
+            else if (maps[j][i]==WALL_COR_UNDERLEFT ? 1:0) {
                 levelMap[i][j].Wall=RWALL_COR_UNDERLEFT;
             }
-            else if (IsWall_Cor_UnderRight(maps[j][i])) {
+            else if (maps[j][i]==WALL_COR_UNDERRIGHT ? 1:0) {
                 levelMap[i][j].Wall=RWALL_COR_UNDERRIGHT;
             }
-            else if (IsWall_Cor_UpLeft(maps[j][i])) {
+            else if (maps[j][i]==WALL_COR_UPLEFT ? 1:0) {
                 levelMap[i][j].Wall=RWALL_COR_UPLEFT;
             }
-            else if (IsWall_Cor_UpRight(maps[j][i])) {
+            else if (maps[j][i]==WALL_COR_UPRIGHT ? 1:0) {
                 levelMap[i][j].Wall=RWALL_COR_UPRIGHT;
             }
-            else if (IsWall_Limit_Up(maps[j][i])) {
+            else if (maps[j][i]==WALL_LIMIT_UP ? 1:0) {
                 levelMap[i][j].Wall=RWALL_LIMIT_UP;
             }
-            else if (IsWall_Limit_Down(maps[j][i])) {
+            else if (maps[j][i]==WALL_LIMIT_DOWN ? 1:0) {
                 levelMap[i][j].Wall=RWALL_LIMIT_DOWN;
             }
-            else if (IsWall_Limit_Left(maps[j][i])) {
+            else if (maps[j][i]==WALL_LIMIT_LEFT ? 1:0) {
                 levelMap[i][j].Wall=RWALL_LIMIT_LEFT;
             }
-            else if (IsWall_Limit_Right(maps[j][i])) {
+            else if (maps[j][i]==WALL_LIMIT_RIGHT ? 1:0) {
                 levelMap[i][j].Wall=RWALL_LIMIT_RIGHT;
             }
-            else if (IsWall_Ghost(maps[j][i])) {
+            else if (maps[j][i]==WALL_GHOST ? 1:0) {
                 levelMap[i][j].Wall=RWALL_GHOST;
             }
             else {
@@ -215,23 +152,23 @@ void CreateMap(int maps[20][20], playerControl *player)
             }
 
             // Kondisi pengecekan untuk Objek
-            if (IsGhost1(maps[j][i])) {
+            if (maps[j][i]==GHOST1 ? 1:0) {
                 levelMap[i][j].Object=KUNTILANAK;
                 InitGhost(&player->ghost1, i, j, KUNTILANAK);
             }
-            else if (IsGhost2(maps[j][i])) {
+            else if (maps[j][i]==GHOST2 ? 1:0) {
                 levelMap[i][j].Object=POCONG;
                 InitGhost(&player->ghost2, i, j, POCONG);
             }
-            else if (IsGhost3(maps[j][i])) {
+            else if (maps[j][i]==GHOST3 ? 1:0) {
                 levelMap[i][j].Object=TENGKORAK;
                 InitGhost(&player->ghost3, i, j, TENGKORAK);
             }
-            else if (IsGhost4(maps[j][i])) {
+            else if (maps[j][i]==GHOST4 ? 1:0) {
                 levelMap[i][j].Object=TUYUL;
                 InitGhost(&player->ghost4, i, j, TUYUL);
             }
-            else if (IsPacman(maps[j][i])) {
+            else if (maps[j][i]==PACMAN ? 1:0) {
                 levelMap[i][j].Object=RPACMAN; // Masukan RPACMAN ke record jika angka yang di map adalah angka pacman
                 InitPacman(&player->peciman, i, j); // Kondisi pertama pacman
 
@@ -241,19 +178,19 @@ void CreateMap(int maps[20][20], playerControl *player)
             }
 
             // Kondisi pengecekan untuk Food
-            if (IsFood1(maps[j][i])) {
+            if (maps[j][i]==FOOD1 ? 1:0) {
                 levelMap[i][j].Food=RFOOD1;
             }
-            else if (IsFood2(maps[j][i])) {
+            else if (maps[j][i]==FOOD2 ? 1:0) {
                 levelMap[i][j].Food=RFOOD2;
             }
-            else if (IsFood3(maps[j][i])) {
+            else if (maps[j][i]==FOOD3 ? 1:0) {
                 levelMap[i][j].Food=RFOOD3;
             }
-            else if (IsFood4(maps[j][i])) {
+            else if (maps[j][i]==FOOD4 ? 1:0) {
                 levelMap[i][j].Food=RFOOD4;
             }
-            else if (IsFood5(maps[j][i])) {
+            else if (maps[j][i]== FOOD5 ? 1:0) {
                 levelMap[i][j].Food=RFOOD5;
             }
             else{

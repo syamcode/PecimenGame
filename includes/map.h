@@ -23,7 +23,6 @@
 #define WALL_LIMIT_LEFT 20
 #define WALL_LIMIT_RIGHT 21
 #define WALL_GHOST 22
-#define WALL_PORTAL_RIGHT 23
 
 #define RPACMAN 1
 #define KUNTILANAK 2
@@ -58,26 +57,6 @@ typedef struct{
 MapController levelMap[20][20];
 
 void CreateMap(int maps);
-
-int IsWall_Ver(int);
-int IsWall_Hor(int);
-int IsWall_Cor_UnderLeft(int);
-int IsWall_Cor_UnderLeft(int);
-int IsWall_Cor_UpLeft(int);
-int IsWall_Cor_UpRight(int);
-int IsWall_Limit_Down();
-int IsWall_Limit_Up();
-int IsWall_Limit_Left();
-int IsWall_Limit_Right();
-int IsPacman(int x);
-int IsFood1(int x);
-int IsFood2(int x);
-int IsFood3(int x);
-int IsFood4(int x);
-int IsGhost1(int x);
-int IsGhost2(int x);
-int IsGhost3(int x);
-int IsGhost4(int x);
 void DrawMap();
 void CreateMap(int maps[20][20], pacmanController *peciman);
 
