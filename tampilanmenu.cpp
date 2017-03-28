@@ -16,8 +16,8 @@ int kursor(int, int, int);
 void tampilan();
 void tampilan2();
 void menuutama();
-void player1();
-void player2();
+void player_1();
+void player_2();
 void menuplay();
 void menuscore();
 void howtoplay();
@@ -97,7 +97,7 @@ void tampilan2()
     readimagefile("picture/pacman2.bmp",650, 200, 800, 580);
 }
 
-void player1()
+void player_1()
 {
     cleardevice();
     tampilan();
@@ -105,7 +105,7 @@ void player1()
     inputnama();
 }
 
-void player2()
+void player_2()
 {
     cleardevice();
     tampilan();
@@ -131,8 +131,8 @@ void menuplay()
     int player = kursor(3,325,350);
     switch(player) //kursor di 4 posisi, x=50, y=32
 {
-	case 1 : player1();break;
-	case 2 : player2();break;
+	case 1 : player_1();break;
+	case 2 : player_2();break;
     case 3 : menuutama();break;
 	}
 }
@@ -141,15 +141,32 @@ void menuscore()
 {
     cleardevice();
     tampilan2();
+    DWORD screenWidth = GetSystemMetrics ( SM_CXSCREEN);
+    DWORD screenHeight = GetSystemMetrics (SM_CYSCREEN);
+   // initwindow(screenWidth, screenHeight, "", -3,-3);
+
+    POINT cursorPosition;
+    int mX, mY;
     outtextxy(275,250,"NAMA");
     outtextxy(525,250,"SCORE");
-    	setcolor(4);
+    setcolor(4);
 	outtextxy(370,570,"BACK TO MENU");
-	int skor = kursor(1,325,570);
+    while(1)
+    {
+        GetCursorPos(&cursorPosition);
+        mX=cursorPosition.x;
+        mY=cursorPosition.y;
+
+       if (GetAsyncKeyState(VK_LBUTTON) && mX>=370 && mX<=470 && mY>=570)
+       {
+           menuutama();
+       }
+    }
+	/*int skor = kursor(1,325,570);
     switch(skor)
     {
         case 1 : menuutama();break;
-    }
+    }*/
 }
 
 void howtoplay()
