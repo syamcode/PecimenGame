@@ -94,3 +94,36 @@ void randFoodPos(){
   }while(levelMap[posX][posY].Wall!=0 || ((posX==8 || posX==9 || posX==10 || posX==11) && (posY==9 || posY==10)));
   spawnFood(&levelMap[posX][posY],posX,posY);
 }
+
+void drawNumber(int x, int posX, int posY, int posisi){
+    posX+=posisi*GRIDSIZE;
+    switch(x){
+        case 0: readimagefile("assets/images/0.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE); break;
+        case 1: readimagefile("assets/images/1.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE); break;
+        case 2: readimagefile("assets/images/2.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE); break;
+        case 3: readimagefile("assets/images/3.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE); break;
+        case 4: readimagefile("assets/images/4.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE); break;
+        case 5: readimagefile("assets/images/5.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE); break;
+        case 6: readimagefile("assets/images/6.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE); break;
+        case 7: readimagefile("assets/images/7.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE); break;
+        case 8: readimagefile("assets/images/8.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE); break;
+        case 9: readimagefile("assets/images/9.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE); break;
+    }
+}
+
+void printScore(int score, int posX, int posY){
+    drawNumber((((((score/10)/10)/10)/10)/10)%10,posX,posY,0);
+    drawNumber(((((score/10)/10)/10)/10)%10,posX,posY,1);
+    drawNumber((((score/10)/10)/10)%10,posX,posY,2);
+    drawNumber(((score/10)/10)%10,posX,posY,3);
+    drawNumber((score/10)%10,posX,posY,4);
+    drawNumber(score%10,posX,posY,5);
+}
+
+void printLives(int lives, int posX, int posY){
+    int i;
+    for(i=0;i<lives;i++){
+        readimagefile("assets/images/lives.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);
+        posX+=GRIDSIZE;
+    }
+}

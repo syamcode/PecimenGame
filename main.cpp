@@ -32,12 +32,12 @@ int main()
     char livesText[20];
     int liveGiven=0;
     DrawMap();
-    sprintf(scoreText, "Score : %d", player1.score);
-    sprintf(livesText, "Lives : %d", player1.lives);
+//    sprintf(scoreText, "Score : %d", player1.score);
+//    sprintf(livesText, "Lives : %d", player1.lives);
     //setfillstyle(SOLID_FILL, BLACK);
     //bar(22*GRIDSIZE, GRIDSIZE, 28*GRIDSIZE, 3*GRIDSIZE);
-    outtextxy(22*GRIDSIZE, GRIDSIZE, scoreText);
-    outtextxy(22*GRIDSIZE, 2 * GRIDSIZE, livesText);
+//    outtextxy(22*GRIDSIZE, GRIDSIZE, scoreText);
+//    outtextxy(22*GRIDSIZE, 2 * GRIDSIZE, livesText);
     DrawGhost(player1.ghost1);
 //    DrawGhost(player1.ghost2);
 //    DrawGhost(player1.ghost3);
@@ -63,6 +63,8 @@ printf("%d ",player1.foodCount);
             Move(&player1.peciman);
              if(levelMap[player1.peciman.posX][player1.peciman.posY].Food != 0){
              	eatFood(&player1);
+             	printScore(player1.score, 20*GRIDSIZE, GRIDSIZE);
+             	printLives(player1.lives, 20*GRIDSIZE, 2*GRIDSIZE);
                 incLives(&player1, &liveGiven);
              }
             changeState(&player1.peciman);

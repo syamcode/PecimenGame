@@ -30,5 +30,8 @@ int foodType(int x);
 void spawnFood(MapController *map, int posX, int posY);
 void despawnFood(MapController *map, int posX, int posY);
 void randFoodPos();
+void drawNumber(int x, int posX, int posY, int posisi);
+void printScore(int score, int posX, int posY);
+void printLives(int lives, int posX, int posY);
 
 #endif // SCORE_H_INCLUDED
