@@ -7,7 +7,7 @@ void initScore(playerControl *player){
 }
 
 void initLives(playerControl *player){
-    player->lives=3;
+    player->lives=40;
 }
 
 void incScore(int food, playerControl *player){
@@ -121,9 +121,14 @@ void printScore(int score, int posX, int posY){
 }
 
 void printLives(int lives, int posX, int posY){
-    int i;
+    int i, x=posX;
+
     for(i=0;i<lives;i++){
-        readimagefile("assets/images/lives.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);
-        posX+=GRIDSIZE;
+        readimagefile("assets/images/lives.bmp", x, posY, x+GRIDSIZE, posY+GRIDSIZE);
+        x+=GRIDSIZE;
+                if((i+1)%6==0){
+            posY+=GRIDSIZE;
+            x=posX;
+        }
     }
 }

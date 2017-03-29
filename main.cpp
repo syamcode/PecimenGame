@@ -64,8 +64,9 @@ printf("%d ",player1.foodCount);
              if(levelMap[player1.peciman.posX][player1.peciman.posY].Food != 0){
              	eatFood(&player1);
              	printScore(player1.score, 20*GRIDSIZE, GRIDSIZE);
-             	printLives(player1.lives, 20*GRIDSIZE, 2*GRIDSIZE);
+
                 incLives(&player1, &liveGiven);
+                printLives(player1.lives, 20*GRIDSIZE, 2*GRIDSIZE);
              }
             changeState(&player1.peciman);
         }
