@@ -1,3 +1,4 @@
+//prosedur untuk mengambar Wall menggunakan sprite sesuai kondisi di array dengan parameter jenis wall , posisi x, posisi y (by pega)
 void DrawWall(int wall,int posX, int posY) {
     switch(wall){
         case RWALL_HOR : readimagefile("assets/images/Wall_Hor.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
@@ -24,7 +25,8 @@ void DrawWall(int wall,int posX, int posY) {
         break;
     }
 }
-void DrawFood(int food,int posX, int posY) { // masih contoh, yang dibawah belum asli
+//prosedur untuk mengambar food menggunakan sprite sesuai kondisi di array dengan parameter jenis food , posisi x , posisi y (by pega)
+void DrawFood(int food,int posX, int posY) {
     switch(food){
         case RFOOD1 : readimagefile("assets/images/FOOD1.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
         break;
@@ -38,32 +40,26 @@ void DrawFood(int food,int posX, int posY) { // masih contoh, yang dibawah belum
         break;
     }
 }
-void DrawObject(int wall, int posX, int posY) { // masih contoh, yang dibawah belum asli
-    switch(wall){
-//        case RPACMAN : drawPacman(peciman);
-    }
-}
 
-
+//prosedure untuk menggambar arena dengan struktur data array berukuran 20x20 dengan ukuran pixel 30 (by pega)
 void DrawMap()
 {
      int i, j;
-    for (i=0;i<20;i++) {
-        for(j=0;j<20;j++) {
-            if(levelMap[i][j].Wall!=0)
+    for (i=0;i<20;i++) { //mengecek posisi array ke arah y
+        for(j=0;j<20;j++) { //Mengecek posisi array ke arah x
+            if(levelMap[i][j].Wall!=0) //pengecekan jika kondisi isi array menunjukan WALL
                 {
                 DrawWall(levelMap[i][j].Wall,i*GRIDSIZE,j*GRIDSIZE);
                 }
-            if(levelMap[i][j].Food!=0)
+            if(levelMap[i][j].Food!=0) //pengecekan jika kondisi isi array menunjukan food
                 {
                 DrawFood(levelMap[i][j].Food,i*GRIDSIZE,j*GRIDSIZE);
-
                 }
         }
     }
 }
 
-
+//struktur data aray untuk level 1 berukuran 20x20 (by Pega)
 int level1[20][20]= {
                     {15, 12,12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 14},
                     {13,  7, 7,  7,  7,  7,  7,  7,  7, 13, 13,  7,  7,  7,  7,  7,  7,  7,  7, 13},
@@ -86,28 +82,7 @@ int level1[20][20]= {
                     {13, 7,  7,  7,  7,   7, 7,  7,   7, 7,  7,  7,  7,  7,  7,  7,  7,  7,  3, 13},
                     {17, 12, 12,12, 12,  12, 12, 12, 12, 12, 12, 12,12, 12, 12, 12, 12, 12, 12, 16}
                     };
-int level3[20][20]= {
-                    {15,12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 14},
-                    {13, 7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7, 13},
-                    {13, 7, 15, 12, 21,  7, 20, 12, 12, 12, 12, 12, 12, 21,  7, 20, 12, 14,  7, 13},
-                    {13, 7, 13,  7,  7,  7,  7,  7,  7,  4,  7,  7,  7,  7,  7,  7,  7, 13,  7, 13},
-                    {13, 7, 13,  7, 20, 14,  7, 20, 12, 12, 12, 12, 21,  7, 15, 21,  7, 13,  7, 13},
-                    {13, 7, 13,  7,  7, 13,  7,  7,  7,  7,  7,  7,  7,  7, 13,  7,  7, 13,  7, 13},
-                    {13, 7, 17, 21,  7, 19,  7, 20, 12, 12, 12, 12, 21,  7, 19,  7, 20, 16,  7, 13},
-                    {13, 7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  2,  7,  7,  7, 13},
-                    {17,12, 12, 12, 12, 21,  7, 15, 21, 22, 22, 20, 14,  7, 20, 12, 12, 12, 12, 16},
-                    { 1, 1,  1,  1,  1,  1,  7, 13,  1,  1,  1,  1, 13,  7,  1,  1,  1,  1,  1,  1},
-                    { 1, 1,  1,  1,  1,  1,  7, 13,  1,  1,  1,  1, 13,  7,  1,  1,  1,  1,  1,  1},
-                    {15,12, 12, 12, 12, 21,  7, 17, 12, 12, 12, 12, 16,  7, 20, 12, 12, 12, 12, 14},
-                    {13, 7,  7,  7,  7,  7,  7,  1,  1, 11,  1,  1,  1,  7,  7,  7,  7,  7,  7, 13},
-                    {13, 7, 15, 21,  7, 18,  7, 20, 12, 12, 12, 12, 21,  7, 18,  7, 20, 14,  7, 13},
-                    {13, 7, 13,  7,  7, 13,  7,  7,  7,  7,  7,  7,  7,  7, 13,  7,  7, 13,  7, 13},
-                    {13, 7, 13,  7, 20, 16,  7, 20, 12, 12, 12, 12, 21,  7, 17, 21,  7, 13,  7, 13},
-                    {13, 7, 13,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7, 13,  7, 13},
-                    {13, 7, 17, 12, 21,  7, 20, 12, 12, 12, 12, 12, 12, 21,  7, 20, 12, 16,  7, 13},
-                    {13, 7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7, 13},
-                    {17, 12, 12,12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 16}
-                    };
+//struktur data aray untuk level 2 berukuran 20x20 (by Pega)
 int level2[20][20]= {
                     {15,12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 14},
                     {13, 7,  7,  7,  7, 18,  7,  7,  7, 15, 14,  7,  7,  7, 18,  7,  7,  7,  7, 13},
@@ -130,70 +105,92 @@ int level2[20][20]= {
                     {13, 7,  7,  7,  7,  7,  7,  7,  7, 19, 19,  7,  7,  7,  7,  7,  7,  7,  7, 13},
                     {17, 12, 12,12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 16}
                     };
-
-
+//struktur data aray untuk level 2 berukuran 20x20 (by Pega)
+ int level3[20][20]= {
+                    {15,12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 14},
+                    {13, 7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7, 13},
+                    {13, 7, 15, 12, 21,  7, 20, 12, 12, 12, 12, 12, 12, 21,  7, 20, 12, 14,  7, 13},
+                    {13, 7, 13,  7,  7,  7,  7,  7,  7,  4,  7,  7,  7,  7,  7,  7,  7, 13,  7, 13},
+                    {13, 7, 13,  7, 20, 14,  7, 20, 12, 12, 12, 12, 21,  7, 15, 21,  7, 13,  7, 13},
+                    {13, 7, 13,  7,  7, 13,  7,  7,  7,  7,  7,  7,  7,  7, 13,  7,  7, 13,  7, 13},
+                    {13, 7, 17, 21,  7, 19,  7, 20, 12, 12, 12, 12, 21,  7, 19,  7, 20, 16,  7, 13},
+                    {13, 7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  2,  7,  7,  7, 13},
+                    {17,12, 12, 12, 12, 21,  7, 15, 21, 22, 22, 20, 14,  7, 20, 12, 12, 12, 12, 16},
+                    { 1, 1,  1,  1,  1,  1,  7, 13,  1,  1,  1,  1, 13,  7,  1,  1,  1,  1,  1,  1},
+                    { 1, 1,  1,  1,  1,  1,  7, 13,  1,  1,  1,  1, 13,  7,  1,  1,  1,  1,  1,  1},
+                    {15,12, 12, 12, 12, 21,  7, 17, 12, 12, 12, 12, 16,  7, 20, 12, 12, 12, 12, 14},
+                    {13, 7,  7,  7,  7,  7,  7,  1,  1, 11,  1,  1,  1,  7,  7,  7,  7,  7,  7, 13},
+                    {13, 7, 15, 21,  7, 18,  7, 20, 12, 12, 12, 12, 21,  7, 18,  7, 20, 14,  7, 13},
+                    {13, 7, 13,  7,  7, 13,  7,  7,  7,  7,  7,  7,  7,  7, 13,  7,  7, 13,  7, 13},
+                    {13, 7, 13,  7, 20, 16,  7, 20, 12, 12, 12, 12, 21,  7, 17, 21,  7, 13,  7, 13},
+                    {13, 7, 13,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7, 13,  7, 13},
+                    {13, 7, 17, 12, 21,  7, 20, 12, 12, 12, 12, 12, 12, 21,  7, 20, 12, 16,  7, 13},
+                    {13, 7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7, 13},
+                    {17, 12, 12,12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 16}
+                    };
+//Prosedure untuk membuat map dengan parameter
 void CreateMap(int maps[20][20], playerControl *player)
 {
        int i, j;
        player->foodCount = 0;
     for (i=0;i<20;i++) {
         for(j=0;j<20;j++) {
-            // Kondisi pengecekan untuk tembok
-            if (maps[j][i]==WALL_HOR ? 1:0) {
+            // Kondisi pengecekan untuk setiap jenis wall
+            if (maps[j][i]==WALL_HOR) {
                 levelMap[i][j].Wall=RWALL_HOR;
             }
-            else if (maps[j][i]==WALL_VER ?1:0) {
+            else if (maps[j][i]==WALL_VER) {
                 levelMap[i][j].Wall=RWALL_VER;
             }
-            else if (maps[j][i]==WALL_COR_UNDERLEFT ? 1:0) {
+            else if (maps[j][i]==WALL_COR_UNDERLEFT) {
                 levelMap[i][j].Wall=RWALL_COR_UNDERLEFT;
             }
-            else if (maps[j][i]==WALL_COR_UNDERRIGHT ? 1:0) {
+            else if (maps[j][i]==WALL_COR_UNDERRIGHT) {
                 levelMap[i][j].Wall=RWALL_COR_UNDERRIGHT;
             }
-            else if (maps[j][i]==WALL_COR_UPLEFT ? 1:0) {
+            else if (maps[j][i]==WALL_COR_UPLEFT) {
                 levelMap[i][j].Wall=RWALL_COR_UPLEFT;
             }
-            else if (maps[j][i]==WALL_COR_UPRIGHT ? 1:0) {
+            else if (maps[j][i]==WALL_COR_UPRIGHT) {
                 levelMap[i][j].Wall=RWALL_COR_UPRIGHT;
             }
-            else if (maps[j][i]==WALL_LIMIT_UP ? 1:0) {
+            else if (maps[j][i]==WALL_LIMIT_UP) {
                 levelMap[i][j].Wall=RWALL_LIMIT_UP;
             }
-            else if (maps[j][i]==WALL_LIMIT_DOWN ? 1:0) {
+            else if (maps[j][i]==WALL_LIMIT_DOWN) {
                 levelMap[i][j].Wall=RWALL_LIMIT_DOWN;
             }
-            else if (maps[j][i]==WALL_LIMIT_LEFT ? 1:0) {
+            else if (maps[j][i]==WALL_LIMIT_LEFT) {
                 levelMap[i][j].Wall=RWALL_LIMIT_LEFT;
             }
-            else if (maps[j][i]==WALL_LIMIT_RIGHT ? 1:0) {
+            else if (maps[j][i]==WALL_LIMIT_RIGHT) {
                 levelMap[i][j].Wall=RWALL_LIMIT_RIGHT;
             }
-            else if (maps[j][i]==WALL_GHOST ? 1:0) {
+            else if (maps[j][i]==WALL_GHOST) {
                 levelMap[i][j].Wall=RWALL_GHOST;
             }
             else {
                 levelMap[i][j].Wall=REMPTY;
             }
 
-            // Kondisi pengecekan untuk Objek
-            if (maps[j][i]==GHOST1 ? 1:0) {
+            // Kondisi pengecekan untuk Objek bergerak
+            if (maps[j][i]==GHOST1) {
                 levelMap[i][j].Object=KUNTILANAK;
                 InitGhost(&player->ghost1, i, j, KUNTILANAK);
             }
-            else if (maps[j][i]==GHOST2 ? 1:0) {
+            else if (maps[j][i]==GHOST2) {
                 levelMap[i][j].Object=POCONG;
                 InitGhost(&player->ghost2, i, j, POCONG);
             }
-            else if (maps[j][i]==GHOST3 ? 1:0) {
+            else if (maps[j][i]==GHOST3) {
                 levelMap[i][j].Object=TENGKORAK;
                 InitGhost(&player->ghost3, i, j, TENGKORAK);
             }
-            else if (maps[j][i]==GHOST4 ? 1:0) {
+            else if (maps[j][i]==GHOST4){
                 levelMap[i][j].Object=TUYUL;
                 InitGhost(&player->ghost4, i, j, TUYUL);
             }
-            else if (maps[j][i]==PACMAN ? 1:0) {
+            else if (maps[j][i]==PACMAN) {
                 levelMap[i][j].Object=RPACMAN; // Masukan RPACMAN ke record jika angka yang di map adalah angka pacman
                 InitPacman(&player->peciman, i, j); // Kondisi pertama pacman
 
@@ -203,24 +200,24 @@ void CreateMap(int maps[20][20], playerControl *player)
             }
 
             // Kondisi pengecekan untuk Food
-            if (maps[j][i]==FOOD1 ? 1:0) {
+            if (maps[j][i]==FOOD1) {
                 levelMap[i][j].Food=RFOOD1;
                 player->foodCount++;
             }
-            else if (maps[j][i]==FOOD2 ? 1:0) {
+            else if (maps[j][i]==FOOD2) {
                 levelMap[i][j].Food=RFOOD2;
             }
-            else if (maps[j][i]==FOOD3 ? 1:0) {
+            else if (maps[j][i]==FOOD3) {
                 levelMap[i][j].Food=RFOOD3;
             }
-            else if (maps[j][i]==FOOD4 ? 1:0) {
+            else if (maps[j][i]==FOOD4) {
                 levelMap[i][j].Food=RFOOD4;
             }
-            else if (maps[j][i]== FOOD5 ? 1:0) {
+            else if (maps[j][i]== FOOD5) {
                 levelMap[i][j].Food=RFOOD5;
             }
             else{
-                levelMap[i][j].Food=0;
+                levelMap[i][j].Food=REMPTY;
             }
         }
     }
