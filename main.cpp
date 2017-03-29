@@ -46,7 +46,7 @@ int main()
     srand(time(NULL));
     while (true)
     {
-printf("%d\n",player1.foodCount);
+printf("%d ",player1.foodCount);
         step++;
         if(kbhit())
         {
@@ -77,7 +77,7 @@ printf("%d\n",player1.foodCount);
         delay(10);
         end = clock();
         time_spent = (int)(end - begin) / CLOCKS_PER_SEC; // Ulah di hapus
-   //     printf("%d %d %d\n", player1.score, player1.lives, time_spent);
+        printf("%d %d %d\n", player1.score, player1.lives, time_spent);
         if(time_spent==60){
         	spawnFood(&levelMap[9][12],9,12);
         	// randFoodPos();
