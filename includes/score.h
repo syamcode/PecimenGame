@@ -11,11 +11,13 @@ typedef struct{
 	char *name;
 	int score;
 	int lives;
+	int foodCount;
 	pacmanController peciman;
 	ghostController ghost1;
 	ghostController ghost2;
 	ghostController ghost3;
 	ghostController ghost4;
+
 } playerControl;
 
 void initScore(playerControl *player);

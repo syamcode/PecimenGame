@@ -24,7 +24,8 @@ int main()
     initwindow(800, 600, "Pecimen Game");
     initScore(&player1);
     initLives(&player1);
-    CreateMap(level1, &player1);
+    CreateMap(level2, &player1);
+
     char choose;
     int step = 0;
     char scoreText[20];
@@ -45,7 +46,7 @@ int main()
     srand(time(NULL));
     while (true)
     {
-
+printf("%d\n",player1.foodCount);
         step++;
         if(kbhit())
         {
@@ -76,7 +77,7 @@ int main()
         delay(10);
         end = clock();
         time_spent = (int)(end - begin) / CLOCKS_PER_SEC; // Ulah di hapus
-        printf("%d %d %d\n", player1.score, player1.lives, time_spent);
+   //     printf("%d %d %d\n", player1.score, player1.lives, time_spent);
         if(time_spent==60){
         	spawnFood(&levelMap[9][12],9,12);
         	// randFoodPos();

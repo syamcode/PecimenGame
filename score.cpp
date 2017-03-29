@@ -33,6 +33,7 @@ void incScore(int food, playerControl *player){
 void eatFood(playerControl *player){
     incScore(levelMap[player->peciman.posX][player->peciman.posY].Food, player);
     levelMap[player->peciman.posX][player->peciman.posY].Food=REMPTY;
+    player->foodCount--;
 }
 
 void incLives(playerControl *player, int *liveGiven){
