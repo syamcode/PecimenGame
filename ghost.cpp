@@ -15,10 +15,10 @@ void InitGhost(ghostController *ghost, int posX, int posY, int ghostType) {
 }
 int CanMove(ghostController ghost, int direction) {
     switch(direction) {
-        case RIGHT : return (levelMap[ghost.posX+1][ghost.posY].Wall == REMPTY || levelMap[ghost.posX+1][ghost.posY].Wall == RWALL_GHOST) ? 1:0;
-        case LEFT : return (levelMap[ghost.posX-1][ghost.posY].Wall == REMPTY || levelMap[ghost.posX-1][ghost.posY].Wall == RWALL_GHOST) ? 1:0;
-        case UP : return (levelMap[ghost.posX][ghost.posY-1].Wall == REMPTY || levelMap[ghost.posX][ghost.posY-1].Wall == RWALL_GHOST) ? 1:0;
-        case DOWN : return (levelMap[ghost.posX][ghost.posY+1].Wall == REMPTY || levelMap[ghost.posX+1][ghost.posY+1].Wall == RWALL_GHOST) ? 1:0;
+        case RIGHT : return ((levelMap[ghost.posX+1][ghost.posY].Wall == REMPTY || levelMap[ghost.posX+1][ghost.posY].Wall == RWALL_GHOST) && (levelMap[ghost.posX+1][ghost.posY].Object == REMPTY || levelMap[ghost.posX+1][ghost.posY].Object == RPACMAN)) ? 1:0;
+        case LEFT : return ((levelMap[ghost.posX-1][ghost.posY].Wall == REMPTY || levelMap[ghost.posX-1][ghost.posY].Wall == RWALL_GHOST) && (levelMap[ghost.posX-1][ghost.posY].Object == REMPTY  || levelMap[ghost.posX-1][ghost.posY].Object == RPACMAN)) ? 1:0;
+        case UP : return ((levelMap[ghost.posX][ghost.posY-1].Wall == REMPTY || levelMap[ghost.posX][ghost.posY-1].Wall == RWALL_GHOST) && (levelMap[ghost.posX][ghost.posY-1].Object == REMPTY  || levelMap[ghost.posX][ghost.posY-1].Object == RPACMAN)) ? 1:0;
+        case DOWN : return ((levelMap[ghost.posX][ghost.posY+1].Wall == REMPTY || levelMap[ghost.posX][ghost.posY+1].Wall == RWALL_GHOST) && (levelMap[ghost.posX][ghost.posY+1].Object == REMPTY  || levelMap[ghost.posX][ghost.posY+1].Object == RPACMAN)) ? 1:0;
     }
 }
 void GhostMove(ghostController *ghost) {
@@ -28,26 +28,30 @@ void GhostMove(ghostController *ghost) {
         case RIGHT :
             if(CanMove(*ghost, RIGHT)){ // Cek apakah ada tembok atau tidak
                 BlackSquare(ghost->posX, ghost->posY);
+                levelMap[ghost->posX][ghost->posY].Object = REMPTY;
                 ghost->posX++;
-                levelMap[ghost->posX+1][ghost->posY].Object = ghost->ghostType;
+                levelMap[ghost->posX][ghost->posY].Object = ghost->ghostType;
             }break;
         case LEFT :
             if(CanMove(*ghost, LEFT)){ // Cek apakah ada tembok atau tidak
                 BlackSquare(ghost->posX, ghost->posY);
+                levelMap[ghost->posX][ghost->posY].Object = REMPTY;
                 ghost->posX--;
-                levelMap[ghost->posX-1][ghost->posY].Object = ghost->ghostType;
+                levelMap[ghost->posX][ghost->posY].Object = ghost->ghostType;
             }break;
         case UP :
             if(CanMove(*ghost, UP)){ // Cek apakah ada tembok atau tidak
                 BlackSquare(ghost->posX, ghost->posY);
+                levelMap[ghost->posX][ghost->posY].Object = REMPTY;
                 ghost->posY--;
-                levelMap[ghost->posX][ghost->posY-1].Object = ghost->ghostType;
+                levelMap[ghost->posX][ghost->posY].Object = ghost->ghostType;
             }break;
         case DOWN :
             if(CanMove(*ghost, DOWN)){ // Cek apakah ada tembok atau tidak
+                levelMap[ghost->posX][ghost->posY].Object = REMPTY;
                 BlackSquare(ghost->posX, ghost->posY);
                 ghost->posY++;
-                levelMap[ghost->posX][ghost->posY+1].Object = ghost->ghostType;
+                levelMap[ghost->posX][ghost->posY].Object = ghost->ghostType;
             }break;
     }
     DrawGhost(*ghost);
