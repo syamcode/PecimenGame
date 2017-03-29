@@ -84,18 +84,25 @@ void Move(pacmanController *peciman)
     switch(peciman->direction)
     {
         case RIGHT :
-            if(levelMap[peciman->posX+1][peciman->posY].Wall == 0){ // Cek apakah ada tembok atau tidak
+             if (peciman->posX == 19){
+            BlackSquare(peciman->posX, peciman->posY);
+            peciman->posX = 0;
+
+            levelMap[peciman->posX][peciman->posY].Object = RPACMAN;
+
+            //Print Pacman di index 0
+            BlackSquare(peciman->posX, peciman->posY);
+            levelMap[peciman->posX][peciman->posY].Object = REMPTY;
+            levelMap[peciman->posX][peciman->posY].Object = RPACMAN;
+
+            }
+            else if(levelMap[peciman->posX+1][peciman->posY].Wall == 0){ // Cek apakah ada tembok atau tidak dan print ke array index selanjutnya
             BlackSquare(peciman->posX, peciman->posY);
             levelMap[peciman->posX][peciman->posY].Object = REMPTY;
             peciman->posX++;
             levelMap[peciman->posX][peciman->posY].Object = RPACMAN;
             }
-             if (peciman->posX == 20){
-            BlackSquare(peciman->posX, peciman->posY);
-              peciman->posX = 0;
 
-              levelMap[peciman->posX][peciman->posY].Object = RPACMAN;
-            }
 
 
             break;
@@ -132,16 +139,21 @@ void Move(pacmanController *peciman)
             break;
 
         case DOWN :
-            if(levelMap[peciman->posX][peciman->posY+1].Wall == 0){
+            if (peciman->posY == 19){
+            BlackSquare(peciman->posX, peciman->posY);
+              peciman->posY = 0;
+              levelMap[peciman->posX][peciman->posY].Object = RPACMAN;
+
+            //Print pacman
+              BlackSquare(peciman->posX, peciman->posY);
+            levelMap[peciman->posX][peciman->posY].Object = REMPTY;
+            levelMap[peciman->posX][peciman->posY].Object = RPACMAN;
+            }
+            else if(levelMap[peciman->posX][peciman->posY+1].Wall == 0){
             BlackSquare(peciman->posX, peciman->posY);
             levelMap[peciman->posX][peciman->posY].Object = REMPTY;
             peciman->posY++;
             levelMap[peciman->posX][peciman->posY].Object = RPACMAN;
-            }
-            if (peciman->posY == 20){
-            BlackSquare(peciman->posX, peciman->posY);
-              peciman->posY = 0;
-              levelMap[peciman->posX][peciman->posY].Object = RPACMAN;
             }
             break;
 
