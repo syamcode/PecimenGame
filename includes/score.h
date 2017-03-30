@@ -12,6 +12,7 @@ typedef struct{
 	int score;
 	int lives;
 	int foodCount;
+	int level;
 	pacmanController peciman;
 	ghostController ghost1;
 	ghostController ghost2;
