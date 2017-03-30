@@ -1,42 +1,8 @@
-#include <stdio.h>
-#include <graphics.h>
-#include <windows.h>
-#include <stdlib.h>
-#define panjang 600
-#define MAX_INPUT_LEN 15
-
-//typedef struct{
-	//char *name;
-	//int score;
-	//int lives;
-//}playerControl;
-POINT cursorPosition;
-int mX, mY;
-DWORD screenWidth = GetSystemMetrics ( SM_CXSCREEN);
-DWORD screenHeight = GetSystemMetrics (SM_CYSCREEN);
-
-
-int kursor(int, int, int);
-void tampilan();
-void tampilan2();
-void menuutama();
-void storymode();
-void versusmode();
-void menuplay();
-void menuscore();
-void howtoplay();
-void aboutus();
-void inputnama();
-
-int main()
-{
-int gd=DETECT, gm;
-initwindow(800,600);
-menuutama();
-getch();
-closegraph();
-return 0;
-}
+// #include <stdio.h>
+// #include <graphics.h>
+// #include <windows.h>
+// #include <stdlib.h>
+#include "includes/interfaces.h"
 
 int kursor(int option, int x, int y)
 {
@@ -103,16 +69,19 @@ void tampilan2()
 
 void storymode()
 {
+    playerControl player1;
     cleardevice();
     tampilan();
-    inputnama();
+    inputnama(&player1);
+    InitGame(&player1);
+    GameStart(&player1);
 }
 
 void versusmode()
 {
     cleardevice();
     tampilan();
-    inputnama();
+    //inputnama(&player1);
 }
 
 void menuplay()
@@ -366,7 +335,7 @@ void menuutama()
 	}*/
 }
 
-void inputnama() {
+void inputnama(playerControl *player) {
     char inputbuf[MAX_INPUT_LEN];
     for(int idx=0;idx<MAX_INPUT_LEN;idx++)
         inputbuf[idx]=0;
@@ -409,6 +378,8 @@ void inputnama() {
        }
 
     } while (!the_end);
-
+    strcpy(player->name, inputbuf);
+    cleardevice();
+    printf("%s", player->name);
     //getchar(playerControl player1.name);
 }

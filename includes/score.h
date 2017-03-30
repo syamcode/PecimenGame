@@ -14,7 +14,7 @@
 #define HUNDREDTHOUSANDS 0
 
 typedef struct{
-	char *name;
+	char name[15];
 	int score;
 	int lives;
 	int foodCount;

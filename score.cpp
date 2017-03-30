@@ -1,6 +1,6 @@
 #include "includes/score.h"
 
-playerControl player1;
+
 
 void initScore(playerControl *player){
   player->score=0;

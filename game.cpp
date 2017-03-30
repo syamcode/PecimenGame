@@ -51,9 +51,11 @@ void GameStart(playerControl *player) {
     char scoreText[20];
     char livesText[20];
     int liveGiven=0;
+    char lepel[2];
+    DrawSideMenu();
     while (player->lives>0) {
         DrawMap();
-        DrawSideMenu();
+        outtextxy(22*GRIDSIZE, 5.5*GRIDSIZE,player->name);
         DrawGhost(player->ghost1);
         DrawPacman(player->peciman);
         begin = clock();
@@ -61,6 +63,9 @@ void GameStart(playerControl *player) {
         PlaySound(TEXT("sounds/pacman_beginning.wav"),NULL,SND_ASYNC);
         printScore(player->score, 22*GRIDSIZE, 9.5*GRIDSIZE);
         printLives(player->lives, 22*GRIDSIZE, 13.5*GRIDSIZE);
+        sprintf(lepel, "%d", player->level);
+        //BlackSquare(24*GRIDSIZE,GRIDSIZE*2.8);
+        outtextxy(24*GRIDSIZE,GRIDSIZE*2.8, lepel);
         while(player->foodCount > 0) {
             printf("%d ",player->foodCount);
             step++;
