@@ -117,7 +117,7 @@ void versusmode()
 
 void menuplay()
 {
-    setactivepage(2);
+   // setactivepage(2);
     cleardevice();
     tampilan();
     setcolor(15);
@@ -130,34 +130,34 @@ void menuplay()
     setcolor(4);
     outtextxy(370,408, "BACK TO MENU");
     setcolor(15);
-    setvisualpage(2);
-    /*while(1)
+    //setvisualpage(2);
+    while(1)
     {
         GetCursorPos(&cursorPosition);
         mX=cursorPosition.x;
         mY=cursorPosition.y;
 
-       if (GetAsyncKeyState(VK_LBUTTON) && mX>=400 && mX<=470 && mY>=355 && mY<=379)
+       if (GetAsyncKeyState(VK_LBUTTON) && mX>=400 && mX<=470 && mY>=382 && mY<=407)
        {
            storymode();
        }
-        else if (GetAsyncKeyState(VK_LBUTTON) && mX>=400 && mX<=470 && mY>=382&& mY<=406)
+        else if (GetAsyncKeyState(VK_LBUTTON) && mX>=400 && mX<=470 && mY>=408&& mY<=432)
        {
            versusmode();
        }
-        else if (GetAsyncKeyState(VK_LBUTTON) && mX>=400 && mX<=470 && mY>=408&& mY<=432)
+        else if (GetAsyncKeyState(VK_LBUTTON) && mX>=400 && mX<=470 && mY>=440&& mY<=464)
        {
            menuutama();
        }
-    }*/
-    int player = kursor(3,325,350);
+    }
+   /* int player = kursor(3,325,350);
     switch(player) //kursor di 3 posisi, x=325, y=350
 
 {
     case 1 : storymode();break;
 	case 2 : versusmode();break;
     case 3 : menuutama();break;
-	}
+	}*/
 }
 
 void menuscore()

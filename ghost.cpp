@@ -15,10 +15,10 @@ void InitGhost(ghostController *ghost, int posX, int posY, int ghostType) {
 }
 int CanMove(ghostController ghost, int direction) {
     switch(direction) {
-        case RIGHT : return ((levelMap[ghost.posX+1][ghost.posY].Wall == REMPTY || levelMap[ghost.posX+1][ghost.posY].Wall == RWALL_GHOST) && (levelMap[ghost.posX+1][ghost.posY].Object == REMPTY || levelMap[ghost.posX+1][ghost.posY].Object == RPACMAN)) ? 1:0;
-        case LEFT : return ((levelMap[ghost.posX-1][ghost.posY].Wall == REMPTY || levelMap[ghost.posX-1][ghost.posY].Wall == RWALL_GHOST) && (levelMap[ghost.posX-1][ghost.posY].Object == REMPTY  || levelMap[ghost.posX-1][ghost.posY].Object == RPACMAN)) ? 1:0;
-        case UP : return ((levelMap[ghost.posX][ghost.posY-1].Wall == REMPTY || levelMap[ghost.posX][ghost.posY-1].Wall == RWALL_GHOST) && (levelMap[ghost.posX][ghost.posY-1].Object == REMPTY  || levelMap[ghost.posX][ghost.posY-1].Object == RPACMAN)) ? 1:0;
-        case DOWN : return ((levelMap[ghost.posX][ghost.posY+1].Wall == REMPTY || levelMap[ghost.posX][ghost.posY+1].Wall == RWALL_GHOST) && (levelMap[ghost.posX][ghost.posY+1].Object == REMPTY  || levelMap[ghost.posX][ghost.posY+1].Object == RPACMAN)) ? 1:0;
+        case RIGHT : return ((levelMap[ghost.posX+1][ghost.posY].Wall == REMPTY || levelMap[ghost.posX+1][ghost.posY].Wall == RWALL_GHOST) && (levelMap[ghost.posX+1][ghost.posY].Object == REMPTY || levelMap[ghost.posX+1][ghost.posY].Object == RPACMAN));
+        case LEFT : return ((levelMap[ghost.posX-1][ghost.posY].Wall == REMPTY || levelMap[ghost.posX-1][ghost.posY].Wall == RWALL_GHOST) && (levelMap[ghost.posX-1][ghost.posY].Object == REMPTY  || levelMap[ghost.posX-1][ghost.posY].Object == RPACMAN));
+        case UP : return ((levelMap[ghost.posX][ghost.posY-1].Wall == REMPTY || levelMap[ghost.posX][ghost.posY-1].Wall == RWALL_GHOST) && (levelMap[ghost.posX][ghost.posY-1].Object == REMPTY  || levelMap[ghost.posX][ghost.posY-1].Object == RPACMAN));
+        case DOWN : return ((levelMap[ghost.posX][ghost.posY+1].Wall == REMPTY || levelMap[ghost.posX][ghost.posY+1].Wall == RWALL_GHOST) && (levelMap[ghost.posX][ghost.posY+1].Object == REMPTY  || levelMap[ghost.posX][ghost.posY+1].Object == RPACMAN));
     }
 }
 void BlackSquareCheck(int posX, int posY) {
