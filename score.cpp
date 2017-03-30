@@ -7,7 +7,7 @@ void initScore(playerControl *player){
 }
 
 void initLives(playerControl *player){
-    player->lives=40;
+    player->lives=3;
 }
 
 void incScore(int food, playerControl *player){
@@ -96,18 +96,18 @@ void randFoodPos(){
 }
 
 void drawNumber(int x, int posX, int posY, int posisi){
-    posX+=posisi*GRIDSIZE;
+    posX+=posisi*GRIDSIZE/2;
     switch(x){
-        case 0: readimagefile("assets/images/0.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE); break;
-        case 1: readimagefile("assets/images/1.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE); break;
-        case 2: readimagefile("assets/images/2.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE); break;
-        case 3: readimagefile("assets/images/3.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE); break;
-        case 4: readimagefile("assets/images/4.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE); break;
-        case 5: readimagefile("assets/images/5.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE); break;
-        case 6: readimagefile("assets/images/6.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE); break;
-        case 7: readimagefile("assets/images/7.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE); break;
-        case 8: readimagefile("assets/images/8.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE); break;
-        case 9: readimagefile("assets/images/9.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE); break;
+        case 0: readimagefile("assets/images/0.bmp",posX, posY, posX + GRIDSIZE/2, posY + GRIDSIZE/2); break;
+        case 1: readimagefile("assets/images/1.bmp",posX, posY, posX + GRIDSIZE/2, posY + GRIDSIZE/2); break;
+        case 2: readimagefile("assets/images/2.bmp",posX, posY, posX + GRIDSIZE/2, posY + GRIDSIZE/2); break;
+        case 3: readimagefile("assets/images/3.bmp",posX, posY, posX + GRIDSIZE/2, posY + GRIDSIZE/2); break;
+        case 4: readimagefile("assets/images/4.bmp",posX, posY, posX + GRIDSIZE/2, posY + GRIDSIZE/2); break;
+        case 5: readimagefile("assets/images/5.bmp",posX, posY, posX + GRIDSIZE/2, posY + GRIDSIZE/2); break;
+        case 6: readimagefile("assets/images/6.bmp",posX, posY, posX + GRIDSIZE/2, posY + GRIDSIZE/2); break;
+        case 7: readimagefile("assets/images/7.bmp",posX, posY, posX + GRIDSIZE/2, posY + GRIDSIZE/2); break;
+        case 8: readimagefile("assets/images/8.bmp",posX, posY, posX + GRIDSIZE/2, posY + GRIDSIZE/2); break;
+        case 9: readimagefile("assets/images/9.bmp",posX, posY, posX + GRIDSIZE/2, posY + GRIDSIZE/2); break;
     }
 }
 
@@ -121,14 +121,9 @@ void printScore(int score, int posX, int posY){
 }
 
 void printLives(int lives, int posX, int posY){
-    int i, x=posX;
-
+    int i;
     for(i=0;i<lives;i++){
-        readimagefile("assets/images/lives.bmp", x, posY, x+GRIDSIZE, posY+GRIDSIZE);
-        x+=GRIDSIZE;
-                if((i+1)%6==0){
-            posY+=GRIDSIZE;
-            x=posX;
-        }
+        readimagefile("assets/images/lives.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);
+        posX+=GRIDSIZE;
     }
 }
