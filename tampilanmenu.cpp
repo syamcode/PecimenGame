@@ -2,7 +2,6 @@
 #include <graphics.h>
 #include <windows.h>
 #include <stdlib.h>
-
 #define panjang 600
 #define MAX_INPUT_LEN 15
 
@@ -11,13 +10,18 @@
 	//int score;
 	//int lives;
 //}playerControl;
+POINT cursorPosition;
+int mX, mY;
+DWORD screenWidth = GetSystemMetrics ( SM_CXSCREEN);
+DWORD screenHeight = GetSystemMetrics (SM_CYSCREEN);
+
 
 int kursor(int, int, int);
 void tampilan();
 void tampilan2();
 void menuutama();
-void player_1();
-void player_2();
+void storymode();
+void versusmode();
 void menuplay();
 void menuscore();
 void howtoplay();
@@ -97,60 +101,83 @@ void tampilan2()
     readimagefile("picture/pacman2.bmp",650, 200, 800, 580);
 }
 
-void player_1()
+void storymode()
 {
     cleardevice();
     tampilan();
-    //outtextxy(500,300,"1 player ");
     inputnama();
 }
 
-void player_2()
+void versusmode()
 {
     cleardevice();
     tampilan();
-    //outtextxy(500,300,"2 player ");
     inputnama();
 }
 
 void menuplay()
 {
+    setactivepage(2);
     cleardevice();
     tampilan();
-    //cleardevice();
     setcolor(15);
     settextstyle(9,HORIZ_DIR,2);
     outtextxy(375,300, "PLAYER");
     settextstyle(8,HORIZ_DIR,1);
     setcolor(9);
-    outtextxy(390,355, "1 PLAYER");
-    outtextxy(390,382, "2 PLAYER");
+    outtextxy(385,355, "STORY MODE");
+    outtextxy(380,382, "VERSUS MODE");
     setcolor(4);
     outtextxy(370,408, "BACK TO MENU");
     setcolor(15);
+    setvisualpage(2);
+    /*while(1)
+    {
+        GetCursorPos(&cursorPosition);
+        mX=cursorPosition.x;
+        mY=cursorPosition.y;
+
+       if (GetAsyncKeyState(VK_LBUTTON) && mX>=400 && mX<=470 && mY>=355 && mY<=379)
+       {
+           storymode();
+       }
+        else if (GetAsyncKeyState(VK_LBUTTON) && mX>=400 && mX<=470 && mY>=382&& mY<=406)
+       {
+           versusmode();
+       }
+        else if (GetAsyncKeyState(VK_LBUTTON) && mX>=400 && mX<=470 && mY>=408&& mY<=432)
+       {
+           menuutama();
+       }
+    }*/
     int player = kursor(3,325,350);
-    switch(player) //kursor di 4 posisi, x=50, y=32
+    switch(player) //kursor di 3 posisi, x=325, y=350
+
 {
-	case 1 : player_1();break;
-	case 2 : player_2();break;
+    case 1 : storymode();break;
+	case 2 : versusmode();break;
     case 3 : menuutama();break;
 	}
 }
 
 void menuscore()
 {
+    setactivepage(3);
     cleardevice();
     tampilan2();
-    DWORD screenWidth = GetSystemMetrics ( SM_CXSCREEN);
-    DWORD screenHeight = GetSystemMetrics (SM_CYSCREEN);
+   // DWORD screenWidth = GetSystemMetrics ( SM_CXSCREEN);
+    //DWORD screenHeight = GetSystemMetrics (SM_CYSCREEN);
    // initwindow(screenWidth, screenHeight, "", -3,-3);
 
-    POINT cursorPosition;
-    int mX, mY;
+   // POINT cursorPosition;
+    //int mX, mY;
     outtextxy(275,250,"NAMA");
     outtextxy(525,250,"SCORE");
     setcolor(4);
+    readimagefile("picture/pacman1.bmp",335, 565, 360, 590);
+    readimagefile("picture/pacman3.bmp",515, 565, 540, 590);
 	outtextxy(370,570,"BACK TO MENU");
+	setvisualpage(3);
     while(1)
     {
         GetCursorPos(&cursorPosition);
@@ -162,18 +189,15 @@ void menuscore()
            menuutama();
        }
     }
-	/*int skor = kursor(1,325,570);
-    switch(skor)
-    {
-        case 1 : menuutama();break;
-    }*/
 }
 
 void howtoplay()
-{ int a=5,b=32,c=17;
+{
+    int a=5,b=32,c=17;
+    //setactivepage(4);
     cleardevice();
     readimagefile("picture/pacman1.bmp",200, 5, 225, 30);
-    readimagefile("picture/pacman1.bmp",575, 5, 600, 30);
+    readimagefile("picture/pacman3.bmp",575, 5, 600, 30);
     settextstyle(8,HORIZ_DIR,3);
     outtextxy(320,5, "How To Play");
     settextstyle(8,HORIZ_DIR,1);
@@ -208,17 +232,32 @@ void howtoplay()
 	outtextxy(a+50,b+(28*c),"o Kuntilanak : Bisa menembut 1 tembok  ");
 	outtextxy(a+50,b+(29*c),"o Pocong : Meloncat 2 petak  ");
 	outtextxy(a+50,b+(30*c),"o Tengkorak : Mengfreze peci-men ");
+	readimagefile("picture/pacman1.bmp",335, 565, 360, 590);
+	readimagefile("picture/pacman3.bmp",515, 565, 540, 590);
 	setcolor(4);
 	outtextxy(370,570,"BACK TO MENU");
-	int how = kursor(1,325,570);
+	//setvisualpage(4);
+	while(1)
+    {
+        GetCursorPos(&cursorPosition);
+        mX=cursorPosition.x;
+        mY=cursorPosition.y;
+
+       if (GetAsyncKeyState(VK_LBUTTON) && mX>=370 && mX<=470 && mY>=570)
+       {
+           menuutama();
+       }
+    }
+	/*int how = kursor(1,325,570);
     switch(how)
     {
         case 1 : menuutama();break;
-    }
+    }*/
 }
 
 void aboutus()
 {
+    //setactivepage(5);
     cleardevice();
     outtextxy(45,30, "  AAA    BBBBBBB   OOOOO  UUUU UUUU TTTTTTT   UUUU UUUU SSSSSSS");
     outtextxy(45,47, " AA AA    BB   BB OO   OO  UU   UU    TTT      UU   UU  SS   SS");
@@ -242,25 +281,36 @@ void aboutus()
     outtextxy(400,400,"NIM  : 161511044");
     outtextxy(280,440,"Nama : Muhamad Hisyam Anshory");
     outtextxy(280,460,"NIM  : 161511052");
-
     setcolor(15);
     settextstyle(8,HORIZ_DIR,1);
     outtextxy(200,550,"Kelompok 9 - D3 Teknik Informatika");
     outtextxy(250,570,"POLITEKNIK NEGERI BANDUNG");
-
+    readimagefile("picture/pacman1.bmp",315, 500, 340, 525);
+    readimagefile("picture/pacman3.bmp",495, 500, 520, 525);
     setcolor(4);
     outtextxy(350,505, "BACK TO MENU");
+    while(1)
+    {
+        GetCursorPos(&cursorPosition);
+        mX=cursorPosition.x;
+        mY=cursorPosition.y;
 
-    setcolor(15);
-    int player = kursor(1,325,500);
+       if (GetAsyncKeyState(VK_LBUTTON) && mX>=370 && mX<=470 && mY>=505 && mY<=550)
+       {
+           menuutama();
+       }
+    }
+    //setvisualpage(5);
+   /* int player = kursor(1,325,500);
     switch(player) //kursor di 4 posisi, x=50, y=32
     {
         case 1 : menuutama();break;
-	}
+	}*/
 }
 
 void menuutama()
 {
+    setactivepage(1);
     cleardevice();
     tampilan();
     menu :
@@ -272,12 +322,40 @@ void menuutama()
     setcolor(9);
     outtextxy(400,355, "PLAY");
     outtextxy(395,380, "SCORE");
-    outtextxy(370,406, "HOW TO PLAY");
+    outtextxy(370,405, "HOW TO PLAY");
     outtextxy(385,430, "ABOUT US");
     setcolor(4);
     outtextxy(400,458, "EXIT");
     setcolor(15);
-    int menu = kursor(5,325,350);
+    setvisualpage(1);
+    while(1)
+    {
+        GetCursorPos(&cursorPosition);
+        mX=cursorPosition.x;
+        mY=cursorPosition.y;
+
+       if (GetAsyncKeyState(VK_LBUTTON) && mX>=400 && mX<=470 && mY>=380 && mY<=404)
+       {
+           menuplay();
+       }
+        else if (GetAsyncKeyState(VK_LBUTTON) && mX>=400 && mX<=470 && mY>=405&& mY<=429)
+       {
+           menuscore();
+       }
+        else if (GetAsyncKeyState(VK_LBUTTON) && mX>=400 && mX<=470 && mY>=430&& mY<=454)
+       {
+           howtoplay();
+       }
+        else if (GetAsyncKeyState(VK_LBUTTON) && mX>=400 && mX<=470 && mY>=455&& mY<=479)
+       {
+           aboutus();
+       }
+       else if (GetAsyncKeyState(VK_LBUTTON) && mX>=400 && mX<=470 && mY>=485 && mY<=509)
+       {
+           exit(1);
+       }
+    }
+    /*int menu = kursor(5,325,350);
     switch(menu) //kursor di 5 posisi, x=350, y=350
 {
 	case 1 : menuplay();break;
@@ -285,7 +363,7 @@ void menuutama()
 	case 3 : howtoplay(); break;
 	case 4 : aboutus();break;
 	case 5 : exit;
-	}
+	}*/
 }
 
 void inputnama() {
@@ -295,6 +373,7 @@ void inputnama() {
     int input_pos = 0;
     int the_end=0;
     char c;
+
     do
     {
        cleardevice();
@@ -330,5 +409,6 @@ void inputnama() {
        }
 
     } while (!the_end);
+
     //getchar(playerControl player1.name);
 }

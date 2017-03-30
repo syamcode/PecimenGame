@@ -24,6 +24,7 @@ int main()
     initwindow(800, 600, "Pecimen Game");
     initScore(&player1);
     initLives(&player1);
+    PlaySound(TEXT("sounds/pacman_beginning.wav"),NULL,SND_ASYNC);
     CreateMap(level2, &player1);
 
     char choose;

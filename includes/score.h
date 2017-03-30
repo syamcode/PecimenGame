@@ -6,12 +6,19 @@
 #define FOOD3_SCORE 300	//Menyan
 #define FOOD4_SCORE 500	//Melati
 #define FOOD5_SCORE 700	//Kopi Hitam
+#define ONES 5
+#define TENS 4
+#define HUNDREDS 3
+#define THOUSANDS 2
+#define TENTHOUSANDS 1
+#define HUNDREDTHOUSANDS 0
 
 typedef struct{
 	char *name;
 	int score;
 	int lives;
 	int foodCount;
+	int level;
 	pacmanController peciman;
 	ghostController ghost1;
 	ghostController ghost2;
