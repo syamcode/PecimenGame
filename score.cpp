@@ -33,7 +33,11 @@ void incScore(int food, playerControl *player){
 void eatFood(playerControl *player){
   incScore(levelMap[player->peciman.posX][player->peciman.posY].Food, player);
   if (levelMap[player->peciman.posX][player->peciman.posY].Food==RFOOD1){
+    PlaySound(TEXT("sounds/pacman_chomp.wav"),NULL,SND_ASYNC);
     player->foodCount--;
+  }
+  else if(levelMap[player->peciman.posX][player->peciman.posY].Food==RFOOD2 || levelMap[player->peciman.posX][player->peciman.posY].Food==RFOOD3 || levelMap[player->peciman.posX][player->peciman.posY].Food==RFOOD4 ||levelMap[player->peciman.posX][player->peciman.posY].Food==RFOOD5){
+    PlaySound(TEXT("sounds/pacman_eatfruit.wav"),NULL,SND_ASYNC);
   }
   levelMap[player->peciman.posX][player->peciman.posY].Food=REMPTY;
 }
