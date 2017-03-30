@@ -15,6 +15,7 @@
 
 typedef struct{
     int direction;
+    int nextDirection;
     int posX;
     int posY;
     int state;
