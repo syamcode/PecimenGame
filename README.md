@@ -1,6 +1,6 @@
 # PecimenGame
 
-##Story
+## Story
 Diceritakan seorang santri musafir yang sedang mengelilingi desa-desa di daerahnya, di
 suatu hari dia menemukan sebuah desa yang memiliki aura mistis yang sangat kuat,
 disinyalir masyarakat di daerah tersebut memuja setan dimulai setan tuyul, kuntilanak,
@@ -15,7 +15,7 @@ tidak ada lagi sasajen yang tersisa di desa tersebut dan kekuatan setan sudah sa
 melemah sehingga bisa dikalahkan oleh santri , dan masyarakat pun sadar bahwa yang
 mereka lakukan salah.
 
-##Team Member
+## Team Member
 - [@syamcode](https://github.com/syamcode) (Muhamad Hisyam Anshory)
 - [@fashni](https://github.com/fashni) (Fahmi Rosdiansyah Mahdani)
 - [@auliyaaqma](https://github.com/auliyaaqma) (Auliya Aqma Dinillah)
