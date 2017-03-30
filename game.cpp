@@ -58,6 +58,7 @@ void GameStart(playerControl *player) {
     DrawSideMenu();
     while (player->lives>0) {
         DrawMap();
+        settextstyle(8, HORIZ_DIR,1);
         outtextxy(22*GRIDSIZE, 5.5*GRIDSIZE,player->name);
         DrawGhost(player->ghost1);
         DrawPacman(player->peciman);
@@ -102,7 +103,7 @@ void GameStart(playerControl *player) {
                 }
                 Move(&player->peciman);
                 if(levelMap[player->peciman.posX][player->peciman.posY].Food != 0){
-                    printScore(player->score, 22*GRIDSIZE, 10*GRIDSIZE);
+                    printScore(player->score, 22*GRIDSIZE, 9.5*GRIDSIZE);
                     eatFood(player);
                     incLives(player, &liveGiven);
                     printLives(player->lives, 22*GRIDSIZE, 13.5*GRIDSIZE);
