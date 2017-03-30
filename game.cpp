@@ -67,7 +67,7 @@ void GameStart(playerControl *player) {
             if(kbhit())
             {
                 choose = getch();
-                switch(choose){
+                switch(choose){ // untuk menyimpan direction yang akan dilakukan
                 case RIGHTARROW :
                     player->peciman.nextDirection = RIGHT;
                     break;
@@ -88,18 +88,18 @@ void GameStart(playerControl *player) {
                 }
             }
             if (step%10 == 0){
-                if (CanMovePeciman(player->peciman , player->peciman.nextDirection))
+                if (CanMovePeciman(player->peciman , player->peciman.nextDirection)) // dicek apakah ada penghalang tembok atau tidak
                 {
-                    player->peciman.direction = player->peciman.nextDirection;
+                    player->peciman.direction = player->peciman.nextDirection; // perubahan arah jika tidak ada tembok
                 }
                 Move(&player->peciman);
-                 if(levelMap[player->peciman.posX][player->peciman.posY].Food != 0){
+                if(levelMap[player->peciman.posX][player->peciman.posY].Food != 0){
                     printScore(player->score, 22*GRIDSIZE, 9.5*GRIDSIZE);
                     eatFood(player);
                     incLives(player, &liveGiven);
                     printLives(player->lives, 22*GRIDSIZE, 13.5*GRIDSIZE);
-                 }
-                changeState(&player->peciman);
+                }
+                changeState(&player->peciman); // mengubah keadaan pacman dari membuka menjadi tertutup
             }
             if (step%10 == 5) {
                 GhostAutoMove(&player->ghost1, player->peciman);
