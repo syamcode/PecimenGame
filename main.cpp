@@ -85,10 +85,30 @@ printf("%d ",player1.foodCount);
         {
             choose = getch();
             switch(choose){
-            case RIGHTARROW :   player1.peciman.direction = RIGHT;break;
-            case LEFTARROW :   player1.peciman.direction = LEFT;break;
-            case DOWNARROW :   player1.peciman.direction = DOWN;break;
-            case UPARROW :   player1.peciman.direction = UP;break;
+            case RIGHTARROW :
+                if (levelMap[player1.peciman.posX+1][player1.peciman.posY].Wall == 0){
+                    player1.peciman.direction = RIGHT;
+                }
+                break;
+
+            case LEFTARROW :
+                if (levelMap[player1.peciman.posX-1][player1.peciman.posY].Wall == 0){
+                    player1.peciman.direction = LEFT;
+                }
+                break;
+
+            case DOWNARROW :
+                if (levelMap[player1.peciman.posX][player1.peciman.posY+1].Wall == 0){
+                    player1.peciman.direction = DOWN;
+                }
+                break;
+
+            case UPARROW :
+                if (levelMap[player1.peciman.posX][player1.peciman.posY-1].Wall == 0){
+                    player1.peciman.direction = UP;
+                }
+                break;
+
             case 13: spawnFood(&levelMap[9][12],9,12); break;
             }
         }
