@@ -56,10 +56,11 @@ void GameStart(playerControl *player) {
     int liveGiven=0;
     char lepel[2];
     DrawSideMenu();
+    settextstyle(8, HORIZ_DIR,1);
+    outtextxy(22*GRIDSIZE, 5.5*GRIDSIZE,player->name);
     while (player->lives>0) {
         DrawMap();
-        settextstyle(8, HORIZ_DIR,1);
-        outtextxy(22*GRIDSIZE, 5.5*GRIDSIZE,player->name);
+
         DrawGhost(player->ghost1);
         DrawPacman(player->peciman);
         begin = clock();
