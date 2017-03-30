@@ -9,6 +9,7 @@ int mX, mY;
 DWORD screenWidth = GetSystemMetrics ( SM_CXSCREEN);
 DWORD screenHeight = GetSystemMetrics (SM_CYSCREEN);
 
+void DrawSideMenu();
 int kursor(int option, int x, int y);
 void tampilan();
 void tampilan2();

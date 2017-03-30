@@ -4,6 +4,37 @@
 // #include <stdlib.h>
 #include "includes/interfaces.h"
 
+void DrawSideMenu() {
+    readimagefile("picture/pecimen.bmp",20.3*GRIDSIZE,GRIDSIZE/2,26.5*GRIDSIZE,GRIDSIZE*2);
+    rectangle(20.2*GRIDSIZE,GRIDSIZE/2,26.5*GRIDSIZE,19.8*GRIDSIZE);
+    rectangle(20.3*GRIDSIZE,GRIDSIZE*2,26.4*GRIDSIZE,19.7*GRIDSIZE);
+
+    settextstyle(8, HORIZ_DIR,1);
+
+    rectangle(20.8*GRIDSIZE,GRIDSIZE*2.5,26*GRIDSIZE,3.5*GRIDSIZE);
+    outtextxy(21.5*GRIDSIZE,GRIDSIZE*2.8,"LEVEL");
+
+    outtextxy(21.5*GRIDSIZE, 4.2*GRIDSIZE,"NAMA PLAYER");
+   // sprintf(nameText, "Nama Player  : ", player1.name);
+   //outtextxy(21*GRIDSIZE,3*GRIDSIZE, nameText);
+   rectangle(20.8*GRIDSIZE,GRIDSIZE*4,26*GRIDSIZE,5*GRIDSIZE);
+    rectangle(20.8*GRIDSIZE,GRIDSIZE*4,26*GRIDSIZE,7*GRIDSIZE);
+
+    outtextxy(22.5*GRIDSIZE, 8.2*GRIDSIZE,"SCORE");
+    rectangle(20.8*GRIDSIZE,GRIDSIZE*8,26*GRIDSIZE,9*GRIDSIZE);
+    rectangle(20.8*GRIDSIZE,GRIDSIZE*8,26*GRIDSIZE,11*GRIDSIZE);
+
+    outtextxy(22.5*GRIDSIZE, 12.2*GRIDSIZE,"LIVES");
+    rectangle(20.8*GRIDSIZE,GRIDSIZE*12,26*GRIDSIZE,13*GRIDSIZE);
+    rectangle(20.8*GRIDSIZE,GRIDSIZE*12,26*GRIDSIZE,16.5*GRIDSIZE);
+
+	outtextxy(21.2*GRIDSIZE, 17.2*GRIDSIZE,"BACK TO MENU");
+	rectangle(20.8*GRIDSIZE,GRIDSIZE*17,26*GRIDSIZE,18*GRIDSIZE);
+
+    settextstyle(2, HORIZ_DIR,0.2);
+    outtextxy(22.5*GRIDSIZE,18.5*GRIDSIZE, "GOOD LUCK!");
+}
+
 int kursor(int option, int x, int y)
 {
 	int select=1, p=x+25, q=y+25;
