@@ -1,12 +1,12 @@
 #include "includes/peciman.h"
 #include <graphics.h>
 
-int CanMovePeciman(pacmanController peciman, int direction) {
-    switch(direction) {
-        case RIGHT : return levelMap[peciman.posX+1][peciman.posY].Wall == REMPTY  ? 1:0;
-        case LEFT : return levelMap[peciman.posX-1][peciman.posY].Wall == REMPTY  ? 1:0;
-        case UP : return levelMap[peciman.posX][peciman.posY-1].Wall == REMPTY  ? 1:0;
-        case DOWN : return levelMap[peciman.posX][peciman.posY+1].Wall == REMPTY  ? 1:0;
+int CanMovePeciman(pacmanController peciman, int nextDirection) {
+    switch(nextDirection) {
+        case RIGHT : return levelMap[peciman.posX+1][peciman.posY].Wall == REMPTY;
+        case LEFT : return levelMap[peciman.posX-1][peciman.posY].Wall == REMPTY;
+        case UP : return levelMap[peciman.posX][peciman.posY-1].Wall == REMPTY;
+        case DOWN : return levelMap[peciman.posX][peciman.posY+1].Wall == REMPTY;
     }
 }
 
