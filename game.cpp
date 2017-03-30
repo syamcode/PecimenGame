@@ -1,3 +1,30 @@
+void DrawSideMenu() {
+    readimagefile("picture/pecimen.bmp",20.3*GRIDSIZE,GRIDSIZE/2,26.5*GRIDSIZE,GRIDSIZE*2);
+    rectangle(20.2*GRIDSIZE,GRIDSIZE/2,26.5*GRIDSIZE,19.8*GRIDSIZE);
+    rectangle(20.3*GRIDSIZE,GRIDSIZE*2,26.4*GRIDSIZE,19.7*GRIDSIZE);
+
+    settextstyle(8, HORIZ_DIR,1);
+
+    rectangle(20.8*GRIDSIZE,GRIDSIZE*2.5,26*GRIDSIZE,3.5*GRIDSIZE);
+    outtextxy(21.5*GRIDSIZE,GRIDSIZE*2.8,"LEVEL");
+
+    outtextxy(21.5*GRIDSIZE, 4.2*GRIDSIZE,"NAMA PLAYER");
+   // sprintf(nameText, "Nama Player  : ", player1.name);
+   //outtextxy(21*GRIDSIZE,3*GRIDSIZE, nameText);
+   rectangle(20.8*GRIDSIZE,GRIDSIZE*4,26*GRIDSIZE,5*GRIDSIZE);
+    rectangle(20.8*GRIDSIZE,GRIDSIZE*4,26*GRIDSIZE,7*GRIDSIZE);
+
+    outtextxy(22.5*GRIDSIZE, 8.2*GRIDSIZE,"SCORE");
+    rectangle(20.8*GRIDSIZE,GRIDSIZE*8,26*GRIDSIZE,9*GRIDSIZE);
+    rectangle(20.8*GRIDSIZE,GRIDSIZE*8,26*GRIDSIZE,11*GRIDSIZE);
+
+    outtextxy(22.5*GRIDSIZE, 12.2*GRIDSIZE,"LIVES");
+    rectangle(20.8*GRIDSIZE,GRIDSIZE*12,26*GRIDSIZE,13*GRIDSIZE);
+    rectangle(20.8*GRIDSIZE,GRIDSIZE*12,26*GRIDSIZE,16.5*GRIDSIZE);
+
+	outtextxy(21.2*GRIDSIZE, 17.2*GRIDSIZE,"BACK TO MENU");
+	rectangle(20.8*GRIDSIZE,GRIDSIZE*17,26*GRIDSIZE,18*GRIDSIZE);
+}
 void InitLevel(playerControl *player);
 void InitGame(playerControl *player) {
     initScore(player);
@@ -26,9 +53,14 @@ void GameStart(playerControl *player) {
     int liveGiven=0;
     while (player->lives>0) {
         DrawMap();
+        DrawSideMenu();
         DrawGhost(player->ghost1);
+        DrawPacman(player->peciman);
         begin = clock();
         srand(time(NULL));
+        PlaySound(TEXT("sounds/pacman_beginning.wav"),NULL,SND_ASYNC);
+        printScore(player->score, 22*GRIDSIZE, 9.5*GRIDSIZE);
+        printLives(player->lives, 22*GRIDSIZE, 13.5*GRIDSIZE);
         while(player->foodCount > 0) {
             printf("%d ",player->foodCount);
             step++;
@@ -36,20 +68,36 @@ void GameStart(playerControl *player) {
             {
                 choose = getch();
                 switch(choose){
-                case RIGHTARROW :   player->peciman.direction = RIGHT;break;
-                case LEFTARROW :   player->peciman.direction = LEFT;break;
-                case DOWNARROW :   player->peciman.direction = DOWN;break;
-                case UPARROW :   player->peciman.direction = UP;break;
+                case RIGHTARROW :
+                    player->peciman.nextDirection = RIGHT;
+                    break;
+
+                case LEFTARROW :
+                    player->peciman.nextDirection = LEFT;
+                    break;
+
+                case DOWNARROW :
+                    player->peciman.nextDirection = DOWN;
+                    break;
+
+                case UPARROW :
+                     player->peciman.nextDirection = UP;
+                    break;
+
+                case 13: spawnFood(&levelMap[9][12],9,12); break;
                 }
             }
             if (step%10 == 0){
+                if (CanMovePeciman(player->peciman , player->peciman.nextDirection))
+                {
+                    player->peciman.direction = player->peciman.nextDirection;
+                }
                 Move(&player->peciman);
                  if(levelMap[player->peciman.posX][player->peciman.posY].Food != 0){
+                    printScore(player->score, 22*GRIDSIZE, 9.5*GRIDSIZE);
                     eatFood(player);
-                    printScore(player->score, 20*GRIDSIZE, GRIDSIZE);
-
                     incLives(player, &liveGiven);
-                    printLives(player->lives, 20*GRIDSIZE, 2*GRIDSIZE);
+                    printLives(player->lives, 22*GRIDSIZE, 13.5*GRIDSIZE);
                  }
                 changeState(&player->peciman);
             }
