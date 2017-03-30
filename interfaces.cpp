@@ -414,3 +414,40 @@ void inputnama(playerControl *player) {
     printf("%s", player->name);
     //getchar(playerControl player1.name);
 }
+
+void drawNumber(int x, int posX, int posY, int posisi){
+  posX+=posisi*GRIDSIZE/2;
+  switch(x){
+    case 0: readimagefile("assets/images/0.bmp",posX, posY, posX + GRIDSIZE/2, posY + GRIDSIZE/2); break;
+    case 1: readimagefile("assets/images/1.bmp",posX, posY, posX + GRIDSIZE/2, posY + GRIDSIZE/2); break;
+    case 2: readimagefile("assets/images/2.bmp",posX, posY, posX + GRIDSIZE/2, posY + GRIDSIZE/2); break;
+    case 3: readimagefile("assets/images/3.bmp",posX, posY, posX + GRIDSIZE/2, posY + GRIDSIZE/2); break;
+    case 4: readimagefile("assets/images/4.bmp",posX, posY, posX + GRIDSIZE/2, posY + GRIDSIZE/2); break;
+    case 5: readimagefile("assets/images/5.bmp",posX, posY, posX + GRIDSIZE/2, posY + GRIDSIZE/2); break;
+    case 6: readimagefile("assets/images/6.bmp",posX, posY, posX + GRIDSIZE/2, posY + GRIDSIZE/2); break;
+    case 7: readimagefile("assets/images/7.bmp",posX, posY, posX + GRIDSIZE/2, posY + GRIDSIZE/2); break;
+    case 8: readimagefile("assets/images/8.bmp",posX, posY, posX + GRIDSIZE/2, posY + GRIDSIZE/2); break;
+    case 9: readimagefile("assets/images/9.bmp",posX, posY, posX + GRIDSIZE/2, posY + GRIDSIZE/2); break;
+  }
+}
+
+void printScore(int score, int posX, int posY){
+  drawNumber((((((score/10)/10)/10)/10)/10)%10,posX,posY,HUNDREDTHOUSANDS);
+  drawNumber(((((score/10)/10)/10)/10)%10,posX,posY,TENTHOUSANDS);
+  drawNumber((((score/10)/10)/10)%10,posX,posY,THOUSANDS);
+  drawNumber(((score/10)/10)%10,posX,posY,HUNDREDS);
+  drawNumber((score/10)%10,posX,posY,TENS);
+  drawNumber(score%10,posX,posY,ONES);
+}
+
+void printLives(int lives, int posX, int posY){
+  int i, x=posX;
+  for(i=0;i<lives;i++){
+    readimagefile("assets/images/PacmanRightOpen.bmp", x, posY, x+GRIDSIZE, posY+GRIDSIZE);
+    x+=GRIDSIZE;
+    if((i+1)%3==0){
+      posY+=GRIDSIZE;
+      x=posX;
+    }
+  }
+}

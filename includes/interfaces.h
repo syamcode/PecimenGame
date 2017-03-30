@@ -21,5 +21,8 @@ void menuscore();
 void howtoplay();
 void aboutus();
 void inputnama(playerControl *player);
+void drawNumber(int x, int posX, int posY, int posisi);
+void printScore(int score, int posX, int posY);
+void printLives(int lives, int posX, int posY);
 
 #endif

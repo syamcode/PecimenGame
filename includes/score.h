@@ -13,20 +13,6 @@
 #define TENTHOUSANDS 1
 #define HUNDREDTHOUSANDS 0
 
-typedef struct{
-	char name[15];
-	int score;
-	int lives;
-	int foodCount;
-	int level;
-	pacmanController peciman;
-	ghostController ghost1;
-	ghostController ghost2;
-	ghostController ghost3;
-	ghostController ghost4;
-
-} playerControl;
-
 void initScore(playerControl *player);
 void initLives(playerControl *player);
 void incScore(int food, playerControl *player);
@@ -37,8 +23,5 @@ int foodType(int x);
 void spawnFood(MapController *map, int posX, int posY);
 void despawnFood(MapController *map, int posX, int posY);
 void randFoodPos();
-void drawNumber(int x, int posX, int posY, int posisi);
-void printScore(int score, int posX, int posY);
-void printLives(int lives, int posX, int posY);
 
 #endif // SCORE_H_INCLUDED

@@ -1,13 +1,12 @@
 #include <stdio.h>
 #include <graphics.h>
 #include <time.h>
-#include <windows.h>
 #include "includes/peciman.h"
-#include "includes/map.h"
 #include "includes/ghost.h"
+#include "includes/game.h"
+#include "includes/map.h"
 #include "includes/score.h"
 #include "includes/interfaces.h"
-
 #include "map.cpp"
 #include "peciman.cpp"
 #include "ghost.cpp"
