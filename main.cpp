@@ -15,7 +15,7 @@
 
 int main()
 {
-    initwindow(800, 600, "Pecimen Game");
+    initwindow(800, 600, "PECI-MEN Game");
     playerControl player1;
     InitGame(&player1);
     GameStart(&player1);

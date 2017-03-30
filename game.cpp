@@ -24,6 +24,9 @@ void DrawSideMenu() {
 
 	outtextxy(21.2*GRIDSIZE, 17.2*GRIDSIZE,"BACK TO MENU");
 	rectangle(20.8*GRIDSIZE,GRIDSIZE*17,26*GRIDSIZE,18*GRIDSIZE);
+
+    settextstyle(2, HORIZ_DIR,0.2);
+    outtextxy(22.5*GRIDSIZE,18.5*GRIDSIZE, "GOOD LUCK!");
 }
 void InitLevel(playerControl *player);
 void InitGame(playerControl *player) {
@@ -94,7 +97,7 @@ void GameStart(playerControl *player) {
                 }
                 Move(&player->peciman);
                 if(levelMap[player->peciman.posX][player->peciman.posY].Food != 0){
-                    printScore(player->score, 22*GRIDSIZE, 9.5*GRIDSIZE);
+                    printScore(player->score, 22*GRIDSIZE, 10*GRIDSIZE);
                     eatFood(player);
                     incLives(player, &liveGiven);
                     printLives(player->lives, 22*GRIDSIZE, 13.5*GRIDSIZE);
