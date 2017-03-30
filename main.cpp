@@ -24,6 +24,7 @@ int main()
     initwindow(800, 600, "Pecimen Game");
     initScore(&player1);
     initLives(&player1);
+    PlaySound(TEXT("sounds/pacman_beginning.wav"),NULL,SND_ASYNC);
     CreateMap(level2, &player1);
 
     char choose;
@@ -32,12 +33,45 @@ int main()
     char livesText[20];
     int liveGiven=0;
     DrawMap();
-//    sprintf(scoreText, "Score : %d", player1.score);
-//    sprintf(livesText, "Lives : %d", player1.lives);
-    //setfillstyle(SOLID_FILL, BLACK);
-    //bar(22*GRIDSIZE, GRIDSIZE, 28*GRIDSIZE, 3*GRIDSIZE);
-//    outtextxy(22*GRIDSIZE, GRIDSIZE, scoreText);
-//    outtextxy(22*GRIDSIZE, 2 * GRIDSIZE, livesText);
+    readimagefile("picture/pecimen.bmp",20.3*GRIDSIZE,GRIDSIZE/2,26.5*GRIDSIZE,GRIDSIZE*2);
+    rectangle(20.2*GRIDSIZE,GRIDSIZE/2,26.5*GRIDSIZE,19.8*GRIDSIZE);
+    rectangle(20.3*GRIDSIZE,GRIDSIZE*2,26.4*GRIDSIZE,19.7*GRIDSIZE);
+
+    settextstyle(8, HORIZ_DIR,1);
+
+    rectangle(20.8*GRIDSIZE,GRIDSIZE*2.5,26*GRIDSIZE,3.5*GRIDSIZE);
+    outtextxy(21.5*GRIDSIZE,GRIDSIZE*2.8,"LEVEL");
+
+    outtextxy(21.5*GRIDSIZE, 4.2*GRIDSIZE,"NAMA PLAYER");
+   // sprintf(nameText, "Nama Player  : ", player1.name);
+   //outtextxy(21*GRIDSIZE,3*GRIDSIZE, nameText);
+   rectangle(20.8*GRIDSIZE,GRIDSIZE*4,26*GRIDSIZE,5*GRIDSIZE);
+    rectangle(20.8*GRIDSIZE,GRIDSIZE*4,26*GRIDSIZE,7*GRIDSIZE);
+
+    outtextxy(22.5*GRIDSIZE, 8.2*GRIDSIZE,"SCORE");
+    rectangle(20.8*GRIDSIZE,GRIDSIZE*8,26*GRIDSIZE,9*GRIDSIZE);
+    rectangle(20.8*GRIDSIZE,GRIDSIZE*8,26*GRIDSIZE,11*GRIDSIZE);
+
+    outtextxy(22.5*GRIDSIZE, 12.2*GRIDSIZE,"LIVES");
+    rectangle(20.8*GRIDSIZE,GRIDSIZE*12,26*GRIDSIZE,13*GRIDSIZE);
+    rectangle(20.8*GRIDSIZE,GRIDSIZE*12,26*GRIDSIZE,16.5*GRIDSIZE);
+
+	outtextxy(21.2*GRIDSIZE, 17.2*GRIDSIZE,"BACK TO MENU");
+	rectangle(20.8*GRIDSIZE,GRIDSIZE*17,26*GRIDSIZE,18*GRIDSIZE);
+    /*klik menu dengan mouse */
+    //while(1)
+    //{
+        //GetCursorPos(&cursorPosition);
+        //mX=cursorPosition.x;
+        //mY=cursorPosition.y;
+
+       //if (GetAsyncKeyState(VK_LBUTTON) && mX>=370 && mX<=470 && mY>=570)
+       //{
+           //menuutama();
+       //}
+    //}
+    settextstyle(2, HORIZ_DIR,0.2);
+    outtextxy(22.5*GRIDSIZE,18.5*GRIDSIZE, "GOOD LUCK!");
     DrawGhost(player1.ghost1);
 //    DrawGhost(player1.ghost2);
 //    DrawGhost(player1.ghost3);
@@ -52,10 +86,30 @@ printf("%d ",player1.foodCount);
         {
             choose = getch();
             switch(choose){
-            case RIGHTARROW :   player1.peciman.direction = RIGHT;break;
-            case LEFTARROW :   player1.peciman.direction = LEFT;break;
-            case DOWNARROW :   player1.peciman.direction = DOWN;break;
-            case UPARROW :   player1.peciman.direction = UP;break;
+            case RIGHTARROW :
+                if (levelMap[player1.peciman.posX+1][player1.peciman.posY].Wall == 0){
+                    player1.peciman.direction = RIGHT;
+                }
+                break;
+
+            case LEFTARROW :
+                if (levelMap[player1.peciman.posX-1][player1.peciman.posY].Wall == 0){
+                    player1.peciman.direction = LEFT;
+                }
+                break;
+
+            case DOWNARROW :
+                if (levelMap[player1.peciman.posX][player1.peciman.posY+1].Wall == 0){
+                    player1.peciman.direction = DOWN;
+                }
+                break;
+
+            case UPARROW :
+                if (levelMap[player1.peciman.posX][player1.peciman.posY-1].Wall == 0){
+                    player1.peciman.direction = UP;
+                }
+                break;
+
             case 13: spawnFood(&levelMap[9][12],9,12); break;
             }
         }
@@ -63,10 +117,9 @@ printf("%d ",player1.foodCount);
             Move(&player1.peciman);
              if(levelMap[player1.peciman.posX][player1.peciman.posY].Food != 0){
              	eatFood(&player1);
-             	printScore(player1.score, 20*GRIDSIZE, GRIDSIZE);
-
+             	printScore(player1.score, 22*GRIDSIZE, 9.5*GRIDSIZE);
+             	printLives(player1.lives, 22*GRIDSIZE, 13.5*GRIDSIZE);
                 incLives(&player1, &liveGiven);
-                printLives(player1.lives, 20*GRIDSIZE, 2*GRIDSIZE);
              }
             changeState(&player1.peciman);
         }
