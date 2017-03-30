@@ -16,9 +16,17 @@ melemah sehingga bisa dikalahkan oleh santri , dan masyarakat pun sadar bahwa ya
 mereka lakukan salah.
 
 ## Team Member
-- [@syamcode](https://github.com/syamcode) (Muhamad Hisyam Anshory)
+- [@afadhitya](https://github.com/afadhitya) (Achmad Fadhitya Muharram)
 - [@fashni](https://github.com/fashni) (Fahmi Rosdiansyah Mahdani)
 - [@auliyaaqma](https://github.com/auliyaaqma) (Auliya Aqma Dinillah)
 - [@hayaui](https://github.com/hayaui) (Haya Utami)
-- [@afadhitya](https://github.com/afadhitya) (Achmad Fadithya Muharram)
 - [@kurniawan15](https://github.com/kurniawan15) (Pega Kurniawan)
+
+
+
+
+
+
+
+
+- [@syamcode](https://github.com/syamcode) (Muhamad Hisyam Anshory)
