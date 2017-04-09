@@ -2,11 +2,11 @@
 #define GHOST_H_INCLUDED
 
 typedef struct {
-    int posX;
-    int posY;
     int direction;
     int speed;
     int ghostType;
+    position pos;
+    position initPos;
 }ghostController;
 void DrawGhost(ghostController ghost);
 void GhostMove(ghostController *ghost);

@@ -1,6 +1,6 @@
 #ifndef GAME_H_INCLUDED
 #define GAME_H_INCLUDED
-
+#include "peciman.h"
 typedef struct{
 	char name[15];
 	int score;

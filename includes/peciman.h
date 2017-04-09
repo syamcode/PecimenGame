@@ -14,10 +14,15 @@
 #define DOWN 4
 
 typedef struct{
+	int x;
+	int y;
+} position;
+
+typedef struct{
     int direction;
     int nextDirection;
-    int posX;
-    int posY;
+    position pos;
+    position initPos;
     int state;
 }pacmanController;
 

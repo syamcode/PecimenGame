@@ -1,5 +1,5 @@
 //prosedur untuk mengambar Wall menggunakan sprite sesuai kondisi di array dengan parameter jenis wall , posisi x, posisi y (by pega)
-void DrawWall(int wall,int posX, int posY) {
+void DrawWall(int wall, int posX, int posY) {
     switch(wall){
         case RWALL_HOR : readimagefile("assets/images/Wall_Hor.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
         break;

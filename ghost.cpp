@@ -1,6 +1,6 @@
 void DrawGhost(ghostController ghost) {
-    int posX = ghost.posX * GRIDSIZE;
-    int posY = ghost.posY * GRIDSIZE;
+    int posX = ghost.pos.x * GRIDSIZE;
+    int posY = ghost.pos.y * GRIDSIZE;
     switch(ghost.ghostType) {
         case KUNTILANAK : readimagefile("assets/images/Ghost1.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);break;
         case POCONG : readimagefile("assets/images/Ghost2.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);break;
@@ -9,16 +9,16 @@ void DrawGhost(ghostController ghost) {
     }
 }
 void InitGhost(ghostController *ghost, int posX, int posY, int ghostType) {
-    ghost->posX = posX;
-    ghost->posY = posY;
+    ghost->pos.x = posX;
+    ghost->pos.y = posY;
     ghost->ghostType = ghostType;
 }
 int CanMove(ghostController ghost, int direction) {
     switch(direction) {
-        case RIGHT : return ((levelMap[ghost.posX+1][ghost.posY].Wall == REMPTY || levelMap[ghost.posX+1][ghost.posY].Wall == RWALL_GHOST) && (levelMap[ghost.posX+1][ghost.posY].Object == REMPTY || levelMap[ghost.posX+1][ghost.posY].Object == RPACMAN));
-        case LEFT : return ((levelMap[ghost.posX-1][ghost.posY].Wall == REMPTY || levelMap[ghost.posX-1][ghost.posY].Wall == RWALL_GHOST) && (levelMap[ghost.posX-1][ghost.posY].Object == REMPTY  || levelMap[ghost.posX-1][ghost.posY].Object == RPACMAN));
-        case UP : return ((levelMap[ghost.posX][ghost.posY-1].Wall == REMPTY || levelMap[ghost.posX][ghost.posY-1].Wall == RWALL_GHOST) && (levelMap[ghost.posX][ghost.posY-1].Object == REMPTY  || levelMap[ghost.posX][ghost.posY-1].Object == RPACMAN));
-        case DOWN : return ((levelMap[ghost.posX][ghost.posY+1].Wall == REMPTY || levelMap[ghost.posX][ghost.posY+1].Wall == RWALL_GHOST) && (levelMap[ghost.posX][ghost.posY+1].Object == REMPTY  || levelMap[ghost.posX][ghost.posY+1].Object == RPACMAN));
+        case RIGHT : return ((levelMap[ghost.pos.x+1][ghost.pos.y].Wall == REMPTY || levelMap[ghost.pos.x+1][ghost.pos.y].Wall == RWALL_GHOST) && (levelMap[ghost.pos.x+1][ghost.pos.y].Object == REMPTY || levelMap[ghost.pos.x+1][ghost.pos.y].Object == RPACMAN));
+        case LEFT : return ((levelMap[ghost.pos.x-1][ghost.pos.y].Wall == REMPTY || levelMap[ghost.pos.x-1][ghost.pos.y].Wall == RWALL_GHOST) && (levelMap[ghost.pos.x-1][ghost.pos.y].Object == REMPTY  || levelMap[ghost.pos.x-1][ghost.pos.y].Object == RPACMAN));
+        case UP : return ((levelMap[ghost.pos.x][ghost.pos.y-1].Wall == REMPTY || levelMap[ghost.pos.x][ghost.pos.y-1].Wall == RWALL_GHOST) && (levelMap[ghost.pos.x][ghost.pos.y-1].Object == REMPTY  || levelMap[ghost.pos.x][ghost.pos.y-1].Object == RPACMAN));
+        case DOWN : return ((levelMap[ghost.pos.x][ghost.pos.y+1].Wall == REMPTY || levelMap[ghost.pos.x][ghost.pos.y+1].Wall == RWALL_GHOST) && (levelMap[ghost.pos.x][ghost.pos.y+1].Object == REMPTY  || levelMap[ghost.pos.x][ghost.pos.y+1].Object == RPACMAN));
     }
 }
 void BlackSquareCheck(int posX, int posY) {
@@ -38,31 +38,31 @@ void GhostMove(ghostController *ghost) {
     {
         case RIGHT :
             if(CanMove(*ghost, RIGHT)){
-                BlackSquareCheck(ghost->posX, ghost->posY);
-                levelMap[ghost->posX][ghost->posY].Object = REMPTY;
-                ghost->posX++;
-                levelMap[ghost->posX][ghost->posY].Object = ghost->ghostType;
+                BlackSquareCheck(ghost->pos.x, ghost->pos.y);
+                levelMap[ghost->pos.x][ghost->pos.y].Object = REMPTY;
+                ghost->pos.x++;
+                levelMap[ghost->pos.x][ghost->pos.y].Object = ghost->ghostType;
             }break;
         case LEFT :
             if(CanMove(*ghost, LEFT)){ // Cek apakah ada tembok atau tidak
-                BlackSquareCheck(ghost->posX, ghost->posY);
-                levelMap[ghost->posX][ghost->posY].Object = REMPTY;
-                ghost->posX--;
-                levelMap[ghost->posX][ghost->posY].Object = ghost->ghostType;
+                BlackSquareCheck(ghost->pos.x, ghost->pos.y);
+                levelMap[ghost->pos.x][ghost->pos.y].Object = REMPTY;
+                ghost->pos.x--;
+                levelMap[ghost->pos.x][ghost->pos.y].Object = ghost->ghostType;
             }break;
         case UP :
             if(CanMove(*ghost, UP)){ // Cek apakah ada tembok atau tidak
-                BlackSquareCheck(ghost->posX, ghost->posY);
-                levelMap[ghost->posX][ghost->posY].Object = REMPTY;
-                ghost->posY--;
-                levelMap[ghost->posX][ghost->posY].Object = ghost->ghostType;
+                BlackSquareCheck(ghost->pos.x, ghost->pos.y);
+                levelMap[ghost->pos.x][ghost->pos.y].Object = REMPTY;
+                ghost->pos.y--;
+                levelMap[ghost->pos.x][ghost->pos.y].Object = ghost->ghostType;
             }break;
         case DOWN :
             if(CanMove(*ghost, DOWN)){ // Cek apakah ada tembok atau tidak
-                BlackSquareCheck(ghost->posX, ghost->posY);
-                levelMap[ghost->posX][ghost->posY].Object = REMPTY;
-                ghost->posY++;
-                levelMap[ghost->posX][ghost->posY].Object = ghost->ghostType;
+                BlackSquareCheck(ghost->pos.x, ghost->pos.y);
+                levelMap[ghost->pos.x][ghost->pos.y].Object = REMPTY;
+                ghost->pos.y++;
+                levelMap[ghost->pos.x][ghost->pos.y].Object = ghost->ghostType;
             }break;
     }
     DrawGhost(*ghost);
@@ -77,11 +77,11 @@ int isXGreaterThanY(int x, int y) {
 }
 void GhostAutoMove(ghostController *ghost, pacmanController pacman) {
         int moved =1;
-        if (isXGreaterThanY(abs(pacman.posX - ghost->posX), abs(pacman.posY - ghost->posY))) {
-            if(pacman.posX > ghost->posX && CanMove(*ghost, RIGHT)) {
+        if (isXGreaterThanY(abs(pacman.pos.x - ghost->pos.x), abs(pacman.pos.y - ghost->pos.y))) {
+            if(pacman.pos.x > ghost->pos.x && CanMove(*ghost, RIGHT)) {
                 ghost->direction = RIGHT;
             }
-            else if (pacman.posX < ghost->posX && CanMove(*ghost, LEFT)){
+            else if (pacman.pos.x < ghost->pos.x && CanMove(*ghost, LEFT)){
                 ghost->direction = LEFT;
             }
             else {
@@ -89,10 +89,10 @@ void GhostAutoMove(ghostController *ghost, pacmanController pacman) {
             }
         }
         else {
-            if(pacman.posY > ghost->posY && CanMove(*ghost, DOWN)) {
+            if(pacman.pos.y > ghost->pos.y && CanMove(*ghost, DOWN)) {
                 ghost->direction = DOWN;
             }
-            else if (pacman.posY < ghost->posY && CanMove(*ghost, UP)){
+            else if (pacman.pos.y < ghost->pos.y && CanMove(*ghost, UP)){
                 ghost->direction = UP;
             }
             else {

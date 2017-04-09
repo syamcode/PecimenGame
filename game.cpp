@@ -73,7 +73,7 @@ void GameStart(playerControl *player) {
                     player->peciman.direction = player->peciman.nextDirection; // perubahan arah jika tidak ada tembok
                 }
                 Move(&player->peciman);
-                if(levelMap[player->peciman.posX][player->peciman.posY].Food != 0){
+                if(levelMap[player->peciman.pos.x][player->peciman.pos.y].Food != 0){
                     printScore(player->score, 22*GRIDSIZE, 9.5*GRIDSIZE);
                     eatFood(player);
                     incLives(player, &liveGiven);
