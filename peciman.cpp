@@ -14,6 +14,7 @@ int CanMovePeciman(pacmanController peciman, int nextDirection) // Untuk mencek 
 void DrawPacman(pacmanController peciman)
 {
     int posX = peciman.pos.x * GRIDSIZE;
+    //peciman.pos.x *= GRIDSIZE;
     int posY = peciman.pos.y * GRIDSIZE;
     switch (peciman.direction) {
       case UP:
@@ -25,7 +26,6 @@ void DrawPacman(pacmanController peciman)
           else  // close
           {
             readimagefile("assets/images/PacmanUpClose.bmp", posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
-
           }
       break;
 
@@ -74,6 +74,7 @@ void InitPacman (pacmanController *peciman, int i, int j) // keadaan awal pecima
     peciman->pos.x = i;
     peciman->pos.y = j;
     peciman->direction = RIGHT;
+    peciman->nextDirection = RIGHT;
     peciman->state = 1;
 }
 
@@ -104,7 +105,6 @@ void Move(pacmanController *peciman)
             if (peciman->pos.x == 19){
             BlackSquare(peciman->pos.x, peciman->pos.y);
             peciman->pos.x = 0;
-
             levelMap[peciman->pos.x][peciman->pos.y].Object = RPACMAN;
             levelMap[peciman->pos.x][peciman->pos.y].Object = REMPTY;
             }
