@@ -75,8 +75,11 @@ int foodType(int x){
 }
 
 void spawnFood(MapController *map, int posX, int posY){
+  position pos;
+  pos.x = posX;
+  pos.y = posY;
   map->Food=foodType(randomise(1,100));
-  DrawFood(map->Food,posX*GRIDSIZE,posY*GRIDSIZE);
+  DrawFood(map->Food, pos);
 }
 
 void despawnFood(MapController *map, int posX, int posY){
@@ -86,10 +89,10 @@ void despawnFood(MapController *map, int posX, int posY){
 }
 
 void randFoodPos(){
-  int posX, posY;
+  position pos;
   do{
-    posX=randomise(0,19);
-    posY=randomise(0,19);
-  }while(levelMap[posX][posY].Wall!=0 || ((posX==8 || posX==9 || posX==10 || posX==11) && (posY==9 || posY==10)));
-  spawnFood(&levelMap[posX][posY],posX,posY);
+    pos.x=randomise(0,19);
+    pos.y=randomise(0,19);
+  }while(levelMap[pos.x][pos.y].Wall!=0 || ((pos.x==8 || pos.x==9 || pos.x==10 || pos.x==11) && (pos.y==9 || pos.y==10)));
+  spawnFood(&levelMap[pos.x][pos.y],pos.x, pos.y);
 }

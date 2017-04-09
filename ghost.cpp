@@ -8,9 +8,9 @@ void DrawGhost(ghostController ghost) {
         case TUYUL : readimagefile("assets/images/Ghost4.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);break;
     }
 }
-void InitGhost(ghostController *ghost, int posX, int posY, int ghostType) {
-    ghost->pos.x = posX;
-    ghost->pos.y = posY;
+void InitGhost(ghostController *ghost, position pos, int ghostType) {
+    ghost->pos.x = pos.x;
+    ghost->pos.y = pos.y;
     ghost->ghostType = ghostType;
 }
 int CanMove(ghostController ghost, int direction) {
@@ -21,15 +21,15 @@ int CanMove(ghostController ghost, int direction) {
         case DOWN : return ((levelMap[ghost.pos.x][ghost.pos.y+1].Wall == REMPTY || levelMap[ghost.pos.x][ghost.pos.y+1].Wall == RWALL_GHOST) && (levelMap[ghost.pos.x][ghost.pos.y+1].Object == REMPTY  || levelMap[ghost.pos.x][ghost.pos.y+1].Object == RPACMAN));
     }
 }
-void BlackSquareCheck(int posX, int posY) {
-    if (levelMap[posX][posY].Food!=REMPTY) {
-        DrawFood(levelMap[posX][posY].Food, posX * GRIDSIZE, posY * GRIDSIZE);
+void BlackSquareCheck(position pos) {
+    if (levelMap[pos.x][pos.y].Food!=REMPTY) {
+        DrawFood(levelMap[pos.x][pos.y].Food, pos);
     }
-    else if (levelMap[posX][posY].Wall == RWALL_GHOST){
-        DrawWall(RWALL_GHOST, posX * GRIDSIZE, posY * GRIDSIZE);
+    else if (levelMap[pos.x][pos.y].Wall == RWALL_GHOST){
+        DrawWall(RWALL_GHOST, pos);
     }
     else {
-        BlackSquare(posX, posY);
+        BlackSquare(pos.x, pos.y);
     }
 }
 void GhostMove(ghostController *ghost) {
@@ -38,28 +38,28 @@ void GhostMove(ghostController *ghost) {
     {
         case RIGHT :
             if(CanMove(*ghost, RIGHT)){
-                BlackSquareCheck(ghost->pos.x, ghost->pos.y);
+                BlackSquareCheck(ghost->pos);
                 levelMap[ghost->pos.x][ghost->pos.y].Object = REMPTY;
                 ghost->pos.x++;
                 levelMap[ghost->pos.x][ghost->pos.y].Object = ghost->ghostType;
             }break;
         case LEFT :
             if(CanMove(*ghost, LEFT)){ // Cek apakah ada tembok atau tidak
-                BlackSquareCheck(ghost->pos.x, ghost->pos.y);
+                BlackSquareCheck(ghost->pos);
                 levelMap[ghost->pos.x][ghost->pos.y].Object = REMPTY;
                 ghost->pos.x--;
                 levelMap[ghost->pos.x][ghost->pos.y].Object = ghost->ghostType;
             }break;
         case UP :
             if(CanMove(*ghost, UP)){ // Cek apakah ada tembok atau tidak
-                BlackSquareCheck(ghost->pos.x, ghost->pos.y);
+                BlackSquareCheck(ghost->pos);
                 levelMap[ghost->pos.x][ghost->pos.y].Object = REMPTY;
                 ghost->pos.y--;
                 levelMap[ghost->pos.x][ghost->pos.y].Object = ghost->ghostType;
             }break;
         case DOWN :
             if(CanMove(*ghost, DOWN)){ // Cek apakah ada tembok atau tidak
-                BlackSquareCheck(ghost->pos.x, ghost->pos.y);
+                BlackSquareCheck(ghost->pos);
                 levelMap[ghost->pos.x][ghost->pos.y].Object = REMPTY;
                 ghost->pos.y++;
                 levelMap[ghost->pos.x][ghost->pos.y].Object = ghost->ghostType;

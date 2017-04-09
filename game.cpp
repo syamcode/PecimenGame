@@ -64,7 +64,7 @@ void GameStart(playerControl *player) {
                      player->peciman.nextDirection = UP;
                     break;
 
-                case 13: spawnFood(&levelMap[9][12],9,12); break;
+                //case 13: spawnFood(&levelMap[9][12],9,12); break;
                 }
             }
             if (step%10 == 0){

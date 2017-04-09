@@ -1,42 +1,46 @@
 //prosedur untuk mengambar Wall menggunakan sprite sesuai kondisi di array dengan parameter jenis wall , posisi x, posisi y (by pega)
-void DrawWall(int wall, int posX, int posY) {
+void DrawWall(int wall, position pos) {
+    pos.x *= GRIDSIZE;
+    pos.y *= GRIDSIZE;
     switch(wall){
-        case RWALL_HOR : readimagefile("assets/images/Wall_Hor.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+        case RWALL_HOR : readimagefile("assets/images/Wall_Hor.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
-        case RWALL_VER : readimagefile("assets/images/Wall_Ver.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+        case RWALL_VER : readimagefile("assets/images/Wall_Ver.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
-        case RWALL_COR_UNDERLEFT : readimagefile("assets/images/Wall_Cor_DownLeft.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+        case RWALL_COR_UNDERLEFT : readimagefile("assets/images/Wall_Cor_DownLeft.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
-        case RWALL_COR_UNDERRIGHT : readimagefile("assets/images/Wall_Cor_DownRight.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+        case RWALL_COR_UNDERRIGHT : readimagefile("assets/images/Wall_Cor_DownRight.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
-        case RWALL_COR_UPLEFT : readimagefile("assets/images/Wall_Cor_UPLEFT.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+        case RWALL_COR_UPLEFT : readimagefile("assets/images/Wall_Cor_UPLEFT.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
-        case RWALL_COR_UPRIGHT : readimagefile("assets/images/Wall_Cor_UPRIGHT.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+        case RWALL_COR_UPRIGHT : readimagefile("assets/images/Wall_Cor_UPRIGHT.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
-        case RWALL_LIMIT_UP : readimagefile("assets/images/Wall_Limit_Up.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+        case RWALL_LIMIT_UP : readimagefile("assets/images/Wall_Limit_Up.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
-        case RWALL_LIMIT_DOWN : readimagefile("assets/images/Wall_Limit_Down.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+        case RWALL_LIMIT_DOWN : readimagefile("assets/images/Wall_Limit_Down.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
-        case RWALL_LIMIT_LEFT : readimagefile("assets/images/Wall_Limit_Left.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+        case RWALL_LIMIT_LEFT : readimagefile("assets/images/Wall_Limit_Left.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
-        case RWALL_LIMIT_RIGHT : readimagefile("assets/images/Wall_Limit_Right.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+        case RWALL_LIMIT_RIGHT : readimagefile("assets/images/Wall_Limit_Right.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
-        case RWALL_GHOST : readimagefile("assets/images/Wall_Ghost.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+        case RWALL_GHOST : readimagefile("assets/images/Wall_Ghost.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
     }
 }
 //prosedur untuk mengambar food menggunakan sprite sesuai kondisi di array dengan parameter jenis food , posisi x , posisi y (by pega)
-void DrawFood(int food,int posX, int posY) {
+void DrawFood(int food,position pos) {
+    pos.x *= GRIDSIZE;
+    pos.y *= GRIDSIZE;
     switch(food){
-        case RFOOD1 : readimagefile("assets/images/FOOD1.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+        case RFOOD1 : readimagefile("assets/images/FOOD1.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
-        case RFOOD2 : readimagefile("assets/images/FOOD2.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+        case RFOOD2 : readimagefile("assets/images/FOOD2.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
-        case RFOOD3 : readimagefile("assets/images/FOOD3.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+        case RFOOD3 : readimagefile("assets/images/FOOD3.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
-        case RFOOD4 : readimagefile("assets/images/FOOD4.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+        case RFOOD4 : readimagefile("assets/images/FOOD4.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
-        case RFOOD5 : readimagefile("assets/images/FOOD5.bmp",posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+        case RFOOD5 : readimagefile("assets/images/FOOD5.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
     }
 }
@@ -44,17 +48,20 @@ void DrawFood(int food,int posX, int posY) {
 //prosedure untuk menggambar arena dengan struktur data array berukuran 20x20 dengan ukuran pixel 30 (by pega)
 void DrawMap()
 {
-     int i, j;
+    position pos;
+    int i, j;
     for (i=0;i<20;i++) { //mengecek posisi array ke arah y
         for(j=0;j<20;j++) { //Mengecek posisi array ke arah x
+            pos.x = i;
+            pos.y = j;
             if(levelMap[i][j].Wall!=0) //pengecekan jika kondisi isi array menunjukan WALL
-                {
-                DrawWall(levelMap[i][j].Wall,i*GRIDSIZE,j*GRIDSIZE);
-                }
+            {
+                DrawWall(levelMap[i][j].Wall,pos);
+            }
             if(levelMap[i][j].Food!=0) //pengecekan jika kondisi isi array menunjukan food
-                {
-                DrawFood(levelMap[i][j].Food,i*GRIDSIZE,j*GRIDSIZE);
-                }
+            {
+                DrawFood(levelMap[i][j].Food,pos);
+            }
         }
     }
 }
@@ -131,10 +138,13 @@ int level2[20][20]= {
 //Prosedure untuk membuat map dengan parameter
 void CreateMap(int maps[20][20], playerControl *player)
 {
-       int i, j;
-       player->foodCount = 0;
+    position pos;
+    int i, j;
+    player->foodCount = 0;
     for (i=0;i<20;i++) {
         for(j=0;j<20;j++) {
+            pos.x = i;
+            pos.y = j;
             // Kondisi pengecekan untuk setiap jenis wall
             if (maps[j][i]==WALL_HOR) {
                 levelMap[i][j].Wall=RWALL_HOR;
@@ -176,19 +186,19 @@ void CreateMap(int maps[20][20], playerControl *player)
             // Kondisi pengecekan untuk Objek bergerak
             if (maps[j][i]==GHOST1) {
                 levelMap[i][j].Object=KUNTILANAK;
-                InitGhost(&player->ghost1, i, j, KUNTILANAK);
+                InitGhost(&player->ghost1, pos, KUNTILANAK);
             }
             else if (maps[j][i]==GHOST2) {
                 levelMap[i][j].Object=POCONG;
-                InitGhost(&player->ghost2, i, j, POCONG);
+                InitGhost(&player->ghost2, pos, POCONG);
             }
             else if (maps[j][i]==GHOST3) {
                 levelMap[i][j].Object=TENGKORAK;
-                InitGhost(&player->ghost3, i, j, TENGKORAK);
+                InitGhost(&player->ghost3, pos, TENGKORAK);
             }
             else if (maps[j][i]==GHOST4){
                 levelMap[i][j].Object=TUYUL;
-                InitGhost(&player->ghost4, i, j, TUYUL);
+                InitGhost(&player->ghost4, pos, TUYUL);
             }
             else if (maps[j][i]==PACMAN) {
                 levelMap[i][j].Object=RPACMAN; // Masukan RPACMAN ke record jika angka yang di map adalah angka pacman
