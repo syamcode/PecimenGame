@@ -74,7 +74,7 @@ void InitPacman (pacmanController *peciman, int i, int j) // keadaan awal pecima
     peciman->pos.x = i;
     peciman->pos.y = j;
     peciman->direction = RIGHT;
-    peciman->nextDirection = RIGHT;
+    peciman->nextDirection = peciman->direction;
     peciman->state = 1;
 }
 
@@ -106,7 +106,6 @@ void Move(pacmanController *peciman)
             BlackSquare(peciman->pos.x, peciman->pos.y);
             peciman->pos.x = 0;
             levelMap[peciman->pos.x][peciman->pos.y].Object = RPACMAN;
-            levelMap[peciman->pos.x][peciman->pos.y].Object = REMPTY;
             }
 
             else if(levelMap[peciman->pos.x+1][peciman->pos.y].Wall == 0){ // Cek apakah ada tembok atau tidak dan print ke array index selanjutnya
@@ -122,7 +121,6 @@ void Move(pacmanController *peciman)
             BlackSquare(peciman->pos.x, peciman->pos.y);
             peciman->pos.x = 19 ;
             levelMap[peciman->pos.x][peciman->pos.y].Object = RPACMAN;
-            levelMap[peciman->pos.x][peciman->pos.y].Object = REMPTY;
             }
 
             else if(levelMap[peciman->pos.x-1][peciman->pos.y].Wall == 0 ){
@@ -132,7 +130,6 @@ void Move(pacmanController *peciman)
             levelMap[peciman->pos.x][peciman->pos.y].Object = RPACMAN;
             }
 
-
             break;
 
         case UP :
@@ -140,7 +137,6 @@ void Move(pacmanController *peciman)
             BlackSquare(peciman->pos.x, peciman->pos.y);
             peciman->pos.x = 19;
             levelMap[peciman->pos.x][peciman->pos.y].Object = RPACMAN;
-            levelMap[peciman->pos.x][peciman->pos.y].Object = REMPTY;
             }
 
             else if(levelMap[peciman->pos.x][peciman->pos.y-1].Wall == 0){
@@ -156,7 +152,6 @@ void Move(pacmanController *peciman)
             BlackSquare(peciman->pos.x, peciman->pos.y);
             peciman->pos.y = 0;
             levelMap[peciman->pos.x][peciman->pos.y].Object = RPACMAN;
-            levelMap[peciman->pos.x][peciman->pos.y].Object = REMPTY;
             }
 
             else if(levelMap[peciman->pos.x][peciman->pos.y+1].Wall == 0){
