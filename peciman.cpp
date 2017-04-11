@@ -71,9 +71,9 @@ void DrawPacman(pacmanController peciman)
 
 void InitPacman (pacmanController *peciman, int i, int j) // keadaan awal peciman
 {
-    peciman->pos.x = i;
-    peciman->pos.y = j;
-    peciman->direction = RIGHT;
+    peciman->initPos.x = i;
+    peciman->initPos.y = j;
+    peciman->direction = EMPTY;
     peciman->nextDirection = peciman->direction;
     peciman->state = 1;
 }
