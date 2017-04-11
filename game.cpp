@@ -14,18 +14,18 @@ void InitLevel(playerControl *player) {
         case 3 : CreateMap(level3, player);break;
     }
 }
-//void ResetPosition(playerControl *player) {
-//    player->peciman.pos.x = player->peciman.initPos.x;
-//    player->peciman.pos.y = player->peciman.initPos.y;
-//    player->ghost1.pos.x = player->ghost1.initPos.x;
-//    player->ghost1.pos.y = player->ghost1.initPos.y;
-//    player->ghost2.pos.x = player->ghost2.initPos.x;
-//    player->ghost2.pos.y = player->ghos2.initPos.y;
-//    player->ghost3.pos.x = player->ghost3.initPos.x;
-//    player->ghost3.pos.y = player->ghost3.initPos.y;
-//    player->ghost4.pos.x = player->ghost4.initPos.x;
-//    player->ghost4.pos.y = player->ghost4.initPos.y;
-//}
+void ResetPosition(playerControl *player) {
+    player->peciman.pos.x = player->peciman.initPos.x;
+    player->peciman.pos.y = player->peciman.initPos.y;
+    player->ghost1.pos.x = player->ghost1.initPos.x;
+    player->ghost1.pos.y = player->ghost1.initPos.y;
+    player->ghost2.pos.x = player->ghost2.initPos.x;
+    player->ghost2.pos.y = player->ghost2.initPos.y;
+    player->ghost3.pos.x = player->ghost3.initPos.x;
+    player->ghost3.pos.y = player->ghost3.initPos.y;
+    player->ghost4.pos.x = player->ghost4.initPos.x;
+    player->ghost4.pos.y = player->ghost4.initPos.y;
+}
 void GameStart(playerControl *player) {
     clock_t begin;
     clock_t end;
@@ -36,12 +36,13 @@ void GameStart(playerControl *player) {
     char livesText[20];
     int liveGiven=0;
     char lepel[2];
-    DrawSideMenu();
-    settextstyle(8, HORIZ_DIR,1);
-    outtextxy(22*GRIDSIZE, 5.5*GRIDSIZE,player->name);
     while (player->lives>0) {
+        cleardevice();
+        DrawSideMenu();
+        settextstyle(8, HORIZ_DIR,1);
+        outtextxy(22*GRIDSIZE, 5.5*GRIDSIZE,player->name);
+        ResetPosition(player);
         DrawMap();
-
         DrawGhost(player->ghost1);
         DrawPacman(player->peciman);
         begin = clock();
@@ -52,7 +53,7 @@ void GameStart(playerControl *player) {
         sprintf(lepel, "%d", player->level);
         //BlackSquare(24*GRIDSIZE,GRIDSIZE*2.8);
         outtextxy(24*GRIDSIZE,GRIDSIZE*2.8, lepel);
-        while(player->foodCount > 0) {
+        while(player->foodCount > 0 && (player->peciman.pos.x!=player->ghost1.pos.x) || (player->peciman.pos.y != player->ghost1.pos.y)) {
             printf("%d ",player->foodCount);
             step++;
             if(kbhit())
@@ -107,8 +108,14 @@ void GameStart(playerControl *player) {
                 despawnFood(&levelMap[9][12],9,12);
             }
         }
-        printf("Game End");
-        player->level++;
-        InitLevel(player);
+        if (player->foodCount == 0) {
+            printf("Game End");
+            player->level++;
+            InitLevel(player);
+        }
+        else {
+            player->lives--;
+        }
+
     }
 }

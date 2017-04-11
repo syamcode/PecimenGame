@@ -9,8 +9,8 @@ void DrawGhost(ghostController ghost) {
     }
 }
 void InitGhost(ghostController *ghost, position pos, int ghostType) {
-    ghost->pos.x = pos.x;
-    ghost->pos.y = pos.y;
+    ghost->initPos.x = pos.x;
+    ghost->initPos.y = pos.y;
     ghost->ghostType = ghostType;
 }
 int CanMove(ghostController ghost, int direction) {
