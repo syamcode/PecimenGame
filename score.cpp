@@ -39,30 +39,30 @@ void eatFood(playerControl *player){
 }
 
 void incLives(playerControl *player, int *liveGiven){
-  if(player->score>=2500 && *liveGiven==0){
+  if(player->score>=2500 && *liveGiven==0 && player->lives<MAX_LIVES){
     player->lives++;
     *liveGiven=1;
   }
-  else if(player->score>=5000 && *liveGiven==1){
+  else if(player->score>=5000 && *liveGiven==1 && player->lives<MAX_LIVES){
     player->lives++;
     *liveGiven=2;
   }
-  else if(player->score>=15000 && *liveGiven==2){
+  else if(player->score>=15000 && *liveGiven==2 && player->lives<MAX_LIVES){
     player->lives++;
     *liveGiven=3;
   }
-  else if(player->score>=25000 && *liveGiven==3){
+  else if(player->score>=25000 && *liveGiven==3 && player->lives<MAX_LIVES){
     player->lives++;
     *liveGiven=4;
   }
-  else if(player->score>=40000 && *liveGiven==4){
+  else if(player->score>=40000 && *liveGiven==4 && player->lives<MAX_LIVES){
     player->lives++;
     *liveGiven=5;
   }
 }
 
 int randomise(int min, int max){
-  return rand()%(max+1-min)+min;
+  return rand()%(max+1-min)+min;  
 }
 
 int foodType(int x){

@@ -1,6 +1,7 @@
 #ifndef SCORE_H_INCLUDED
 #define SCORE_H_INCLUDED
 
+#define MAX_LIVES 6
 #define FOOD1_SCORE 15	//Titik
 #define FOOD2_SCORE 100	//Sedap Malam
 #define FOOD3_SCORE 300	//Menyan
@@ -16,6 +17,6 @@ int randomise(int min, int max);
 int foodType(int x);
 void spawnFood(MapController *map, int posX, int posY);
 void despawnFood(MapController *map, int posX, int posY);
-void randFoodPos();
+// void randFoodPos();
 
 #endif // SCORE_H_INCLUDED

@@ -416,9 +416,9 @@ void inputnama(playerControl *player) {
     //getchar(playerControl player1.name);
 }
 
-void drawNumber(int x, int posX, int posY, int posisi){
+void drawNumber(int num, int posX, int posY, int posisi){
   posX+=posisi*GRIDSIZE/2;
-  switch(x){
+  switch(num){
     case 0: readimagefile("assets/images/0.bmp",posX, posY, posX + GRIDSIZE/2, posY + GRIDSIZE/2); break;
     case 1: readimagefile("assets/images/1.bmp",posX, posY, posX + GRIDSIZE/2, posY + GRIDSIZE/2); break;
     case 2: readimagefile("assets/images/2.bmp",posX, posY, posX + GRIDSIZE/2, posY + GRIDSIZE/2); break;
@@ -433,9 +433,9 @@ void drawNumber(int x, int posX, int posY, int posisi){
 }
 
 void printScore(int score, int posX, int posY){
-  int i;
-  for(i=5;i>=0;i--){
-    drawNumber(score%10,posX,posY,i);
+  int posisi;
+  for(posisi=5;posisi>=0;posisi--){
+    drawNumber(score%10,posX,posY,posisi);
     score/=10;
   }
 }
