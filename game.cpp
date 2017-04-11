@@ -14,7 +14,18 @@ void InitLevel(playerControl *player) {
         case 3 : CreateMap(level3, player);break;
     }
 }
-
+//void ResetPosition(playerControl *player) {
+//    player->peciman.pos.x = player->peciman.initPos.x;
+//    player->peciman.pos.y = player->peciman.initPos.y;
+//    player->ghost1.pos.x = player->ghost1.initPos.x;
+//    player->ghost1.pos.y = player->ghost1.initPos.y;
+//    player->ghost2.pos.x = player->ghost2.initPos.x;
+//    player->ghost2.pos.y = player->ghos2.initPos.y;
+//    player->ghost3.pos.x = player->ghost3.initPos.x;
+//    player->ghost3.pos.y = player->ghost3.initPos.y;
+//    player->ghost4.pos.x = player->ghost4.initPos.x;
+//    player->ghost4.pos.y = player->ghost4.initPos.y;
+//}
 void GameStart(playerControl *player) {
     clock_t begin;
     clock_t end;

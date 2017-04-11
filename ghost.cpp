@@ -39,30 +39,30 @@ void GhostMove(ghostController *ghost) {
         case RIGHT :
             if(CanMove(*ghost, RIGHT)){
                 BlackSquareCheck(ghost->pos);
-                levelMap[ghost->pos.x][ghost->pos.y].Object = REMPTY;
+                levelMap[ghost->pos.x][ghost->pos.y].Object &= !ghost->ghostType;
                 ghost->pos.x++;
-                levelMap[ghost->pos.x][ghost->pos.y].Object = ghost->ghostType;
+                levelMap[ghost->pos.x][ghost->pos.y].Object |= ghost->ghostType;
             }break;
         case LEFT :
             if(CanMove(*ghost, LEFT)){ // Cek apakah ada tembok atau tidak
                 BlackSquareCheck(ghost->pos);
-                levelMap[ghost->pos.x][ghost->pos.y].Object = REMPTY;
+                levelMap[ghost->pos.x][ghost->pos.y].Object &= !ghost->ghostType;
                 ghost->pos.x--;
-                levelMap[ghost->pos.x][ghost->pos.y].Object = ghost->ghostType;
+                levelMap[ghost->pos.x][ghost->pos.y].Object |= ghost->ghostType;
             }break;
         case UP :
             if(CanMove(*ghost, UP)){ // Cek apakah ada tembok atau tidak
                 BlackSquareCheck(ghost->pos);
-                levelMap[ghost->pos.x][ghost->pos.y].Object = REMPTY;
+                levelMap[ghost->pos.x][ghost->pos.y].Object &= !ghost->ghostType;
                 ghost->pos.y--;
-                levelMap[ghost->pos.x][ghost->pos.y].Object = ghost->ghostType;
+                levelMap[ghost->pos.x][ghost->pos.y].Object |= ghost->ghostType;
             }break;
         case DOWN :
             if(CanMove(*ghost, DOWN)){ // Cek apakah ada tembok atau tidak
                 BlackSquareCheck(ghost->pos);
-                levelMap[ghost->pos.x][ghost->pos.y].Object = REMPTY;
+                levelMap[ghost->pos.x][ghost->pos.y].Object &= !ghost->ghostType;
                 ghost->pos.y++;
-                levelMap[ghost->pos.x][ghost->pos.y].Object = ghost->ghostType;
+                levelMap[ghost->pos.x][ghost->pos.y].Object |= ghost->ghostType;
             }break;
     }
     DrawGhost(*ghost);
