@@ -3,7 +3,7 @@ void initScore(playerControl *player){
 }
 
 void initLives(playerControl *player){
-  player->lives=3;
+  player->lives=5;
 }
 
 void incScore(int food, playerControl *player){

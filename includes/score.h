@@ -1,7 +1,6 @@
 #ifndef SCORE_H_INCLUDED
 #define SCORE_H_INCLUDED
 
-#define MAX_LIVES 6
 #define FOOD1_SCORE 15	//Titik
 #define FOOD2_SCORE 100	//Sedap Malam
 #define FOOD3_SCORE 300	//Menyan

@@ -5,35 +5,35 @@
 #include "includes/interfaces.h"
 
 void DrawSideMenu() {
-    setcolor(WHITE);
-    readimagefile("picture/pecimen.bmp",20.3*GRIDSIZE,GRIDSIZE/2,26.5*GRIDSIZE,GRIDSIZE*2);
-    rectangle(20.2*GRIDSIZE,GRIDSIZE/2,26.5*GRIDSIZE,19.8*GRIDSIZE);
-    rectangle(20.3*GRIDSIZE,GRIDSIZE*2,26.4*GRIDSIZE,19.7*GRIDSIZE);
+  setcolor(WHITE);
+  readimagefile("picture/pecimen.bmp",609,15,795,60);
+  rectangle(606,15,795,594);
+  rectangle(609,60,792,591);
 
-    settextstyle(8, HORIZ_DIR,1);
+  settextstyle(8, HORIZ_DIR,1);
 
-    rectangle(20.8*GRIDSIZE,GRIDSIZE*2.5,26*GRIDSIZE,3.5*GRIDSIZE);
-    outtextxy(21.5*GRIDSIZE,GRIDSIZE*2.8,"LEVEL");
+  rectangle(624,75,780,105);
+  outtextxy(645,84,"LEVEL");
 
-    outtextxy(21.5*GRIDSIZE, 4.2*GRIDSIZE,"NAMA PLAYER");
-   // sprintf(nameText, "Nama Player  : ", player1.name);
-   //outtextxy(21*GRIDSIZE,3*GRIDSIZE, nameText);
-   rectangle(20.8*GRIDSIZE,GRIDSIZE*4,26*GRIDSIZE,5*GRIDSIZE);
-    rectangle(20.8*GRIDSIZE,GRIDSIZE*4,26*GRIDSIZE,7*GRIDSIZE);
+  outtextxy(645, 126,"NAMA PLAYER");
+  // sprintf(nameText, "Nama Player  : ", player1.name);
+  //outtextxy(21*GRIDSIZE,3*GRIDSIZE, nameText);
+  rectangle(624,120,780,150);
+  rectangle(624,120,780,210);
 
-    outtextxy(22.5*GRIDSIZE, 8.2*GRIDSIZE,"SCORE");
-    rectangle(20.8*GRIDSIZE,GRIDSIZE*8,26*GRIDSIZE,9*GRIDSIZE);
-    rectangle(20.8*GRIDSIZE,GRIDSIZE*8,26*GRIDSIZE,11*GRIDSIZE);
+  outtextxy(675, 243,"SCORE");
+  rectangle(624,240,780,270);
+  rectangle(624,240,780,330);
 
-    outtextxy(22.5*GRIDSIZE, 12.2*GRIDSIZE,"LIVES");
-    rectangle(20.8*GRIDSIZE,GRIDSIZE*12,26*GRIDSIZE,13*GRIDSIZE);
-    rectangle(20.8*GRIDSIZE,GRIDSIZE*12,26*GRIDSIZE,16.5*GRIDSIZE);
+  outtextxy(675, 366,"LIVES");
+  rectangle(624,360,780,390);
+  rectangle(624,360,780,495);
 
-	outtextxy(21.2*GRIDSIZE, 17.2*GRIDSIZE,"BACK TO MENU");
-	rectangle(20.8*GRIDSIZE,GRIDSIZE*17,26*GRIDSIZE,18*GRIDSIZE);
+	outtextxy(636, 516,"BACK TO MENU");
+	rectangle(624,510,780,540);
 
-    settextstyle(2, HORIZ_DIR,0.2);
-    outtextxy(22.5*GRIDSIZE,18.5*GRIDSIZE, "GOOD LUCK!");
+    settextstyle(2, HORIZ_DIR,4);
+    outtextxy(675,555, "GOOD LUCK!");
 }
 
 int kursor(int option, int x, int y)
@@ -445,7 +445,7 @@ void printLives(int lives, int posX, int posY){
   for(i=0;i<lives;i++){
     readimagefile("assets/images/PacmanRightOpen.bmp", x, posY, x+GRIDSIZE, posY+GRIDSIZE);
     x+=GRIDSIZE;
-    if((i+1)%3==0){
+    if((i+1)%5==0){
       posY+=GRIDSIZE;
       x=posX;
     }
