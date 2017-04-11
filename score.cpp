@@ -88,11 +88,11 @@ void despawnFood(MapController *map, int posX, int posY){
   bar(posX * GRIDSIZE, posY* GRIDSIZE, (posX * GRIDSIZE) + GRIDSIZE, posY*GRIDSIZE + GRIDSIZE);
 }
 
-void randFoodPos(){
-  position pos;
-  do{
-    pos.x=randomise(0,19);
-    pos.y=randomise(0,19);
-  }while(levelMap[pos.x][pos.y].Wall!=0 || ((pos.x==8 || pos.x==9 || pos.x==10 || pos.x==11) && (pos.y==9 || pos.y==10)));
-  spawnFood(&levelMap[pos.x][pos.y],pos.x, pos.y);
-}
+// void randFoodPos(){
+//   position pos;
+//   do{
+//     pos.x=randomise(0,19);
+//     pos.y=randomise(0,19);
+//   }while(levelMap[pos.x][pos.y].Wall!=0 || ((pos.x==8 || pos.x==9 || pos.x==10 || pos.x==11) && (pos.y==9 || pos.y==10)));
+//   spawnFood(&levelMap[pos.x][pos.y],pos.x, pos.y);
+// }

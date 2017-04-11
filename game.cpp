@@ -86,8 +86,8 @@ void GameStart(playerControl *player) {
                 }
                 Move(&player->peciman);
                 if(levelMap[player->peciman.pos.x][player->peciman.pos.y].Food != 0){
-                    printScore(player->score, 22*GRIDSIZE, 9.5*GRIDSIZE);
                     eatFood(player);
+                    printScore(player->score, 22*GRIDSIZE, 9.5*GRIDSIZE);
                     incLives(player, &liveGiven);
                     printLives(player->lives, 22*GRIDSIZE, 13.5*GRIDSIZE);
                 }

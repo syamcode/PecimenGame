@@ -433,12 +433,11 @@ void drawNumber(int x, int posX, int posY, int posisi){
 }
 
 void printScore(int score, int posX, int posY){
-  drawNumber((((((score/10)/10)/10)/10)/10)%10,posX,posY,HUNDREDTHOUSANDS);
-  drawNumber(((((score/10)/10)/10)/10)%10,posX,posY,TENTHOUSANDS);
-  drawNumber((((score/10)/10)/10)%10,posX,posY,THOUSANDS);
-  drawNumber(((score/10)/10)%10,posX,posY,HUNDREDS);
-  drawNumber((score/10)%10,posX,posY,TENS);
-  drawNumber(score%10,posX,posY,ONES);
+  int i;
+  for(i=5;i>=0;i--){
+    drawNumber(score%10,posX,posY,i);
+    score/=10;
+  }
 }
 
 void printLives(int lives, int posX, int posY){
