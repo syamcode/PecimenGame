@@ -23,12 +23,11 @@
 #define WALL_LIMIT_LEFT 20
 #define WALL_LIMIT_RIGHT 21
 #define WALL_GHOST 22
-
 #define RPACMAN 1
 #define KUNTILANAK 2
-#define POCONG 4
-#define TENGKORAK 8
-#define TUYUL 16
+#define POCONG 3
+#define TENGKORAK 4
+#define TUYUL 5
 #define RFOOD1 1
 #define RFOOD2 2
 #define RFOOD3 3
