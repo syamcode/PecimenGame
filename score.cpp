@@ -8,19 +8,19 @@ void initLives(playerControl *player){
 
 void incScore(int food, playerControl *player){
   switch(food){
-  case RFOOD1:
+  case FOOD1:
     player->score+=FOOD1_SCORE;
     break;
-  case RFOOD2:
+  case FOOD2:
     player->score+=FOOD2_SCORE;
     break;
-  case RFOOD3:
+  case FOOD3:
     player->score+=FOOD3_SCORE;
     break;
-  case RFOOD4:
+  case FOOD4:
     player->score+=FOOD4_SCORE;
     break;
-  case RFOOD5:
+  case FOOD5:
     player->score+=FOOD5_SCORE;
     break;
   }
@@ -28,14 +28,14 @@ void incScore(int food, playerControl *player){
 
 void eatFood(playerControl *player){
   incScore(levelMap[player->peciman.pos.x][player->peciman.pos.y].Food, player);
-  if (levelMap[player->peciman.pos.x][player->peciman.pos.y].Food==RFOOD1){
+  if (levelMap[player->peciman.pos.x][player->peciman.pos.y].Food==FOOD1){
     PlaySound(TEXT("sounds/pacman_chomp.wav"),NULL,SND_ASYNC);
     player->foodCount--;
   }
-  else if(levelMap[player->peciman.pos.x][player->peciman.pos.y].Food==RFOOD2 || levelMap[player->peciman.pos.x][player->peciman.pos.y].Food==RFOOD3 || levelMap[player->peciman.pos.x][player->peciman.pos.y].Food==RFOOD4 ||levelMap[player->peciman.pos.x][player->peciman.pos.y].Food==RFOOD5){
+  else if(levelMap[player->peciman.pos.x][player->peciman.pos.y].Food==FOOD2 || levelMap[player->peciman.pos.x][player->peciman.pos.y].Food==FOOD3 || levelMap[player->peciman.pos.x][player->peciman.pos.y].Food==FOOD4 ||levelMap[player->peciman.pos.x][player->peciman.pos.y].Food==FOOD5){
     PlaySound(TEXT("sounds/pacman_eatfruit.wav"),NULL,SND_ASYNC);
   }
-  levelMap[player->peciman.pos.x][player->peciman.pos.y].Food=REMPTY;
+  levelMap[player->peciman.pos.x][player->peciman.pos.y].Food=EMPTY;
 }
 
 void incLives(playerControl *player, int *liveGiven){
@@ -62,15 +62,15 @@ void incLives(playerControl *player, int *liveGiven){
 }
 
 int randomise(int min, int max){
-  return rand()%(max+1-min)+min;  
+  return rand()%(max+1-min)+min;
 }
 
 int foodType(int x){
   switch(x){
-    case 1 ... 40: return RFOOD2; break;    //40%
-    case 41 ... 70: return RFOOD3; break;   //30%
-    case 71 ... 90: return RFOOD4; break;   //20%
-    case 91 ... 100: return RFOOD5; break;  //10%
+    case 1 ... 40: return FOOD2; break;    //40%
+    case 41 ... 70: return FOOD3; break;   //30%
+    case 71 ... 90: return FOOD4; break;   //20%
+    case 91 ... 100: return FOOD5; break;  //10%
   }
 }
 
@@ -83,7 +83,7 @@ void spawnFood(MapController *map, int posX, int posY){
 }
 
 void despawnFood(MapController *map, int posX, int posY){
-  map->Food=REMPTY;
+  map->Food=EMPTY;
   setcolor(BLACK);
   bar(posX * GRIDSIZE, posY* GRIDSIZE, (posX * GRIDSIZE) + GRIDSIZE, posY*GRIDSIZE + GRIDSIZE);
 }

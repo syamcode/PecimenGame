@@ -104,7 +104,7 @@ void GameStart(playerControl *player) {
                 spawnFood(&levelMap[9][12],9,12);
                 begin=clock();
             }
-            if((time_spent==20 && (levelMap[9][12].Food==RFOOD2 || levelMap[9][12].Food==RFOOD3)) || (time_spent==15 && levelMap[9][12].Food==RFOOD4) || (time_spent==10 && levelMap[9][12].Food==RFOOD5)){
+            if((time_spent==20 && (levelMap[9][12].Food==FOOD2 || levelMap[9][12].Food==FOOD3)) || (time_spent==15 && levelMap[9][12].Food==FOOD4) || (time_spent==10 && levelMap[9][12].Food==FOOD5)){
                 despawnFood(&levelMap[9][12],9,12);
             }
         }
