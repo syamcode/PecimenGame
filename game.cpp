@@ -36,7 +36,7 @@ void GameStart(playerControl *player) {
     char livesText[20];
     int liveGiven=0;
     char lepel[2];
-    while (player->lives>0) {
+    while (player->lives>0 && player->level<=3) {
         cleardevice();
         DrawSideMenu();
         settextstyle(8, HORIZ_DIR,1);
@@ -79,7 +79,7 @@ void GameStart(playerControl *player) {
                 //case 13: spawnFood(&levelMap[9][12],9,12); break;
                 }
             }
-            if (step%10 == 0){
+            if (step%8 == 0){
                 if (CanMovePeciman(player->peciman , player->peciman.nextDirection)) // dicek apakah ada penghalang tembok atau tidak
                 {
                     player->peciman.direction = player->peciman.nextDirection; // perubahan arah jika tidak ada tembok
@@ -93,7 +93,7 @@ void GameStart(playerControl *player) {
                 }
                 changeState(&player->peciman); // mengubah keadaan pacman dari membuka menjadi tertutup
             }
-            if (step%10 == 5) {
+            if (step%16 == 0) {
                 GhostAutoMove(&player->ghost1, player->peciman);
             }
             delay(10);
@@ -114,8 +114,21 @@ void GameStart(playerControl *player) {
             InitLevel(player);
         }
         else {
+            PlaySound(TEXT("sounds/pacman_death.wav"),NULL,SND_ASYNC);
             player->lives--;
+            delay(1500);
         }
 
+    }
+    cleardevice();
+    settextstyle(8, HORIZ_DIR,30);
+    setcolor(WHITE);
+    if (player->lives==0){
+        outtext("GAME OVER");
+        PlaySound(TEXT("sounds/pacman_intermission.wav"),NULL,SND_ASYNC);
+    }
+    else{
+        outtext("PLAYER WIN");
+        PlaySound(TEXT("sounds/pacman_intermission.wav"),NULL,SND_ASYNC);
     }
 }
