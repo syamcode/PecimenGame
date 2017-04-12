@@ -67,17 +67,10 @@ void GhostMove(ghostController *ghost) {
     }
     DrawGhost(*ghost);
 }
-int isXGreaterThanY(int x, int y) {
-    if (x>y) {
-        return 1;
-    }
-    else {
-        return 0;
-    }
-}
+
 void GhostAutoMove(ghostController *ghost, pacmanController pacman) {
         int moved =1;
-        if (isXGreaterThanY(abs(pacman.pos.x - ghost->pos.x), abs(pacman.pos.y - ghost->pos.y))) {
+        if (abs(pacman.pos.x - ghost->pos.x) > abs(pacman.pos.y - ghost->pos.y)) {
             if(pacman.pos.x > ghost->pos.x && CanMove(*ghost, RIGHT)) {
                 ghost->direction = RIGHT;
             }

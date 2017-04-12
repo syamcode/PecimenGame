@@ -1,7 +1,3 @@
-// #include <stdio.h>
-// #include <graphics.h>
-// #include <windows.h>
-// #include <stdlib.h>
 #include "includes/interfaces.h"
 
 void DrawSideMenu() {
@@ -15,9 +11,7 @@ void DrawSideMenu() {
   rectangle(624,75,780,105);
   outtextxy(645,84,"LEVEL");
 
-  outtextxy(645, 126,"NAMA PLAYER");
-  // sprintf(nameText, "Nama Player  : ", player1.name);
-  //outtextxy(21*GRIDSIZE,3*GRIDSIZE, nameText);
+  outtextxy(645, 126,"PLAYER NAME");
   rectangle(624,120,780,150);
   rectangle(624,120,780,210);
 
@@ -36,50 +30,8 @@ void DrawSideMenu() {
     outtextxy(675,555, "GOOD LUCK!");
 }
 
-int kursor(int option, int x, int y)
-{
-	int select=1, p=x+25, q=y+25;
-	int input;
-	readimagefile("picture/pacman1.bmp",x, y, p, q); //menampilkan lambang kursor
-	do
-	{
-		input=getch();
-		if(input==80) //80 kode ASCII kursor bawah
-		{
-			readimagefile("picture/black.bmp",x, y, p, q);
-			y=y+25;
-			q=q+25;
-			select++;
-			if(select>option)
-			{
-				y=y-(25*option);
-				q=q-(25*option);
-				select=1;
-			}
-			readimagefile("picture/pacman1.bmp",x, y, p, q);
-		}
-		if(input==72) //72 kode ASCII kursor atas
-		{
-			readimagefile("picture/black.bmp",x, y, p, q);
-			y=y-25;
-			q=q-25;
-			select--;
-			if (select<1)
-			{
-				y=y+(25*option);
-				q=q+(25*option);
-				select=option;
-			}
-			readimagefile("picture/pacman1.bmp",x, y, p, q);
-		}
-	}
-	while(input!=13);
-	return select;
-}
-
 void tampilan()
 {
-    //setbkcolor(2);
     setfillstyle(SOLID_FILL, 10);
     readimagefile("picture/pecimen.bmp",100, 10 , 700, 210);
     readimagefile("picture/pacman.bmp",50, 250, 300, 550);
@@ -92,7 +44,6 @@ void tampilan()
 
 void tampilan2()
 {
-    //setbkcolor(2);
     setfillstyle(SOLID_FILL, 10);
     readimagefile("picture/pecimen.bmp",100, 10 , 700, 210);
     readimagefile("picture/pacman2.bmp",0, 200, 150, 580);
@@ -113,12 +64,10 @@ void versusmode()
 {
     cleardevice();
     tampilan();
-    //inputnama(&player1);
 }
 
 void menuplay()
 {
-   // setactivepage(2);
     cleardevice();
     tampilan();
     setcolor(15);
@@ -131,7 +80,6 @@ void menuplay()
     setcolor(4);
     outtextxy(370,408, "BACK TO MENU");
     setcolor(15);
-    //setvisualpage(2);
     while(1)
     {
         GetCursorPos(&cursorPosition);
@@ -151,34 +99,18 @@ void menuplay()
            menuutama();
        }
     }
-   /* int player = kursor(3,325,350);
-    switch(player) //kursor di 3 posisi, x=325, y=350
-
-{
-    case 1 : storymode();break;
-	case 2 : versusmode();break;
-    case 3 : menuutama();break;
-	}*/
 }
 
 void menuscore()
 {
-    setactivepage(3);
     cleardevice();
     tampilan2();
-   // DWORD screenWidth = GetSystemMetrics ( SM_CXSCREEN);
-    //DWORD screenHeight = GetSystemMetrics (SM_CYSCREEN);
-   // initwindow(screenWidth, screenHeight, "", -3,-3);
-
-   // POINT cursorPosition;
-    //int mX, mY;
     outtextxy(275,250,"NAMA");
     outtextxy(525,250,"SCORE");
     setcolor(4);
     readimagefile("picture/pacman1.bmp",335, 565, 360, 590);
     readimagefile("picture/pacman3.bmp",515, 565, 540, 590);
 	outtextxy(370,570,"BACK TO MENU");
-	setvisualpage(3);
     while(1)
     {
         GetCursorPos(&cursorPosition);
@@ -195,7 +127,6 @@ void menuscore()
 void howtoplay()
 {
     int a=5,b=32,c=17;
-    //setactivepage(4);
     cleardevice();
     readimagefile("picture/pacman1.bmp",200, 5, 225, 30);
     readimagefile("picture/pacman3.bmp",575, 5, 600, 30);
@@ -237,7 +168,6 @@ void howtoplay()
 	readimagefile("picture/pacman3.bmp",515, 565, 540, 590);
 	setcolor(4);
 	outtextxy(370,570,"BACK TO MENU");
-	//setvisualpage(4);
 	while(1)
     {
         GetCursorPos(&cursorPosition);
@@ -249,16 +179,10 @@ void howtoplay()
            menuutama();
        }
     }
-	/*int how = kursor(1,325,570);
-    switch(how)
-    {
-        case 1 : menuutama();break;
-    }*/
 }
 
 void aboutus()
 {
-    //setactivepage(5);
     cleardevice();
     outtextxy(45,30, "  AAA    BBBBBBB   OOOOO  UUUU UUUU TTTTTTT   UUUU UUUU SSSSSSS");
     outtextxy(45,47, " AA AA    BB   BB OO   OO  UU   UU    TTT      UU   UU  SS   SS");
@@ -301,12 +225,6 @@ void aboutus()
            menuutama();
        }
     }
-    //setvisualpage(5);
-   /* int player = kursor(1,325,500);
-    switch(player) //kursor di 4 posisi, x=50, y=32
-    {
-        case 1 : menuutama();break;
-	}*/
 }
 
 void menuutama()
@@ -356,64 +274,57 @@ void menuutama()
            exit(1);
        }
     }
-    /*int menu = kursor(5,325,350);
-    switch(menu) //kursor di 5 posisi, x=350, y=350
-{
-	case 1 : menuplay();break;
-	case 2 : menuscore ();break;
-	case 3 : howtoplay(); break;
-	case 4 : aboutus();break;
-	case 5 : exit;
-	}*/
 }
 
-void inputnama(playerControl *player) {
-    char inputbuf[MAX_INPUT_LEN];
-    for(int idx=0;idx<MAX_INPUT_LEN;idx++)
-        inputbuf[idx]=0;
-    int input_pos = 0;
-    int the_end=0;
+void inputnama(playerControl *player)
+{
+    int idx;
     char c;
+    char inputbuf[MAX_INPUT_LEN];
+    int input_pos;
+    int the_end;
 
-    do
-    {
-       cleardevice();
-       readimagefile("picture/pecimen.bmp",100,10,700,160);
-       rectangle(100,250,700,400);
-       settextstyle(3, HORIZ_DIR,4);
-       outtextxy(280,260,"Nama Player:");
-       outtextxy (280, 300, inputbuf);
-       c = getch();
-       switch (c)
-       {
-            case 8: /* backspace */
-              if (input_pos)
-              {
-                 input_pos--;
-                 inputbuf[input_pos] = 0;
-              }
-              break;
-            case 13: /* return */
-              the_end = 1;
-              break;
-            case 27: /* Escape = Abort */
-              inputbuf[0] = 0;
-              the_end = 1;
-              break;
-            default:
-              if (input_pos < MAX_INPUT_LEN-1 && c >= ' ' && c <= '~')
-              {
-                 inputbuf[input_pos] = c;
-                 input_pos++;
-                 inputbuf[input_pos] = 0;
-              }
-       }
-
-    } while (!the_end);
+    for(idx=0;idx<MAX_INPUT_LEN;idx++)
+    inputbuf[idx]=0;
+    input_pos = 0;
+    the_end=0;
+        do
+        {
+            cleardevice();
+            readimagefile("picture/pecimen.bmp",100,10,700,160);
+            rectangle(100,250,700,400);
+            settextstyle(3, HORIZ_DIR,4);
+            outtextxy(280,260,"Player Name:");
+            outtextxy (280, 300, inputbuf);
+            c = getch();
+            switch (c)
+            {
+                case 8: /* backspace */
+                        if (input_pos)
+                        {
+                            input_pos--;
+                            inputbuf[input_pos] = 0;
+                        }
+                        break;
+                case 13: /* return */
+                        the_end = 1;
+                        break;
+                case 27: /* Escape = Abort */
+                        inputbuf[0] = 0;
+                        the_end = 1;
+                        break;
+                default:
+                if (input_pos < MAX_INPUT_LEN-1 && c >= ' ' && c <= '~')
+                {
+                    inputbuf[input_pos] = c;
+                    input_pos++;
+                    inputbuf[input_pos] = 0;
+                }
+            }
+        }while (!the_end);
     strcpy(player->name, inputbuf);
     cleardevice();
     printf("%s", player->name);
-    //getchar(playerControl player1.name);
 }
 
 void drawNumber(int num, int posX, int posY, int posisi){
