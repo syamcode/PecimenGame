@@ -316,12 +316,8 @@ void inputnama(playerControl *player)
                 case 13: /* return */
                         the_end = 1;
                         break;
-                case 27: /* Escape = Abort */
-                        inputbuf[0] = 0;
-                        the_end = 1;
-                        break;
                 default:
-                if (input_pos < MAX_INPUT_LEN-1 && c >= ' ' && c <= '~')
+                if (input_pos < MAX_INPUT_LEN-1 && c >= 'A' && c <= 'z')
                 {
                     inputbuf[input_pos] = c;
                     input_pos++;
