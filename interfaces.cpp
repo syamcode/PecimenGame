@@ -89,14 +89,17 @@ void menuplay()
        if (GetAsyncKeyState(VK_LBUTTON) && mX>=400 && mX<=470 && mY>=382 && mY<=407)
        {
            storymode();
+           break;
        }
         else if (GetAsyncKeyState(VK_LBUTTON) && mX>=400 && mX<=470 && mY>=408&& mY<=432)
        {
            versusmode();
+            break;
        }
         else if (GetAsyncKeyState(VK_LBUTTON) && mX>=400 && mX<=470 && mY>=440&& mY<=464)
        {
            menuutama();
+            break;
        }
     }
 }
@@ -120,6 +123,7 @@ void menuscore()
        if (GetAsyncKeyState(VK_LBUTTON) && mX>=370 && mX<=470 && mY>=570)
        {
            menuutama();
+            break;
        }
     }
 }
@@ -177,6 +181,7 @@ void howtoplay()
        if (GetAsyncKeyState(VK_LBUTTON) && mX>=370 && mX<=470 && mY>=570)
        {
            menuutama();
+            break;
        }
     }
 }
@@ -223,16 +228,15 @@ void aboutus()
        if (GetAsyncKeyState(VK_LBUTTON) && mX>=370 && mX<=470 && mY>=505 && mY<=550)
        {
            menuutama();
+            break;
        }
     }
 }
 
 void menuutama()
 {
-    setactivepage(1);
     cleardevice();
     tampilan();
-    menu :
     setcolor(15);
     rectangle(350,280,505,340);
     settextstyle(9,HORIZ_DIR,2);
@@ -246,7 +250,6 @@ void menuutama()
     setcolor(4);
     outtextxy(400,458, "EXIT");
     setcolor(15);
-    setvisualpage(1);
     while(1)
     {
         GetCursorPos(&cursorPosition);
@@ -256,18 +259,22 @@ void menuutama()
        if (GetAsyncKeyState(VK_LBUTTON) && mX>=400 && mX<=470 && mY>=380 && mY<=404)
        {
            menuplay();
+            break;
        }
         else if (GetAsyncKeyState(VK_LBUTTON) && mX>=400 && mX<=470 && mY>=405&& mY<=429)
        {
            menuscore();
+            break;
        }
         else if (GetAsyncKeyState(VK_LBUTTON) && mX>=400 && mX<=470 && mY>=430&& mY<=454)
        {
            howtoplay();
+            break;
        }
         else if (GetAsyncKeyState(VK_LBUTTON) && mX>=400 && mX<=470 && mY>=455&& mY<=479)
        {
            aboutus();
+            break;
        }
        else if (GetAsyncKeyState(VK_LBUTTON) && mX>=400 && mX<=470 && mY>=485 && mY<=509)
        {
