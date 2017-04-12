@@ -103,7 +103,6 @@ void menuplay()
 
 void menuscore()
 {
-    setactivepage(3);
     cleardevice();
     tampilan2();
     outtextxy(275,250,"NAMA");
@@ -112,7 +111,6 @@ void menuscore()
     readimagefile("picture/pacman1.bmp",335, 565, 360, 590);
     readimagefile("picture/pacman3.bmp",515, 565, 540, 590);
 	outtextxy(370,570,"BACK TO MENU");
-	setvisualpage(3);
     while(1)
     {
         GetCursorPos(&cursorPosition);
