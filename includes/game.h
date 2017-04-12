@@ -1,6 +1,8 @@
 #ifndef GAME_H_INCLUDED
 #define GAME_H_INCLUDED
 #include "peciman.h"
+#define MAX_LIVES 10
+
 typedef struct{
 	char name[15];
 	int score;

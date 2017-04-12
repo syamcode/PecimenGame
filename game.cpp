@@ -40,7 +40,7 @@ void GameStart(playerControl *player) {
         cleardevice();
         DrawSideMenu();
         settextstyle(8, HORIZ_DIR,1);
-        outtextxy(22*GRIDSIZE, 5.5*GRIDSIZE,player->name);
+        outtextxy(660, 165,player->name);
         ResetPosition(player);
         DrawMap();
         DrawGhost(player->ghost1);
@@ -48,11 +48,11 @@ void GameStart(playerControl *player) {
         begin = clock();
         srand(time(NULL));
         PlaySound(TEXT("sounds/pacman_beginning.wav"),NULL,SND_ASYNC);
-        printScore(player->score, 22*GRIDSIZE, 9.5*GRIDSIZE);
-        printLives(player->lives, 22*GRIDSIZE, 13.5*GRIDSIZE);
+        printScore(player->score, 660, 285);
+        printLives(player->lives, 627, 405);
         sprintf(lepel, "%d", player->level);
         //BlackSquare(24*GRIDSIZE,GRIDSIZE*2.8);
-        outtextxy(24*GRIDSIZE,GRIDSIZE*2.8, lepel);
+        outtextxy(720,84, lepel);
         while(player->foodCount > 0 && (player->peciman.pos.x!=player->ghost1.pos.x) || (player->peciman.pos.y != player->ghost1.pos.y)) {
             printf("%d ",player->foodCount);
             step++;
@@ -86,10 +86,10 @@ void GameStart(playerControl *player) {
                 }
                 Move(&player->peciman);
                 if(levelMap[player->peciman.pos.x][player->peciman.pos.y].Food != 0){
-                    printScore(player->score, 22*GRIDSIZE, 9.5*GRIDSIZE);
                     eatFood(player);
+                    printScore(player->score, 660, 285);
                     incLives(player, &liveGiven);
-                    printLives(player->lives, 22*GRIDSIZE, 13.5*GRIDSIZE);
+                    printLives(player->lives, 627, 405);
                 }
                 changeState(&player->peciman); // mengubah keadaan pacman dari membuka menjadi tertutup
             }
@@ -104,7 +104,7 @@ void GameStart(playerControl *player) {
                 spawnFood(&levelMap[9][12],9,12);
                 begin=clock();
             }
-            if((time_spent==20 && (levelMap[9][12].Food==RFOOD2 || levelMap[9][12].Food==RFOOD3)) || (time_spent==15 && levelMap[9][12].Food==RFOOD4) || (time_spent==10 && levelMap[9][12].Food==RFOOD5)){
+            if((time_spent==20 && (levelMap[9][12].Food==FOOD2 || levelMap[9][12].Food==FOOD3)) || (time_spent==15 && levelMap[9][12].Food==FOOD4) || (time_spent==10 && levelMap[9][12].Food==FOOD5)){
                 despawnFood(&levelMap[9][12],9,12);
             }
         }

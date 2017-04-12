@@ -3,27 +3,27 @@ void DrawWall(int wall, position pos) {
     pos.x *= GRIDSIZE;
     pos.y *= GRIDSIZE;
     switch(wall){
-        case RWALL_HOR : readimagefile("assets/images/Wall_Hor.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
+        case WALL_HOR : readimagefile("assets/images/Wall_Hor.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
-        case RWALL_VER : readimagefile("assets/images/Wall_Ver.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
+        case WALL_VER : readimagefile("assets/images/Wall_Ver.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
-        case RWALL_COR_UNDERLEFT : readimagefile("assets/images/Wall_Cor_DownLeft.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
+        case WALL_COR_UNDERLEFT : readimagefile("assets/images/Wall_Cor_DownLeft.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
-        case RWALL_COR_UNDERRIGHT : readimagefile("assets/images/Wall_Cor_DownRight.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
+        case WALL_COR_UNDERRIGHT : readimagefile("assets/images/Wall_Cor_DownRight.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
-        case RWALL_COR_UPLEFT : readimagefile("assets/images/Wall_Cor_UPLEFT.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
+        case WALL_COR_UPLEFT : readimagefile("assets/images/Wall_Cor_UPLEFT.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
-        case RWALL_COR_UPRIGHT : readimagefile("assets/images/Wall_Cor_UPRIGHT.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
+        case WALL_COR_UPRIGHT : readimagefile("assets/images/Wall_Cor_UPRIGHT.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
-        case RWALL_LIMIT_UP : readimagefile("assets/images/Wall_Limit_Up.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
+        case WALL_LIMIT_UP : readimagefile("assets/images/Wall_Limit_Up.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
-        case RWALL_LIMIT_DOWN : readimagefile("assets/images/Wall_Limit_Down.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
+        case WALL_LIMIT_DOWN : readimagefile("assets/images/Wall_Limit_Down.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
-        case RWALL_LIMIT_LEFT : readimagefile("assets/images/Wall_Limit_Left.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
+        case WALL_LIMIT_LEFT : readimagefile("assets/images/Wall_Limit_Left.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
-        case RWALL_LIMIT_RIGHT : readimagefile("assets/images/Wall_Limit_Right.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
+        case WALL_LIMIT_RIGHT : readimagefile("assets/images/Wall_Limit_Right.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
-        case RWALL_GHOST : readimagefile("assets/images/Wall_Ghost.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
+        case WALL_GHOST : readimagefile("assets/images/Wall_Ghost.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
     }
 }
@@ -32,15 +32,15 @@ void DrawFood(int food,position pos) {
     pos.x *= GRIDSIZE;
     pos.y *= GRIDSIZE;
     switch(food){
-        case RFOOD1 : readimagefile("assets/images/FOOD1.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
+        case FOOD1 : readimagefile("assets/images/FOOD1.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
-        case RFOOD2 : readimagefile("assets/images/FOOD2.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
+        case FOOD2 : readimagefile("assets/images/FOOD2.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
-        case RFOOD3 : readimagefile("assets/images/FOOD3.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
+        case FOOD3 : readimagefile("assets/images/FOOD3.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
-        case RFOOD4 : readimagefile("assets/images/FOOD4.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
+        case FOOD4 : readimagefile("assets/images/FOOD4.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
-        case RFOOD5 : readimagefile("assets/images/FOOD5.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
+        case FOOD5 : readimagefile("assets/images/FOOD5.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
         break;
     }
 }
@@ -147,87 +147,87 @@ void CreateMap(int maps[20][20], playerControl *player)
             pos.y = j;
             // Kondisi pengecekan untuk setiap jenis wall
             if (maps[j][i]==WALL_HOR) {
-                levelMap[i][j].Wall=RWALL_HOR;
+                levelMap[i][j].Wall=WALL_HOR;
             }
             else if (maps[j][i]==WALL_VER) {
-                levelMap[i][j].Wall=RWALL_VER;
+                levelMap[i][j].Wall=WALL_VER;
             }
             else if (maps[j][i]==WALL_COR_UNDERLEFT) {
-                levelMap[i][j].Wall=RWALL_COR_UNDERLEFT;
+                levelMap[i][j].Wall=WALL_COR_UNDERLEFT;
             }
             else if (maps[j][i]==WALL_COR_UNDERRIGHT) {
-                levelMap[i][j].Wall=RWALL_COR_UNDERRIGHT;
+                levelMap[i][j].Wall=WALL_COR_UNDERRIGHT;
             }
             else if (maps[j][i]==WALL_COR_UPLEFT) {
-                levelMap[i][j].Wall=RWALL_COR_UPLEFT;
+                levelMap[i][j].Wall=WALL_COR_UPLEFT;
             }
             else if (maps[j][i]==WALL_COR_UPRIGHT) {
-                levelMap[i][j].Wall=RWALL_COR_UPRIGHT;
+                levelMap[i][j].Wall=WALL_COR_UPRIGHT;
             }
             else if (maps[j][i]==WALL_LIMIT_UP) {
-                levelMap[i][j].Wall=RWALL_LIMIT_UP;
+                levelMap[i][j].Wall=WALL_LIMIT_UP;
             }
             else if (maps[j][i]==WALL_LIMIT_DOWN) {
-                levelMap[i][j].Wall=RWALL_LIMIT_DOWN;
+                levelMap[i][j].Wall=WALL_LIMIT_DOWN;
             }
             else if (maps[j][i]==WALL_LIMIT_LEFT) {
-                levelMap[i][j].Wall=RWALL_LIMIT_LEFT;
+                levelMap[i][j].Wall=WALL_LIMIT_LEFT;
             }
             else if (maps[j][i]==WALL_LIMIT_RIGHT) {
-                levelMap[i][j].Wall=RWALL_LIMIT_RIGHT;
+                levelMap[i][j].Wall=WALL_LIMIT_RIGHT;
             }
             else if (maps[j][i]==WALL_GHOST) {
-                levelMap[i][j].Wall=RWALL_GHOST;
+                levelMap[i][j].Wall=WALL_GHOST;
             }
             else {
-                levelMap[i][j].Wall=REMPTY;
+                levelMap[i][j].Wall=EMPTY;
             }
 
             // Kondisi pengecekan untuk Objek bergerak
-            if (maps[j][i]==GHOST1) {
+            if (maps[j][i]==KUNTILANAK) {
                 levelMap[i][j].Object=KUNTILANAK;
                 InitGhost(&player->ghost1, pos, KUNTILANAK);
             }
-            else if (maps[j][i]==GHOST2) {
+            else if (maps[j][i]==POCONG) {
                 levelMap[i][j].Object=POCONG;
                 InitGhost(&player->ghost2, pos, POCONG);
             }
-            else if (maps[j][i]==GHOST3) {
+            else if (maps[j][i]==TENGKORAK) {
                 levelMap[i][j].Object=TENGKORAK;
                 InitGhost(&player->ghost3, pos, TENGKORAK);
             }
-            else if (maps[j][i]==GHOST4){
+            else if (maps[j][i]==TUYUL){
                 levelMap[i][j].Object=TUYUL;
                 InitGhost(&player->ghost4, pos, TUYUL);
             }
             else if (maps[j][i]==PACMAN) {
-                levelMap[i][j].Object=RPACMAN; // Masukan RPACMAN ke record jika angka yang di map adalah angka pacman
+                levelMap[i][j].Object=PACMAN; // Masukan RPACMAN ke record jika angka yang di map adalah angka pacman
                 InitPacman(&player->peciman, i, j); // Kondisi pertama pacman
 
             }
             else{
-                  levelMap[i][j].Object=REMPTY;
+                  levelMap[i][j].Object=EMPTY;
             }
 
             // Kondisi pengecekan untuk Food
             if (maps[j][i]==FOOD1) {
-                levelMap[i][j].Food=RFOOD1;
+                levelMap[i][j].Food=FOOD1;
                 player->foodCount++;
             }
             else if (maps[j][i]==FOOD2) {
-                levelMap[i][j].Food=RFOOD2;
+                levelMap[i][j].Food=FOOD2;
             }
             else if (maps[j][i]==FOOD3) {
-                levelMap[i][j].Food=RFOOD3;
+                levelMap[i][j].Food=FOOD3;
             }
             else if (maps[j][i]==FOOD4) {
-                levelMap[i][j].Food=RFOOD4;
+                levelMap[i][j].Food=FOOD4;
             }
             else if (maps[j][i]== FOOD5) {
-                levelMap[i][j].Food=RFOOD5;
+                levelMap[i][j].Food=FOOD5;
             }
             else{
-                levelMap[i][j].Food=REMPTY;
+                levelMap[i][j].Food=EMPTY;
             }
         }
     }

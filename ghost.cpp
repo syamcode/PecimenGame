@@ -15,18 +15,18 @@ void InitGhost(ghostController *ghost, position pos, int ghostType) {
 }
 int CanMove(ghostController ghost, int direction) {
     switch(direction) {
-        case RIGHT : return ((levelMap[ghost.pos.x+1][ghost.pos.y].Wall == REMPTY || levelMap[ghost.pos.x+1][ghost.pos.y].Wall == RWALL_GHOST) && (levelMap[ghost.pos.x+1][ghost.pos.y].Object == REMPTY || levelMap[ghost.pos.x+1][ghost.pos.y].Object == RPACMAN));
-        case LEFT : return ((levelMap[ghost.pos.x-1][ghost.pos.y].Wall == REMPTY || levelMap[ghost.pos.x-1][ghost.pos.y].Wall == RWALL_GHOST) && (levelMap[ghost.pos.x-1][ghost.pos.y].Object == REMPTY  || levelMap[ghost.pos.x-1][ghost.pos.y].Object == RPACMAN));
-        case UP : return ((levelMap[ghost.pos.x][ghost.pos.y-1].Wall == REMPTY || levelMap[ghost.pos.x][ghost.pos.y-1].Wall == RWALL_GHOST) && (levelMap[ghost.pos.x][ghost.pos.y-1].Object == REMPTY  || levelMap[ghost.pos.x][ghost.pos.y-1].Object == RPACMAN));
-        case DOWN : return ((levelMap[ghost.pos.x][ghost.pos.y+1].Wall == REMPTY || levelMap[ghost.pos.x][ghost.pos.y+1].Wall == RWALL_GHOST) && (levelMap[ghost.pos.x][ghost.pos.y+1].Object == REMPTY  || levelMap[ghost.pos.x][ghost.pos.y+1].Object == RPACMAN));
+        case RIGHT : return ((levelMap[ghost.pos.x+1][ghost.pos.y].Wall == EMPTY || levelMap[ghost.pos.x+1][ghost.pos.y].Wall == WALL_GHOST) && (levelMap[ghost.pos.x+1][ghost.pos.y].Object == EMPTY || levelMap[ghost.pos.x+1][ghost.pos.y].Object == PACMAN));
+        case LEFT : return ((levelMap[ghost.pos.x-1][ghost.pos.y].Wall == EMPTY || levelMap[ghost.pos.x-1][ghost.pos.y].Wall == WALL_GHOST) && (levelMap[ghost.pos.x-1][ghost.pos.y].Object == EMPTY  || levelMap[ghost.pos.x-1][ghost.pos.y].Object == PACMAN));
+        case UP : return ((levelMap[ghost.pos.x][ghost.pos.y-1].Wall == EMPTY || levelMap[ghost.pos.x][ghost.pos.y-1].Wall == WALL_GHOST) && (levelMap[ghost.pos.x][ghost.pos.y-1].Object == EMPTY  || levelMap[ghost.pos.x][ghost.pos.y-1].Object == PACMAN));
+        case DOWN : return ((levelMap[ghost.pos.x][ghost.pos.y+1].Wall == EMPTY || levelMap[ghost.pos.x][ghost.pos.y+1].Wall == WALL_GHOST) && (levelMap[ghost.pos.x][ghost.pos.y+1].Object == EMPTY  || levelMap[ghost.pos.x][ghost.pos.y+1].Object == PACMAN));
     }
 }
 void BlackSquareCheck(position pos) {
-    if (levelMap[pos.x][pos.y].Food!=REMPTY) {
+    if (levelMap[pos.x][pos.y].Food!= EMPTY) {
         DrawFood(levelMap[pos.x][pos.y].Food, pos);
     }
-    else if (levelMap[pos.x][pos.y].Wall == RWALL_GHOST){
-        DrawWall(RWALL_GHOST, pos);
+    else if (levelMap[pos.x][pos.y].Wall == WALL_GHOST){
+        DrawWall(WALL_GHOST, pos);
     }
     else {
         BlackSquare(pos.x, pos.y);
@@ -39,28 +39,28 @@ void GhostMove(ghostController *ghost) {
         case RIGHT :
             if(CanMove(*ghost, RIGHT)){
                 BlackSquareCheck(ghost->pos);
-                levelMap[ghost->pos.x][ghost->pos.y].Object = REMPTY;
+                levelMap[ghost->pos.x][ghost->pos.y].Object = EMPTY;
                 ghost->pos.x++;
                 levelMap[ghost->pos.x][ghost->pos.y].Object = ghost->ghostType;
             }break;
         case LEFT :
             if(CanMove(*ghost, LEFT)){ // Cek apakah ada tembok atau tidak
                 BlackSquareCheck(ghost->pos);
-                levelMap[ghost->pos.x][ghost->pos.y].Object = REMPTY;
+                levelMap[ghost->pos.x][ghost->pos.y].Object = EMPTY;
                 ghost->pos.x--;
                 levelMap[ghost->pos.x][ghost->pos.y].Object = ghost->ghostType;
             }break;
         case UP :
             if(CanMove(*ghost, UP)){ // Cek apakah ada tembok atau tidak
                 BlackSquareCheck(ghost->pos);
-                levelMap[ghost->pos.x][ghost->pos.y].Object = REMPTY;
+                levelMap[ghost->pos.x][ghost->pos.y].Object = EMPTY;
                 ghost->pos.y--;
                 levelMap[ghost->pos.x][ghost->pos.y].Object = ghost->ghostType;
             }break;
         case DOWN :
             if(CanMove(*ghost, DOWN)){ // Cek apakah ada tembok atau tidak
                 BlackSquareCheck(ghost->pos);
-                levelMap[ghost->pos.x][ghost->pos.y].Object = REMPTY;
+                levelMap[ghost->pos.x][ghost->pos.y].Object = EMPTY;
                 ghost->pos.y++;
                 levelMap[ghost->pos.x][ghost->pos.y].Object = ghost->ghostType;
             }break;
