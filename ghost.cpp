@@ -1,4 +1,4 @@
-void DrawGhost(ghostController ghost) {
+void DrawGhost(ghostController ghost) { //M. Hisyam A
     int posX = ghost.pos.x * GRIDSIZE;
     int posY = ghost.pos.y * GRIDSIZE;
     switch(ghost.ghostType) {
@@ -8,12 +8,12 @@ void DrawGhost(ghostController ghost) {
         case TUYUL : readimagefile("assets/images/Ghost4.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);break;
     }
 }
-void InitGhost(ghostController *ghost, position pos, int ghostType) {
+void InitGhost(ghostController *ghost, position pos, int ghostType) {//M. Hisyam A
     ghost->initPos.x = pos.x;
     ghost->initPos.y = pos.y;
     ghost->ghostType = ghostType;
 }
-int CanMove(ghostController ghost, int direction) {
+int CanMove(ghostController ghost, int direction) {//M. Hisyam A
     switch(direction) {
         case RIGHT : return ((levelMap[ghost.pos.x+1][ghost.pos.y].Wall == EMPTY || levelMap[ghost.pos.x+1][ghost.pos.y].Wall == WALL_GHOST) && (levelMap[ghost.pos.x+1][ghost.pos.y].Object == EMPTY || levelMap[ghost.pos.x+1][ghost.pos.y].Object == PACMAN));
         case LEFT : return ((levelMap[ghost.pos.x-1][ghost.pos.y].Wall == EMPTY || levelMap[ghost.pos.x-1][ghost.pos.y].Wall == WALL_GHOST) && (levelMap[ghost.pos.x-1][ghost.pos.y].Object == EMPTY  || levelMap[ghost.pos.x-1][ghost.pos.y].Object == PACMAN));
@@ -21,7 +21,7 @@ int CanMove(ghostController ghost, int direction) {
         case DOWN : return ((levelMap[ghost.pos.x][ghost.pos.y+1].Wall == EMPTY || levelMap[ghost.pos.x][ghost.pos.y+1].Wall == WALL_GHOST) && (levelMap[ghost.pos.x][ghost.pos.y+1].Object == EMPTY  || levelMap[ghost.pos.x][ghost.pos.y+1].Object == PACMAN));
     }
 }
-void BlackSquareCheck(position pos) {
+void BlackSquareCheck(position pos) {//M. Hisyam A
     if (levelMap[pos.x][pos.y].Food!= EMPTY) {
         DrawFood(levelMap[pos.x][pos.y].Food, pos);
     }
@@ -32,7 +32,7 @@ void BlackSquareCheck(position pos) {
         BlackSquare(pos.x, pos.y);
     }
 }
-void GhostMove(ghostController *ghost) {
+void GhostMove(ghostController *ghost) {//M. Hisyam A
     setfillstyle(SOLID_FILL, 0);
     switch(ghost->direction)
     {
@@ -68,7 +68,7 @@ void GhostMove(ghostController *ghost) {
     DrawGhost(*ghost);
 }
 
-void GhostAutoMove(ghostController *ghost, pacmanController pacman) {
+void GhostAutoMove(ghostController *ghost, pacmanController pacman) {//M. Hisyam A
         int moved =1;
         if (abs(pacman.pos.x - ghost->pos.x) > abs(pacman.pos.y - ghost->pos.y)) {
             if(pacman.pos.x > ghost->pos.x && CanMove(*ghost, RIGHT)) {

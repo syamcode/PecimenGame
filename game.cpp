@@ -1,5 +1,5 @@
 void InitLevel(playerControl *player);
-void InitGame(playerControl *player) {
+void InitGame(playerControl *player) {//M. Hisyam A
     initScore(player);
     initLives(player);
     player->level = 1;
@@ -7,14 +7,14 @@ void InitGame(playerControl *player) {
 }
 void GameRoundCheck();
 
-void InitLevel(playerControl *player) {
+void InitLevel(playerControl *player) { //M. Hisyam A
     switch(player->level) {
         case 1 : CreateMap(level1, player);break;
         case 2 : CreateMap(level2, player);break;
         case 3 : CreateMap(level3, player);break;
     }
 }
-void ResetPosition(playerControl *player) {
+void ResetPosition(playerControl *player) {//M. Hisyam A
     player->peciman.pos.x = player->peciman.initPos.x;
     player->peciman.pos.y = player->peciman.initPos.y;
     player->ghost1.pos.x = player->ghost1.initPos.x;
@@ -26,7 +26,7 @@ void ResetPosition(playerControl *player) {
     player->ghost4.pos.x = player->ghost4.initPos.x;
     player->ghost4.pos.y = player->ghost4.initPos.y;
 }
-void GameStart(playerControl *player) {
+void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
     clock_t begin;
     clock_t end;
     char choose;

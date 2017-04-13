@@ -1,12 +1,12 @@
-void initScore(playerControl *player){
+void initScore(playerControl *player){ //Fahmi Rosdiansyah
   player->score=0;
 }
 
-void initLives(playerControl *player){
+void initLives(playerControl *player){//Fahmi Rosdiansyah
   player->lives=5;
 }
 
-void incScore(int food, playerControl *player){
+void incScore(int food, playerControl *player){//Fahmi Rosdiansyah
   switch(food){
   case FOOD1:
     player->score+=FOOD1_SCORE;
@@ -26,7 +26,7 @@ void incScore(int food, playerControl *player){
   }
 }
 
-void eatFood(playerControl *player){
+void eatFood(playerControl *player){//Fahmi Rosdiansyah
   incScore(levelMap[player->peciman.pos.x][player->peciman.pos.y].Food, player);
   if (levelMap[player->peciman.pos.x][player->peciman.pos.y].Food==FOOD1){
     PlaySound(TEXT("sounds/pacman_chomp.wav"),NULL,SND_ASYNC);
@@ -61,11 +61,11 @@ void incLives(playerControl *player, int *liveGiven){
   }
 }
 
-int randomise(int min, int max){
+int randomise(int min, int max){//Fahmi Rosdiansyah
   return rand()%(max+1-min)+min;
 }
 
-int foodType(int x){
+int foodType(int x){//Fahmi Rosdiansyah
   switch(x){
     case 1 ... 40: return FOOD2; break;    //40%
     case 41 ... 70: return FOOD3; break;   //30%
@@ -74,7 +74,7 @@ int foodType(int x){
   }
 }
 
-void spawnFood(MapController *map, int posX, int posY){
+void spawnFood(MapController *map, int posX, int posY){//Fahmi Rosdiansyah
   position pos;
   pos.x = posX;
   pos.y = posY;
@@ -82,7 +82,7 @@ void spawnFood(MapController *map, int posX, int posY){
   DrawFood(map->Food, pos);
 }
 
-void despawnFood(MapController *map, int posX, int posY){
+void despawnFood(MapController *map, int posX, int posY){//Fahmi Rosdiansyah
   map->Food=EMPTY;
   setcolor(BLACK);
   bar(posX * GRIDSIZE, posY* GRIDSIZE, (posX * GRIDSIZE) + GRIDSIZE, posY*GRIDSIZE + GRIDSIZE);

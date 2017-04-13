@@ -136,7 +136,7 @@ int level2[20][20]= {
                     {17, 12, 12,12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 16}
                     };
 //Prosedure untuk membuat map dengan parameter
-void CreateMap(int maps[20][20], playerControl *player)
+void CreateMap(int maps[20][20], playerControl *player)//Pega Kurniawan
 {
     position pos;
     int i, j;

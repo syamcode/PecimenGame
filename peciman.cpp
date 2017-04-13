@@ -2,7 +2,7 @@
 #include <graphics.h>
 
 int CanMovePeciman(pacmanController peciman, int nextDirection) // Untuk mencek apakah ada tembok atau tidak, jika tidak maka akan return true
-{
+{ //A. Fadhitya
     switch(nextDirection) {
         case RIGHT : return levelMap[peciman.pos.x+1][peciman.pos.y].Wall == EMPTY;
         case LEFT : return levelMap[peciman.pos.x-1][peciman.pos.y].Wall == EMPTY;
@@ -11,7 +11,7 @@ int CanMovePeciman(pacmanController peciman, int nextDirection) // Untuk mencek 
     }
 }
 
-void DrawPacman(pacmanController peciman)
+void DrawPacman(pacmanController peciman)//A. Fadhitya
 {
     int posX = peciman.pos.x * GRIDSIZE;
     //peciman.pos.x *= GRIDSIZE;
@@ -70,7 +70,7 @@ void DrawPacman(pacmanController peciman)
 }
 
 void InitPacman (pacmanController *peciman, int i, int j) // keadaan awal peciman
-{
+{//A. Fadhitya
     peciman->initPos.x = i;
     peciman->initPos.y = j;
     peciman->direction = EMPTY;
@@ -79,7 +79,7 @@ void InitPacman (pacmanController *peciman, int i, int j) // keadaan awal pecima
 }
 
 void changeState(pacmanController *peciman)
-{
+{//A. Fadhitya
     if (peciman->state == 0)
     {
       peciman->state = 1; // change to open
@@ -91,13 +91,13 @@ void changeState(pacmanController *peciman)
 }
 
 void BlackSquare(int posX, int posY)
-{
+{//A. Fadhitya
     setcolor(0);
     bar(posX * GRIDSIZE, posY* GRIDSIZE, (posX * GRIDSIZE) + GRIDSIZE, posY*GRIDSIZE + GRIDSIZE);
 }
 
 void Move(pacmanController *peciman)
-{
+{//A. Fadhitya
     setfillstyle(SOLID_FILL, 0);
     switch(peciman->direction)
     {
