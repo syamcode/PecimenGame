@@ -104,6 +104,7 @@ void menuplay()//Auliya Aqma
 void menuscore()//Auliya Aqma
 {
     cleardevice();
+    setcolor(15);
     tampilan2();
     outtextxy(275,250,"NAMA");
     outtextxy(525,250,"SCORE");
@@ -129,6 +130,7 @@ void howtoplay()//Auliya Aqma
 {
     int a=5,b=32,c=17;
     cleardevice();
+    setcolor(15);
     readimagefile("picture/pacman1.bmp",200, 5, 225, 30);
     readimagefile("picture/pacman3.bmp",575, 5, 600, 30);
     settextstyle(8,HORIZ_DIR,3);
@@ -186,6 +188,7 @@ void howtoplay()//Auliya Aqma
 void aboutus() //Haya Utami
 {
     cleardevice();
+    setcolor(15);
     outtextxy(45,30, "  AAA    BBBBBBB   OOOOO  UUUU UUUU TTTTTTT   UUUU UUUU SSSSSSS");
     outtextxy(45,47, " AA AA    BB   BB OO   OO  UU   UU    TTT      UU   UU  SS   SS");
     outtextxy(45,64, "AA   AA   BB   BB OO   OO  UU   UU    TTT      UU   UU  SS");
