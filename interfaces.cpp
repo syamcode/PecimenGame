@@ -327,7 +327,6 @@ void inputnama(playerControl *player)
         }while (!the_end);
     strcpy(player->name, inputbuf);
     cleardevice();
-    printf("%s", player->name);
 }
 
 void drawNumber(int num, int posX, int posY, int posisi){
