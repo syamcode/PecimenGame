@@ -53,7 +53,9 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
         sprintf(lepel, "%d", player->level);
         //BlackSquare(24*GRIDSIZE,GRIDSIZE*2.8);
         outtextxy(720,84, lepel);
-        while(player->foodCount > 0 && (player->peciman.pos.x!=player->ghost1.pos.x) || (player->peciman.pos.y != player->ghost1.pos.y)) {
+        while(player->foodCount > 0) {
+            if((player->peciman.pos.x==player->ghost1.pos.x) && (player->peciman.pos.y == player->ghost1.pos.y))
+                break;
             printf("%d ",player->foodCount);
             step++;
             if(kbhit())
