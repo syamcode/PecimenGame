@@ -1,8 +1,6 @@
 #ifndef INETERFACES_H_INCLUDED
 #define INETERFACES_H_INCLUDED
-//layar 800 x 600
 #define MAX_INPUT_LEN 15
-#define panjang 600
 
 POINT cursorPosition;
 int mX, mY;

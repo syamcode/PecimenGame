@@ -32,7 +32,6 @@ void DrawSideMenu() { //Haya Utami
 
 void tampilan() //Auliya Aqma
 {
-    setfillstyle(SOLID_FILL, 10);
     readimagefile("picture/pecimen.bmp",100, 10 , 700, 210);
     readimagefile("picture/pacman.bmp",50, 250, 300, 550);
     readimagefile("assets/images/ghost1.bmp",550, 300, 600, 350);
@@ -44,7 +43,6 @@ void tampilan() //Auliya Aqma
 
 void tampilan2()//Auliya Aqma
 {
-    setfillstyle(SOLID_FILL, 10);
     readimagefile("picture/pecimen.bmp",100, 10 , 700, 210);
     readimagefile("picture/pacman2.bmp",0, 200, 150, 580);
     readimagefile("picture/pacman2.bmp",650, 200, 800, 580);
@@ -54,7 +52,6 @@ void storymode()//Auliya Aqma
 {
     playerControl player1;
     cleardevice();
-    tampilan();
     inputnama(&player1);
     InitGame(&player1);
     GameStart(&player1);
@@ -249,7 +246,6 @@ void menuutama()//Auliya Aqma
     outtextxy(385,430, "ABOUT US");
     setcolor(4);
     outtextxy(400,458, "EXIT");
-    setcolor(15);
     while(1)
     {
         GetCursorPos(&cursorPosition);
