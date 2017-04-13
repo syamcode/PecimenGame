@@ -47,7 +47,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
         DrawPacman(player->peciman);
         begin = clock();
         srand(time(NULL));
-        PlaySound(TEXT("sounds/pacman_beginning.wav"),NULL,SND_ASYNC);
+        PlaySound("sounds/pacman_beginning.wav",NULL,SND_ASYNC);
         printScore(player->score, 660, 285);
         printLives(player->lives, 627, 405);
         sprintf(lepel, "%d", player->level);
@@ -116,7 +116,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
             InitLevel(player);
         }
         else {
-            PlaySound(TEXT("sounds/pacman_death.wav"),NULL,SND_ASYNC);
+            PlaySound("sounds/pacman_death.wav",NULL,SND_ASYNC);
             player->lives--;
             delay(1500);
         }
@@ -127,10 +127,10 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
     setcolor(WHITE);
     if (player->lives==0){
         outtext("GAME OVER");
-        PlaySound(TEXT("sounds/pacman_intermission.wav"),NULL,SND_ASYNC);
+        PlaySound("sounds/pacman_intermission.wav",NULL,SND_ASYNC);
     }
     else{
         outtext("PLAYER WIN");
-        PlaySound(TEXT("sounds/pacman_intermission.wav"),NULL,SND_ASYNC);
+        PlaySound("sounds/pacman_intermission.wav",NULL,SND_ASYNC);
     }
 }

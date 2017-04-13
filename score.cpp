@@ -29,11 +29,11 @@ void incScore(int food, playerControl *player){//Fahmi Rosdiansyah
 void eatFood(playerControl *player){//Fahmi Rosdiansyah
   incScore(levelMap[player->peciman.pos.x][player->peciman.pos.y].Food, player);
   if (levelMap[player->peciman.pos.x][player->peciman.pos.y].Food==FOOD1){
-    PlaySound(TEXT("sounds/pacman_chomp.wav"),NULL,SND_ASYNC);
+    PlaySound("sounds/pacman_chomp.wav",NULL,SND_ASYNC);
     player->foodCount--;
   }
   else if(levelMap[player->peciman.pos.x][player->peciman.pos.y].Food==FOOD2 || levelMap[player->peciman.pos.x][player->peciman.pos.y].Food==FOOD3 || levelMap[player->peciman.pos.x][player->peciman.pos.y].Food==FOOD4 ||levelMap[player->peciman.pos.x][player->peciman.pos.y].Food==FOOD5){
-    PlaySound(TEXT("sounds/pacman_eatfruit.wav"),NULL,SND_ASYNC);
+    PlaySound("sounds/pacman_eatfruit.wav",NULL,SND_ASYNC);
   }
   levelMap[player->peciman.pos.x][player->peciman.pos.y].Food=EMPTY;
 }
