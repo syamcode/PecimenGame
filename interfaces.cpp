@@ -1,6 +1,6 @@
 #include "includes/interfaces.h"
 
-void DrawSideMenu() {
+void DrawSideMenu() { //Haya Utami
   setcolor(WHITE);
   readimagefile("picture/pecimen.bmp",609,15,795,60);
   rectangle(606,15,795,594);
@@ -30,7 +30,7 @@ void DrawSideMenu() {
     outtextxy(675,555, "GOOD LUCK!");
 }
 
-void tampilan()
+void tampilan() //Auliya Aqma
 {
     setfillstyle(SOLID_FILL, 10);
     readimagefile("picture/pecimen.bmp",100, 10 , 700, 210);
@@ -42,7 +42,7 @@ void tampilan()
     readimagefile("assets/images/ghost5.bmp",550, 500, 600, 550);
 }
 
-void tampilan2()
+void tampilan2()//Auliya Aqma
 {
     setfillstyle(SOLID_FILL, 10);
     readimagefile("picture/pecimen.bmp",100, 10 , 700, 210);
@@ -50,7 +50,7 @@ void tampilan2()
     readimagefile("picture/pacman2.bmp",650, 200, 800, 580);
 }
 
-void storymode()
+void storymode()//Auliya Aqma
 {
     playerControl player1;
     cleardevice();
@@ -60,13 +60,13 @@ void storymode()
     GameStart(&player1);
 }
 
-void versusmode()
+void versusmode()//Auliya Aqma
 {
     cleardevice();
     tampilan();
 }
 
-void menuplay()
+void menuplay()//Auliya Aqma
 {
     cleardevice();
     tampilan();
@@ -104,7 +104,7 @@ void menuplay()
     }
 }
 
-void menuscore()
+void menuscore()//Auliya Aqma
 {
     cleardevice();
     tampilan2();
@@ -128,7 +128,7 @@ void menuscore()
     }
 }
 
-void howtoplay()
+void howtoplay()//Auliya Aqma
 {
     int a=5,b=32,c=17;
     cleardevice();
@@ -186,7 +186,7 @@ void howtoplay()
     }
 }
 
-void aboutus()
+void aboutus() //Haya Utami
 {
     cleardevice();
     outtextxy(45,30, "  AAA    BBBBBBB   OOOOO  UUUU UUUU TTTTTTT   UUUU UUUU SSSSSSS");
@@ -233,7 +233,7 @@ void aboutus()
     }
 }
 
-void menuutama()
+void menuutama()//Auliya Aqma
 {
     cleardevice();
     tampilan();
@@ -283,7 +283,7 @@ void menuutama()
     }
 }
 
-void inputnama(playerControl *player)
+void inputnama(playerControl *player) //Haya Utami
 {
     int idx;
     char c;
@@ -329,7 +329,7 @@ void inputnama(playerControl *player)
     cleardevice();
 }
 
-void drawNumber(int num, int posX, int posY, int posisi){
+void drawNumber(int num, int posX, int posY, int posisi){ //Fahmi Rosdiansyah
   posX+=posisi*GRIDSIZE/2;
   switch(num){
     case 0: readimagefile("assets/images/0.bmp",posX, posY, posX + GRIDSIZE/2, posY + GRIDSIZE/2); break;
@@ -345,7 +345,7 @@ void drawNumber(int num, int posX, int posY, int posisi){
   }
 }
 
-void printScore(int score, int posX, int posY){
+void printScore(int score, int posX, int posY){//Fahmi Rosdiansyah
   int posisi;
   for(posisi=5;posisi>=0;posisi--){
     drawNumber(score%10,posX,posY,posisi);
@@ -353,7 +353,7 @@ void printScore(int score, int posX, int posY){
   }
 }
 
-void printLives(int lives, int posX, int posY){
+void printLives(int lives, int posX, int posY){//Fahmi Rosdiansyah
   int i, x=posX;
   for(i=0;i<lives;i++){
     readimagefile("assets/images/PacmanRightOpen.bmp", x, posY, x+GRIDSIZE, posY+GRIDSIZE);

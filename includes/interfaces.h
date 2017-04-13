@@ -9,20 +9,19 @@ int mX, mY;
 DWORD screenWidth = GetSystemMetrics ( SM_CXSCREEN);
 DWORD screenHeight = GetSystemMetrics (SM_CYSCREEN);
 
-void DrawSideMenu();
-int kursor(int option, int x, int y);
-void tampilan();
-void tampilan2();
-void menuutama();
-void storymode();
-void versusmode();
-void menuplay();
-void menuscore();
-void howtoplay();
-void aboutus();
-void inputnama(playerControl *player);
-void drawNumber(int x, int posX, int posY, int posisi);
-void printScore(int score, int posX, int posY);
-void printLives(int lives, int posX, int posY);
+void DrawSideMenu(); //Haya Utami
+void tampilan();//Auliya Aqma
+void tampilan2();//Auliya Aqma
+void menuutama();//Auliya Aqma
+void storymode();//Auliya Aqma
+void versusmode();//Auliya Aqma
+void menuplay();//Auliya Aqma
+void menuscore();//Auliya Aqma
+void howtoplay();//Auliya Aqma
+void aboutus();//Haya Utami
+void inputnama(playerControl *player);//Haya Utami
+void drawNumber(int x, int posX, int posY, int posisi);//Fahmi Rosdiansyah
+void printScore(int score, int posX, int posY);//Fahmi Rosdiansyah
+void printLives(int lives, int posX, int posY);//Fahmi Rosdiansyah
 
 #endif
