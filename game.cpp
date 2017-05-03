@@ -98,6 +98,14 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
             if (step%16 == 0) {
                 GhostAutoMove(&player->ghost1, player->peciman);
             }
+            GetCursorPos(&cursorPosition);
+            mX=cursorPosition.x;
+            mY=cursorPosition.y;
+
+            if (GetAsyncKeyState(VK_LBUTTON) && mX>=624 && mX<=780 && mY>=550 && mY<=600){
+                menuutama();
+                break;
+            }
             delay(10);
             end = clock();
             time_spent = (int)(end - begin) / CLOCKS_PER_SEC; // Ulah di hapus
