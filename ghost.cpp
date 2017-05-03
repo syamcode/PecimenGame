@@ -68,43 +68,189 @@ void GhostMove(ghostController *ghost) {//M. Hisyam A
     DrawGhost(*ghost);
 }
 
-void GhostAutoMove(ghostController *ghost, pacmanController pacman) {//M. Hisyam A
+void GhostAutoMove(ghostController *ghost, int nodepos[]) {//M. Hisyam A
         int moved =1;
-        if (abs(pacman.pos.x - ghost->pos.x) > abs(pacman.pos.y - ghost->pos.y)) {
-            if(pacman.pos.x > ghost->pos.x && CanMove(*ghost, RIGHT)) {
+        printf("am %d %d\n", nodepos[0], nodepos[1]);
+        if (abs(nodepos[0] - ghost->pos.x) > abs(nodepos[1] - ghost->pos.y)) {
+            if(nodepos[0] > ghost->pos.x && CanMove(*ghost, RIGHT)) {
                 ghost->direction = RIGHT;
             }
-            else if (pacman.pos.x < ghost->pos.x && CanMove(*ghost, LEFT)){
+            else {
                 ghost->direction = LEFT;
             }
-            else {
-                moved = 0;
-            }
+  
         }
         else {
-            if(pacman.pos.y > ghost->pos.y && CanMove(*ghost, DOWN)) {
+            if(nodepos[1] > ghost->pos.y && CanMove(*ghost, DOWN)) {
                 ghost->direction = DOWN;
             }
-            else if (pacman.pos.y < ghost->pos.y && CanMove(*ghost, UP)){
+            else {
                 ghost->direction = UP;
             }
-            else {
-                moved = 0;
-            }
+  
         }
-        if (!moved) {
-            if (CanMove(*ghost, UP)) {
-                 ghost->direction = UP;
-            }
-            else if (CanMove(*ghost, LEFT)) {
-                 ghost->direction = LEFT;
-            }
-            else if (CanMove(*ghost, DOWN)) {
-                 ghost->direction = DOWN;
-            }
-            else {
-                 ghost->direction = RIGHT;
-            }
-        }
+        // if (!moved) {
+        //     if (CanMove(*ghost, UP)) {
+        //          ghost->direction = UP;
+        //     }
+        //     else if (CanMove(*ghost, LEFT)) {
+        //          ghost->direction = LEFT;
+        //     }
+        //     else if (CanMove(*ghost, DOWN)) {
+        //          ghost->direction = DOWN;
+        //     }
+        //     else {
+        //          ghost->direction = RIGHT;
+        //     }
+        // }
         GhostMove(ghost);
 }
+
+int graph1[32][32]= {
+                    {0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0},
+                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0},
+                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1},
+                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0},
+                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0},
+                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0},
+                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0},
+                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0},
+                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1},
+                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0},
+                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0},
+                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1},
+                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0}
+                    };
+int nodepos[32][2] = {{5, 1},//0
+                      {4, 1},
+                      {1, 4},
+                      {4, 4},
+                      {5, 4},
+                      {6, 4},//5
+                      {8, 4},
+                      {11, 4},
+                      {13, 4},
+                      {14, 4},
+                      {15, 4},//10
+                      {18, 4},
+                      {6, 7},
+                      {13, 7},
+                      {6, 9},
+                      {13, 9},//15
+                      {6, 10},
+                      {13, 10},
+                      {4, 12},
+                      {6, 12},
+                      {13, 12},//20
+                      {15, 12},
+                      {6, 14},
+                      {8, 14},
+                      {11, 14},
+                      {13, 14},//25
+                      {5, 16},
+                      {14, 16},
+                      {5, 18},
+                      {8, 18},
+                      {11, 18},
+                      {14, 18}};
+
+void GeneratePath(int prev[], int start, int End, Stack *path) {
+    int i=End;
+    while(prev[i]!=-1) {
+        Push(path, i);
+        //printf("%d ", i);
+        i = prev[i];
+    }
+}
+
+void PrintPath(Stack path) {
+    while (Top(path)!=Nil) {
+        printf("%d ", Pop(&path));
+    }
+}
+
+void bfs(int v, int prev[]) {
+    Queue Q;
+    CreateQueue(&Q);
+    EnQueue(&Q, v);
+
+    int visited[32] = {0};
+    int node = DeQueue(&Q);
+    visited[v] = 1;
+
+    //printf("%d ", node);
+    int i;
+    for(i=0;i<32;i++) {
+        prev[i] = -1;
+    }
+    while (1) {
+
+        for(i=0;i<32;i++) {
+
+            if (graph1[node][i] == 1 && visited[i] == 0) {
+                prev[i] = node;
+                visited[i] = 1;
+                EnQueue(&Q, i);
+            }
+        }
+        if (Front(Q) == Nil) {
+            break;
+        }
+        else {
+            node = DeQueue(&Q);
+            //printf("%d ", node);
+        }
+    }
+}
+
+void gotoXY(int *startX, int *startY, int endX, int endY) {
+    if (abs((*startX)-endX)>abs((*startY)-endY)) {
+        if ((*startX)>endX) {
+            (*startX)--;
+        }
+        else {
+            (*startX)++;
+        }
+    }
+    else {
+        if ((*startY)>endY) {
+            (*startY)--;
+            
+        }
+        else {
+            (*startY)++;
+        }
+    }
+}
+// void Move(int *startX, int *startY, Stack *path) {
+//    // printf("%d %d\n", *startX, *startY);
+// //    printf("%d %d\n", nodepos[Info(Top(*path))][0], nodepos[Info(Top(*path))][1]);
+
+//     if (Top(*path)!=Nil) {
+//         if ((*startX)!=nodepos[Info(Top(*path))][0] || (*startY)!=nodepos[Info(Top(*path))][1]) {
+//             gotoXY(startX, startY, nodepos[Info(Top(*path))][0], nodepos[Info(Top(*path))][1]);
+//         }
+//         else {
+//             Pop(path);
+//         }
+//     }
+// }

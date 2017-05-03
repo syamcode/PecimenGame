@@ -7,12 +7,14 @@
 #include "includes/map.h"
 #include "includes/score.h"
 #include "includes/interfaces.h"
+#include "includes/list.h"
 #include "map.cpp"
 #include "peciman.cpp"
 #include "ghost.cpp"
 #include "score.cpp"
 #include "game.cpp"
 #include "interfaces.cpp"
+#include "list.cpp"
 
 //playerControl player1;
 

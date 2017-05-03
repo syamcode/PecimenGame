@@ -36,6 +36,12 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
     char livesText[20];
     int liveGiven=0;
     char lepel[2];
+    Stack path;
+    CreateStack(&path);
+    int prev[32];
+    bfs(20, prev);
+    GeneratePath(prev, 20, 0, &path);
+    //PrintPath(path);
     while (player->lives>0 && player->level<=3) {
         cleardevice();
         DrawSideMenu();
@@ -56,7 +62,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
         while(player->foodCount > 0) {
             if((player->peciman.pos.x==player->ghost1.pos.x) && (player->peciman.pos.y == player->ghost1.pos.y))
                 break;
-            printf("%d ",player->foodCount);
+            //printf("%d ",player->foodCount);
             step++;
             if(kbhit())
             {
@@ -96,7 +102,16 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                 changeState(&player->peciman); // mengubah keadaan pacman dari membuka menjadi tertutup
             }
             if (step%16 == 0) {
-                GhostAutoMove(&player->ghost1, player->peciman);
+                if (Top(path)!=Nil) {
+                    if (player->ghost1.pos.x!=nodepos[Info(Top(path))][0] || player->ghost1.pos.y!=nodepos[Info(Top(path))][1]) {
+                        GhostAutoMove(&player->ghost1, nodepos[Info(Top(path))]);
+                        printf("%d %d %d %d\n", player->ghost1.pos.x,player->ghost1.pos.y, nodepos[Info(Top(path))][0], nodepos[Info(Top(path))][1]);
+                        // gotoXY(startX, startY, nodepos[Info(Top(*path))][0], nodepos[Info(Top(*path))][1]);
+                    }
+                    else {
+                        Pop(&path);
+                    }
+                }
             }
             GetCursorPos(&cursorPosition);
             mX=cursorPosition.x;
@@ -109,7 +124,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
             delay(10);
             end = clock();
             time_spent = (int)(end - begin) / CLOCKS_PER_SEC; // Ulah di hapus
-            printf("%d %d %d\n", player->score, player->lives, time_spent);
+            // printf("%d %d %d\n", player->score, player->lives, time_spent);
             if(time_spent==60){
                 spawnFood(&levelMap[9][12],9,12);
                 begin=clock();
