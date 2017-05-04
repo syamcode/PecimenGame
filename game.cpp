@@ -9,7 +9,7 @@ void GameRoundCheck();
 
 void InitLevel(playerControl *player) { //M. Hisyam A
     switch(player->level) {
-        case 1 : CreateMap(level1, player);break;
+        case 1 : CreateMap(level4, player);break;
         case 2 : CreateMap(level2, player);break;
         case 3 : CreateMap(level3, player);break;
     }
