@@ -71,14 +71,14 @@ void GhostMove(ghostController *ghost) {//M. Hisyam A
 void GhostAutoMove(ghostController *ghost, int nodepos[]) {//M. Hisyam A
         int moved =1;
         printf("am %d %d\n", nodepos[0], nodepos[1]);
-        if (abs(nodepos[0] - ghost->pos.x) > abs(nodepos[1] - ghost->pos.y)) {
+        if (abs(nodepos[0] - ghost->pos.x) > abs(nodepos[1] - ghost->pos.y) && (CanMove(*ghost, RIGHT) || CanMove(*ghost, LEFT))) {
             if(nodepos[0] > ghost->pos.x && CanMove(*ghost, RIGHT)) {
                 ghost->direction = RIGHT;
             }
             else {
                 ghost->direction = LEFT;
             }
-  
+
         }
         else {
             if(nodepos[1] > ghost->pos.y && CanMove(*ghost, DOWN)) {
@@ -87,7 +87,7 @@ void GhostAutoMove(ghostController *ghost, int nodepos[]) {//M. Hisyam A
             else {
                 ghost->direction = UP;
             }
-  
+
         }
         // if (!moved) {
         //     if (CanMove(*ghost, UP)) {
@@ -234,7 +234,7 @@ void gotoXY(int *startX, int *startY, int endX, int endY) {
     else {
         if ((*startY)>endY) {
             (*startY)--;
-            
+
         }
         else {
             (*startY)++;

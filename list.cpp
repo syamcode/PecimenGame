@@ -1,4 +1,4 @@
-#include "list.h"
+#include "includes/list.h"
 void CreateStack(Stack *s) {
     Top(*s) = Nil;
 }
