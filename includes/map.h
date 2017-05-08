@@ -29,6 +29,7 @@ typedef struct{
     int Object;
     int Wall;
     int Food;
+    int node;
 } MapController;
 
 MapController levelMap[20][20];

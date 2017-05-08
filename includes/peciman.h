@@ -24,9 +24,8 @@ typedef struct{
     position pos;
     position initPos;
     int state;
+    int lastNode;
 }pacmanController;
-
-
 
 void DrawPacman(pacmanController peciman);
 void mainPeciman(pacmanController peciman);

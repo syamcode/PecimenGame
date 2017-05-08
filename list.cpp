@@ -81,3 +81,9 @@ infotype DeQueue(Queue *Q) {
 
     return info;
 }
+
+void EmptyStack(Stack *s) {
+    while (Top(*s) != Nil) {
+        Pop(s);
+    }
+}

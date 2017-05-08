@@ -12,6 +12,7 @@ void InitGhost(ghostController *ghost, position pos, int ghostType) {//M. Hisyam
     ghost->initPos.x = pos.x;
     ghost->initPos.y = pos.y;
     ghost->ghostType = ghostType;
+    ghost->lastNode = 29;
 }
 int CanMove(ghostController ghost, int direction) {//M. Hisyam A
     switch(direction) {
@@ -70,24 +71,24 @@ void GhostMove(ghostController *ghost) {//M. Hisyam A
 
 void GhostAutoMove(ghostController *ghost, int nodepos[]) {//M. Hisyam A
         int moved =1;
-        printf("am %d %d\n", nodepos[0], nodepos[1]);
+        //printf("am %d %d\n", nodepos[0], nodepos[1]);
         if (abs(nodepos[0] - ghost->pos.x) > abs(nodepos[1] - ghost->pos.y) && (CanMove(*ghost, RIGHT) || CanMove(*ghost, LEFT))) {
             if(nodepos[0] > ghost->pos.x && CanMove(*ghost, RIGHT)) {
                 ghost->direction = RIGHT;
             }
+
             else {
                 ghost->direction = LEFT;
             }
 
         }
-        else {
+        else if (CanMove(*ghost, UP) || CanMove(*ghost, DOWN)){
             if(nodepos[1] > ghost->pos.y && CanMove(*ghost, DOWN)) {
                 ghost->direction = DOWN;
             }
             else {
                 ghost->direction = UP;
             }
-
         }
         // if (!moved) {
         //     if (CanMove(*ghost, UP)) {
@@ -106,73 +107,6 @@ void GhostAutoMove(ghostController *ghost, int nodepos[]) {//M. Hisyam A
         GhostMove(ghost);
 }
 
-int graph1[32][32]= {
-                    {0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                    {0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                    {1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                    {0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                    {1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                    {0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                    {1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                    {0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                    {0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                    {0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                    {0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                    {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                    {0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0},
-                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0},
-                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1},
-                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0},
-                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0},
-                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0},
-                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0},
-                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0},
-                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1},
-                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0},
-                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0},
-                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1},
-                    {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0}
-                    };
-int nodepos[32][2] = {{5, 1},//0
-                      {4, 1},
-                      {1, 4},
-                      {4, 4},
-                      {5, 4},
-                      {6, 4},//5
-                      {8, 4},
-                      {11, 4},
-                      {13, 4},
-                      {14, 4},
-                      {15, 4},//10
-                      {18, 4},
-                      {6, 7},
-                      {13, 7},
-                      {6, 9},
-                      {13, 9},//15
-                      {6, 10},
-                      {13, 10},
-                      {4, 12},
-                      {6, 12},
-                      {13, 12},//20
-                      {15, 12},
-                      {6, 14},
-                      {8, 14},
-                      {11, 14},
-                      {13, 14},//25
-                      {5, 16},
-                      {14, 16},
-                      {5, 18},
-                      {8, 18},
-                      {11, 18},
-                      {14, 18}};
-
 void GeneratePath(int prev[], int start, int End, Stack *path) {
     int i=End;
     while(prev[i]!=-1) {
@@ -184,7 +118,8 @@ void GeneratePath(int prev[], int start, int End, Stack *path) {
 
 void PrintPath(Stack path) {
     while (Top(path)!=Nil) {
-        printf("%d ", Pop(&path));
+        printf("%d ", Info(Top(path)));
+        Top(path) = Next(Top(path));
     }
 }
 
@@ -193,20 +128,20 @@ void bfs(int v, int prev[]) {
     CreateQueue(&Q);
     EnQueue(&Q, v);
 
-    int visited[32] = {0};
+    int visited[56] = {0};
     int node = DeQueue(&Q);
     visited[v] = 1;
 
     //printf("%d ", node);
     int i;
-    for(i=0;i<32;i++) {
+    for(i=0;i<56;i++) {
         prev[i] = -1;
     }
     while (1) {
 
-        for(i=0;i<32;i++) {
+        for(i=0;i<56;i++) {
 
-            if (graph1[node][i] == 1 && visited[i] == 0) {
+            if (GraphLevel1[node][i] == 1 && visited[i] == 0) {
                 prev[i] = node;
                 visited[i] = 1;
                 EnQueue(&Q, i);
@@ -221,36 +156,3 @@ void bfs(int v, int prev[]) {
         }
     }
 }
-
-void gotoXY(int *startX, int *startY, int endX, int endY) {
-    if (abs((*startX)-endX)>abs((*startY)-endY)) {
-        if ((*startX)>endX) {
-            (*startX)--;
-        }
-        else {
-            (*startX)++;
-        }
-    }
-    else {
-        if ((*startY)>endY) {
-            (*startY)--;
-
-        }
-        else {
-            (*startY)++;
-        }
-    }
-}
-// void Move(int *startX, int *startY, Stack *path) {
-//    // printf("%d %d\n", *startX, *startY);
-// //    printf("%d %d\n", nodepos[Info(Top(*path))][0], nodepos[Info(Top(*path))][1]);
-
-//     if (Top(*path)!=Nil) {
-//         if ((*startX)!=nodepos[Info(Top(*path))][0] || (*startY)!=nodepos[Info(Top(*path))][1]) {
-//             gotoXY(startX, startY, nodepos[Info(Top(*path))][0], nodepos[Info(Top(*path))][1]);
-//         }
-//         else {
-//             Pop(path);
-//         }
-//     }
-// }

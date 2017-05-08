@@ -1,12 +1,14 @@
 #ifndef GHOST_H_INCLUDED
 #define GHOST_H_INCLUDED
-
+#include "list.h"
 typedef struct {
     int direction;
     int speed;
     int ghostType;
     position pos;
     position initPos;
+    Stack path;
+    int lastNode;
 }ghostController;
 void DrawGhost(ghostController ghost);
 void GhostMove(ghostController *ghost);

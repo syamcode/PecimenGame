@@ -35,4 +35,6 @@ infotype Pop(Stack *s);
 void CreateQueue(Queue *Q);
 void EnQueue(Queue *Q, infotype n);
 infotype DeQueue(Queue *Q);
+
+void EmptyStack(Stack *s);
 #endif // STACK_H_INCLUDED
