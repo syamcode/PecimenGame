@@ -9,8 +9,8 @@ void GameRoundCheck();
 
 void InitLevel(playerControl *player) { //M. Hisyam A
     switch(player->level) {
-        case 1 : CreateMap(level1, player);createNodes(player);break;
-        case 2 : CreateMap(level2, player);break;
+        case 2 : CreateMap(level1, player);nodeCount=56;createNodes(player, NodeLevel1);break;
+        case 1 : CreateMap(level2, player);nodeCount=70;createNodes(player, NodeLevel2);break;
         case 3 : CreateMap(level3, player);break;
         case 4 : CreateMap(level4, player);break;
     }
@@ -26,6 +26,9 @@ void ResetPosition(playerControl *player) {//M. Hisyam A
     player->ghost3.pos.y = player->ghost3.initPos.y;
     player->ghost4.pos.x = player->ghost4.initPos.x;
     player->ghost4.pos.y = player->ghost4.initPos.y;
+
+    player->ghost1.lastNode = levelMap[player->ghost1.pos.x][player->ghost1.pos.y].node;
+    player->peciman.lastNode = levelMap[player->peciman.pos.x][player->peciman.pos.y].node;
 }
 void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
     int rekamana;
@@ -39,7 +42,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
     int liveGiven=0;
     char lepel[2];
     CreateStack(&player->ghost1.path);
-    int prev[58];
+    int prev[nodeCount];
     int speed;
     //PrintPath(path);
     while (player->lives>0 && player->level<=3) {
@@ -60,9 +63,10 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
         //BlackSquare(24*GRIDSIZE,GRIDSIZE*2.8);
         outtextxy(720,84, lepel);
         EmptyStack(&player->ghost1.path);
-        player->ghost1.lastNode = 29;
-        player->peciman.lastNode = 28;
-        bfs(player->ghost1.lastNode, prev);
+        switch(player->level) {
+            case 2 : bfs(player->ghost1.lastNode, prev, GraphLevel1);break;
+            case 1 : bfs(player->ghost1.lastNode, prev, GraphLevel2);break;
+        }
         GeneratePath(prev, player->ghost1.lastNode, player->peciman.lastNode, &player->ghost1.path);
         while(player->foodCount > 0) {
             if((player->peciman.pos.x==player->ghost1.pos.x) && (player->peciman.pos.y == player->ghost1.pos.y))
@@ -70,9 +74,10 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
             //printf("%d ",player->foodCount);
             step++;
 //                        int i, j;
-//            for(i=0;i<20;i++) {
-//                for(j=0;j<20;j++) {
-//                    printf("%d ",levelMap[j][i].node);
+//            for(i=0;i<nodeCount;i++) {
+//                    printf("%d : ", i);
+//                for(j=0;j<nodeCount;j++) {
+//                    printf("%d(%d), ",i*nodeCount+j, GraphLevel2[i*nodeCount+j]);
 //                }
 //                printf("\n");
 //            }
@@ -139,7 +144,10 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                 if (player->ghost1.lastNode!=player->peciman.lastNode && Top(player->ghost1.path)==Nil){
                     rekamana = player->peciman.lastNode;
                     EmptyStack(&player->ghost1.path);
-                    bfs(player->ghost1.lastNode, prev);
+                    switch(player->level) {
+                        case 1 : bfs(player->ghost1.lastNode, prev, GraphLevel1);break;
+                        case 2 : bfs(player->ghost1.lastNode, prev, GraphLevel2);break;
+                    }
                     GeneratePath(prev, player->ghost1.lastNode, player->peciman.lastNode, &player->ghost1.path);
                 }
             }
@@ -182,11 +190,13 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
     if (player->lives==0){
         outtext("GAME OVER");
         PlaySound("sounds/pacman_intermission.wav",NULL,SND_ASYNC);
+        delay(1000);
          menuutama();
     }
     else{
         outtext("PLAYER WIN");
         PlaySound("sounds/pacman_intermission.wav",NULL,SND_ASYNC);
+        delay(1000);
          menuutama();
     }
 }

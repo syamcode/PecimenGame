@@ -12,7 +12,6 @@ void InitGhost(ghostController *ghost, position pos, int ghostType) {//M. Hisyam
     ghost->initPos.x = pos.x;
     ghost->initPos.y = pos.y;
     ghost->ghostType = ghostType;
-    ghost->lastNode = 29;
 }
 int CanMove(ghostController ghost, int direction) {//M. Hisyam A
     switch(direction) {
@@ -123,25 +122,25 @@ void PrintPath(Stack path) {
     }
 }
 
-void bfs(int v, int prev[]) {
+void bfs(int v, int prev[], int GraphLevel[]) {
     Queue Q;
     CreateQueue(&Q);
     EnQueue(&Q, v);
 
-    int visited[58] = {0};
+    int visited[nodeCount] = {0};
     int node = DeQueue(&Q);
     visited[v] = 1;
 
     //printf("%d ", node);
     int i;
-    for(i=0;i<58;i++) {
+    for(i=0;i<nodeCount;i++) {
         prev[i] = -1;
     }
     while (1) {
 
-        for(i=0;i<58;i++) {
+        for(i=0;i<nodeCount;i++) {
 
-            if (GraphLevel1[node][i] == 1 && visited[i] == 0) {
+            if (GraphLevel[node*nodeCount+i] == 1 && visited[i] == 0) {
                 prev[i] = node;
                 visited[i] = 1;
                 EnQueue(&Q, i);

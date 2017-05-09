@@ -76,7 +76,6 @@ void InitPacman (pacmanController *peciman, int i, int j) // keadaan awal pecima
     peciman->direction = EMPTY;
     peciman->nextDirection = peciman->direction;
     peciman->state = 1;
-    peciman->lastNode = 28;
 }
 
 void changeState(pacmanController *peciman)
