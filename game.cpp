@@ -39,7 +39,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
     int liveGiven=0;
     char lepel[2];
     CreateStack(&player->ghost1.path);
-    int prev[56];
+    int prev[58];
     int speed;
     //PrintPath(path);
     while (player->lives>0 && player->level<=3) {

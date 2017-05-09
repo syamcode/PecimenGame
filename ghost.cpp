@@ -128,18 +128,18 @@ void bfs(int v, int prev[]) {
     CreateQueue(&Q);
     EnQueue(&Q, v);
 
-    int visited[56] = {0};
+    int visited[58] = {0};
     int node = DeQueue(&Q);
     visited[v] = 1;
 
     //printf("%d ", node);
     int i;
-    for(i=0;i<56;i++) {
+    for(i=0;i<58;i++) {
         prev[i] = -1;
     }
     while (1) {
 
-        for(i=0;i<56;i++) {
+        for(i=0;i<58;i++) {
 
             if (GraphLevel1[node][i] == 1 && visited[i] == 0) {
                 prev[i] = node;
