@@ -45,7 +45,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
     int prev[nodeCount];
     int speed;
     //PrintPath(path);
-    while (player->lives>0 && player->level<=3) {
+    while (player->lives>0 && player->level<=2) {
         cleardevice();
         DrawSideMenu();
         settextstyle(8, HORIZ_DIR,1);
@@ -67,6 +67,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
             case 1 : bfs(player->ghost1.lastNode, prev, GraphLevel1);break;
             case 2 : bfs(player->ghost1.lastNode, prev, GraphLevel2);break;
         }
+        rekamana = player->peciman.lastNode;
         GeneratePath(prev, player->ghost1.lastNode, player->peciman.lastNode, &player->ghost1.path);
         while(player->foodCount > 0) {
             if((player->peciman.pos.x==player->ghost1.pos.x) && (player->peciman.pos.y == player->ghost1.pos.y))
@@ -74,10 +75,9 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
             //printf("%d ",player->foodCount);
             step++;
 //                        int i, j;
-//            for(i=0;i<nodeCount;i++) {
-//                    printf("%d : ", i);
-//                for(j=0;j<nodeCount;j++) {
-//                    printf("%d(%d), ",i*nodeCount+j, GraphLevel2[i*nodeCount+j]);
+//            for(i=0;i<20;i++) {
+//                for(j=0;j<20;j++) {
+//                    printf("%d ", levelMap[j][i].node);
 //                }
 //                printf("\n");
 //            }
@@ -131,13 +131,25 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                     printf("\n========================\n");
                     PrintPath(player->ghost1.path);
                     printf("\n========================\n");
-                    if (player->ghost1.pos.x!=NodeLevel1[Info(Top(player->ghost1.path))][0] || player->ghost1.pos.y!=NodeLevel1[Info(Top(player->ghost1.path))][1]) {
-                        GhostAutoMove(&player->ghost1, NodeLevel1[Info(Top(player->ghost1.path))]);
-                        // gotoXY(startX, startY, nodepos[Info(Top(*path))][0], nodepos[Info(Top(*path))][1]);
+                    if (player->level==1) {
+                        if (player->ghost1.pos.x!=NodeLevel1[Info(Top(player->ghost1.path))][0] || player->ghost1.pos.y!=NodeLevel1[Info(Top(player->ghost1.path))][1]) {
+                            GhostAutoMove(&player->ghost1, NodeLevel1[Info(Top(player->ghost1.path))]);
+                            // gotoXY(startX, startY, nodepos[Info(Top(*path))][0], nodepos[Info(Top(*path))][1]);
+                        }
+                        else {
+                            player->ghost1.lastNode = Pop(&player->ghost1.path);
+    //
+                        }
                     }
-                    else {
-                        player->ghost1.lastNode = Pop(&player->ghost1.path);
-//
+                    else if (player->level==2) {
+                        if (player->ghost1.pos.x!=NodeLevel2[Info(Top(player->ghost1.path))][0] || player->ghost1.pos.y!=NodeLevel2[Info(Top(player->ghost1.path))][1]) {
+                            GhostAutoMove(&player->ghost1, NodeLevel2[Info(Top(player->ghost1.path))]);
+                            // gotoXY(startX, startY, nodepos[Info(Top(*path))][0], nodepos[Info(Top(*path))][1]);
+                        }
+                        else {
+                            player->ghost1.lastNode = Pop(&player->ghost1.path);
+    //
+                        }
                     }
 
                 }

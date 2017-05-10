@@ -73,7 +73,7 @@ void InitPacman (pacmanController *peciman, int i, int j) // keadaan awal pecima
 {//A. Fadhitya
     peciman->initPos.x = i;
     peciman->initPos.y = j;
-    peciman->direction = EMPTY;
+    peciman->direction = LEFT;
     peciman->nextDirection = peciman->direction;
     peciman->state = 1;
 }
