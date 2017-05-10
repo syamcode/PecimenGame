@@ -9,8 +9,8 @@ void GameRoundCheck();
 
 void InitLevel(playerControl *player) { //M. Hisyam A
     switch(player->level) {
-        case 2 : CreateMap(level1, player);nodeCount=56;createNodes(player, NodeLevel1);break;
-        case 1 : CreateMap(level2, player);nodeCount=70;createNodes(player, NodeLevel2);break;
+        case 1 : CreateMap(level1, player);nodeCount=58;createNodes(player, NodeLevel1);break;
+        case 2 : CreateMap(level2, player);nodeCount=70;createNodes(player, NodeLevel2);break;
         case 3 : CreateMap(level3, player);break;
         case 4 : CreateMap(level4, player);break;
     }
@@ -64,8 +64,8 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
         outtextxy(720,84, lepel);
         EmptyStack(&player->ghost1.path);
         switch(player->level) {
-            case 2 : bfs(player->ghost1.lastNode, prev, GraphLevel1);break;
-            case 1 : bfs(player->ghost1.lastNode, prev, GraphLevel2);break;
+            case 1 : bfs(player->ghost1.lastNode, prev, GraphLevel1);break;
+            case 2 : bfs(player->ghost1.lastNode, prev, GraphLevel2);break;
         }
         GeneratePath(prev, player->ghost1.lastNode, player->peciman.lastNode, &player->ghost1.path);
         while(player->foodCount > 0) {
