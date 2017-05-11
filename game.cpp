@@ -13,9 +13,6 @@ void InitLevel(playerControl *player) { //M. Hisyam A
         case 2 : CreateMap(level2, player);nodeCount=70;createNodes(player, NodeLevel2);break;
         case 3 : CreateMap(level3, player);break;
         case 4 : CreateMap(level4, player);break;
-        case 5 : CreateMap(level5, player);break;
-        case 6 : CreateMap(level6, player);break;
-        case 7 : CreateMap(level7, player);break;
     }
 }
 void ResetPosition(playerControl *player) {//M. Hisyam A
