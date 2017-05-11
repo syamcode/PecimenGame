@@ -11,10 +11,10 @@ void InitLevel(playerControl *player) { //M. Hisyam A
     switch(player->level) {
         case 1 : CreateMap(level1, player);nodeCount=58;createNodes(player, NodeLevel1);break;
         case 2 : CreateMap(level2, player);nodeCount=70;createNodes(player, NodeLevel2);break;
-        case 3 : CreateMap(level3, player);break;
+        case 6 : CreateMap(level3, player);break;
         case 4 : CreateMap(level4, player);break;
         case 5 : CreateMap(level5, player);break;
-        case 6 : CreateMap(level6, player);break;
+        case 3 : CreateMap(level6, player);nodeCount=116;createNodes(player, NodeLevel6);break;
         case 7 : CreateMap(level7, player);break;
     }
 }
@@ -48,7 +48,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
     int prev[nodeCount];
     int speed;
     //PrintPath(path);
-    while (player->lives>0 && player->level<=2) {
+    while (player->lives>0 && player->level<=3) {
         cleardevice();
         DrawSideMenu();
         settextstyle(8, HORIZ_DIR,1);
@@ -69,9 +69,13 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
         switch(player->level) {
             case 1 : bfs(player->ghost1.lastNode, prev, GraphLevel1);break;
             case 2 : bfs(player->ghost1.lastNode, prev, GraphLevel2);break;
+            case 3 : bfs(player->ghost1.lastNode, prev, GraphLevel6);break;
         }
+
         rekamana = player->peciman.lastNode;
         GeneratePath(prev, player->ghost1.lastNode, player->peciman.lastNode, &player->ghost1.path);
+//        PrintPath(player->ghost1.path);
+//        system("pause");
         while(player->foodCount > 0) {
             if((player->peciman.pos.x==player->ghost1.pos.x) && (player->peciman.pos.y == player->ghost1.pos.y))
                 break;
@@ -126,7 +130,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                 }
             }
             //speed = (0.5*16);
-            printf("%d %d %d\n", player->ghost1.lastNode,player->peciman.lastNode, rekamana);
+            printf("%d %d %d %d\n", player->ghost1.lastNode,player->peciman.lastNode, rekamana, levelMap[player->ghost1.pos.x][player->ghost1.pos.y].node);
             if (step%8 == 0) {
 
                 if (Top(player->ghost1.path)!=Nil) {
@@ -154,6 +158,16 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
     //
                         }
                     }
+                    else if (player->level==3) {
+                        if (player->ghost1.pos.x!=NodeLevel6[Info(Top(player->ghost1.path))][0] || player->ghost1.pos.y!=NodeLevel6[Info(Top(player->ghost1.path))][1]) {
+                            GhostAutoMove(&player->ghost1, NodeLevel6[Info(Top(player->ghost1.path))]);
+                            // gotoXY(startX, startY, nodepos[Info(Top(*path))][0], nodepos[Info(Top(*path))][1]);
+                        }
+                        else {
+                            player->ghost1.lastNode = Pop(&player->ghost1.path);
+    //
+                        }
+                    }
 
                 }
                 if (player->ghost1.lastNode!=player->peciman.lastNode && Top(player->ghost1.path)==Nil){
@@ -162,6 +176,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                     switch(player->level) {
                         case 1 : bfs(player->ghost1.lastNode, prev, GraphLevel1);break;
                         case 2 : bfs(player->ghost1.lastNode, prev, GraphLevel2);break;
+                        case 3 : bfs(player->ghost1.lastNode, prev, GraphLevel6);break;
                     }
                     GeneratePath(prev, player->ghost1.lastNode, player->peciman.lastNode, &player->ghost1.path);
                 }
