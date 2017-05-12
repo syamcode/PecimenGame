@@ -2,7 +2,7 @@ void InitLevel(playerControl *player);
 void InitGame(playerControl *player) {//M. Hisyam A
     initScore(player);
     initLives(player);
-    player->level = 1;
+    player->level = 7;
     InitLevel(player);
 }
 void GameRoundCheck();
@@ -48,7 +48,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
     int prev[nodeCount];
     int speed;
     //PrintPath(path);
-    while (player->lives>0 && player->level<=3) {
+    while (player->lives>0 && player->level<=7) {
         cleardevice();
         DrawSideMenu();
         settextstyle(8, HORIZ_DIR,1);

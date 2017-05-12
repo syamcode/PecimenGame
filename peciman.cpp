@@ -135,7 +135,7 @@ void Move(pacmanController *peciman)
         case UP :
             if (peciman->pos.y == 0){
             BlackSquare(peciman->pos.x, peciman->pos.y);
-            peciman->pos.x = 19;
+            peciman->pos.y = 19;
             levelMap[peciman->pos.x][peciman->pos.y].Object = PACMAN;
             }
 
