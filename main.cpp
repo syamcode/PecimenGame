@@ -21,6 +21,7 @@
 int main()
 {
     initwindow(800, 600, "Pecimen Game");
+    PlaySound("sounds/bgm.wav",NULL,SND_ASYNC | SND_LOOP);
     menuutama();
     getch();
     closegraph();

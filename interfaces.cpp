@@ -32,13 +32,14 @@ void DrawSideMenu() { //Haya Utami
 
 void tampilan() //Auliya Aqma
 {
-    readimagefile("picture/pecimen.bmp",100, 10 , 700, 210);
-    readimagefile("picture/pacman.bmp",50, 250, 300, 550);
-    readimagefile("assets/images/ghost1.bmp",550, 300, 600, 350);
-    readimagefile("assets/images/ghost2.bmp",700, 350, 750, 400);
-    readimagefile("assets/images/ghost3.bmp",600, 400, 650, 450);
-    readimagefile("assets/images/ghost4.bmp",700, 450, 750, 500);
-    readimagefile("assets/images/ghost5.bmp",550, 500, 600, 550);
+    readimagefile("assets/images/background.bmp",0, 0 , 800, 600);
+//    readimagefile("picture/pecimen.bmp",100, 10 , 700, 210);
+//    readimagefile("picture/pacman.bmp",50, 250, 300, 550);
+//    readimagefile("assets/images/ghost1.bmp",550, 300, 600, 350);
+//    readimagefile("assets/images/ghost2.bmp",700, 350, 750, 400);
+//    readimagefile("assets/images/ghost3.bmp",600, 400, 650, 450);
+//    readimagefile("assets/images/ghost4.bmp",700, 450, 750, 500);
+//    readimagefile("assets/images/ghost5.bmp",550, 500, 600, 550);
 }
 
 void tampilan2()//Auliya Aqma
