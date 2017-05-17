@@ -99,9 +99,16 @@ void despawnFood(MapController *map, int posX, int posY){//Fahmi Rosdiansyah
 
 position randFoodPos(int nodelevel[][2]){
   position pos;
-  int idx = randomise(0,nodeCount);
-  pos.x = nodelevel[idx][0];
-  pos.y = nodelevel[idx][1];
+  int i, count=0, arr[nodeCount];
+  for(i=0;i<nodeCount;i++){
+    if(levelMap[nodelevel[i][0]][nodelevel[i][1]].Food==EMPTY){
+      arr[count]=i;
+      count++;
+    }
+  }
+  int idx = randomise(0,count-1);
+  pos.x = nodelevel[arr[idx]][0];
+  pos.y = nodelevel[arr[idx]][1];
   return pos;
   // spawnFood(&levelMap[pos.x][pos.y],pos.x, pos.y);
 }
