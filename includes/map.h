@@ -36,6 +36,6 @@ MapController levelMap[20][20];
 //void CreateMap(int maps);
 void DrawMap();
 void CreateMap(int maps[20][20], pacmanController *peciman);
-int nodeCount;
+
 
 #endif // MAP_H_INCLUDED
