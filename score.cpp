@@ -96,3 +96,26 @@ void despawnFood(MapController *map, int posX, int posY){//Fahmi Rosdiansyah
 //   }while(levelMap[pos.x][pos.y].Wall!=0 || ((pos.x==8 || pos.x==9 || pos.x==10 || pos.x==11) && (pos.y==9 || pos.y==10)));
 //   spawnFood(&levelMap[pos.x][pos.y],pos.x, pos.y);
 // }
+
+position randFoodPos(int nodelevel[][2]){
+  position pos;
+  int idx = randomise(0,nodeCount);
+  pos.x = nodelevel[idx][0];
+  pos.y = nodelevel[idx][1];
+  return pos;
+  // spawnFood(&levelMap[pos.x][pos.y],pos.x, pos.y);
+}
+
+position randFood(playerControl *player){
+  position pos;
+  switch(player->level){
+    case 1: pos = randFoodPos(NodeLevel1);break;
+    case 2: pos = randFoodPos(NodeLevel2);break;
+    case 3: pos = randFoodPos(NodeLevel3);break;
+    case 4: break;
+    case 5: break;
+    case 6: pos = randFoodPos(NodeLevel6);break;
+    case 7: break;
+  }
+  return pos;
+}

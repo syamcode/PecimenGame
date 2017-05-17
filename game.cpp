@@ -47,6 +47,9 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
     CreateStack(&player->ghost1.path);
     int prev[nodeCount];
     int speed;
+    position pos;
+    pos.x=-1;
+    pos.y=-1;
     //PrintPath(path);
     while (player->lives>0 && player->level<=7) {
         cleardevice();
@@ -195,11 +198,14 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
             time_spent = (int)(end - begin) / CLOCKS_PER_SEC; // Ulah di hapus
             // printf("%d %d %d\n", player->score, player->lives, time_spent);
             if(time_spent==60){
-                spawnFood(&levelMap[9][12],9,12);
+                pos = randFood(player);
+                spawnFood(&levelMap[pos.x][pos.y],pos.x,pos.y);
                 begin=clock();
             }
-            if((time_spent==20 && (levelMap[9][12].Food==FOOD2 || levelMap[9][12].Food==FOOD3)) || (time_spent==15 && levelMap[9][12].Food==FOOD4) || (time_spent==10 && levelMap[9][12].Food==FOOD5)){
-                despawnFood(&levelMap[9][12],9,12);
+            if(pos.x!=-1 && pos.y!=-1){
+                if((time_spent==20 && (levelMap[pos.x][pos.y].Food==FOOD2 || levelMap[pos.x][pos.y].Food==FOOD3)) || (time_spent==15 && levelMap[pos.x][pos.y].Food==FOOD4) || (time_spent==10 && levelMap[pos.x][pos.y].Food==FOOD5)){
+                    despawnFood(&levelMap[pos.x][pos.y],pos.x,pos.y);
+                }
             }
         }
         if (player->foodCount == 0) {

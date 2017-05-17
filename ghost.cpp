@@ -127,7 +127,8 @@ void bfs(int v, int prev[], int GraphLevel[]) {
     CreateQueue(&Q);
     EnQueue(&Q, v);
 
-    int visited[nodeCount] = {0};
+    int visited[nodeCount];
+    memset(visited, 0 , sizeof(visited));
     int node = DeQueue(&Q);
     visited[v] = 1;
 
