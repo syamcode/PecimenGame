@@ -105,10 +105,24 @@ void menuplay()//Auliya Aqma
 void menuscore()//Auliya Aqma
 {
     cleardevice();
+    FILE *highscore;
+    highscore = fopen("highscore.dat","rb");
+    int y = 275;
+    char score[7];
     setcolor(15);
     tampilan2();
     outtextxy(275,250,"NAMA");
     outtextxy(525,250,"SCORE");
+    fread(&scoreData, sizeof(scoreData), 1, highscore);
+    while(!feof(highscore)){
+      outtextxy(225, y, scoreData.name);
+      sprintf(score, "%d", scoreData.score);
+      outtextxy(500, y, score);
+      y+=25;
+      fread(&scoreData, sizeof(scoreData), 1, highscore);
+    }
+    fclose(highscore);
+    // outtextxy(225, y, "Hab");
     setcolor(4);
     readimagefile("picture/pacman1.bmp",335, 565, 360, 590);
     readimagefile("picture/pacman3.bmp",515, 565, 540, 590);
