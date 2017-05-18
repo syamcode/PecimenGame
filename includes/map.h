@@ -12,6 +12,7 @@
 #define FOOD3 9
 #define FOOD4 10
 #define FOOD5 11
+#define POWER_UP 32 //oiii//
 #define WALL_HOR 12
 #define WALL_VER 13
 #define WALL_COR_UPRIGHT 14

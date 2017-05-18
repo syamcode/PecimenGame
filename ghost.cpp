@@ -2,7 +2,12 @@ void DrawGhost(ghostController ghost) { //M. Hisyam A
     int posX = ghost.pos.x * GRIDSIZE;
     int posY = ghost.pos.y * GRIDSIZE;
     switch(ghost.ghostType) {
-        case KUNTILANAK : readimagefile("assets/images/Ghost1.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);break;
+        case KUNTILANAK : if(ghost.stateghost==0){
+                            readimagefile("assets/images/Ghost1.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);}
+                            else {
+                                readimagefile("assets/images/Ghost1PU.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);
+                            }
+                        break;
         case POCONG : readimagefile("assets/images/Ghost2.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);break;
         case TENGKORAK : readimagefile("assets/images/Ghost3.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);break;
         case TUYUL : readimagefile("assets/images/Ghost4.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);break;
@@ -12,6 +17,7 @@ void InitGhost(ghostController *ghost, position pos, int ghostType) {//M. Hisyam
     ghost->initPos.x = pos.x;
     ghost->initPos.y = pos.y;
     ghost->ghostType = ghostType;
+    ghost->stateghost= 0;
 }
 int CanMove(ghostController ghost, int direction) {//M. Hisyam A
     switch(direction) {

@@ -19,5 +19,6 @@ typedef struct{
 //void InitGame();
 //void GameRoundCheck();
 //void InitLevel();
+void ResetPositionGhost(playerControl *player);
 
 #endif // GAME_H_INCLUDED
