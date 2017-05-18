@@ -7,6 +7,13 @@
 #define FOOD4_SCORE 500	//Melati
 #define FOOD5_SCORE 700	//Kopi Hitam
 
+typedef struct{
+	char name[15];
+	int score;
+}dataStore;
+
+dataStore scoreData;
+
 void initScore(playerControl *player);
 void initLives(playerControl *player);
 void incScore(int food, playerControl *player);
@@ -14,8 +21,10 @@ void eatFood(playerControl *player);
 void incLives(playerControl *player, int *liveGiven);
 int randomise(int min, int max);
 int foodType(int x);
-void spawnFood(MapController *map, int posX, int posY);
-void despawnFood(MapController *map, int posX, int posY);
-// void randFoodPos();
+void spawnFood(MapController map[20][20], position pos);
+void despawnFood(MapController map[20][20], position pos);
+position randFoodPos(int nodelevel[][2]);
+position randFood(playerControl *player);
+void storeScore(playerControl *player);
 
 #endif // SCORE_H_INCLUDED

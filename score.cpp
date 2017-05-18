@@ -74,18 +74,18 @@ int foodType(int x){//Fahmi Rosdiansyah
   }
 }
 
-void spawnFood(MapController *map, int posX, int posY){//Fahmi Rosdiansyah
-  position pos;
-  pos.x = posX;
-  pos.y = posY;
-  map->Food=foodType(randomise(1,100));
-  DrawFood(map->Food, pos);
+void spawnFood(MapController map[20][20], position pos){//Fahmi Rosdiansyah
+  // position pos;
+  // pos.x = posX;
+  // pos.y = posY;
+  map[pos.x][pos.y].Food=foodType(randomise(1,100));
+  DrawFood(map[pos.x][pos.y].Food, pos);
 }
 
-void despawnFood(MapController *map, int posX, int posY){//Fahmi Rosdiansyah
-  map->Food=EMPTY;
+void despawnFood(MapController map[20][20], position pos){//Fahmi Rosdiansyah
+  map[pos.x][pos.y].Food=EMPTY;
   setcolor(BLACK);
-  bar(posX * GRIDSIZE, posY* GRIDSIZE, (posX * GRIDSIZE) + GRIDSIZE, posY*GRIDSIZE + GRIDSIZE);
+  bar(pos.x * GRIDSIZE, pos.y* GRIDSIZE, (pos.x * GRIDSIZE) + GRIDSIZE, pos.y*GRIDSIZE + GRIDSIZE);
 }
 
 // void randFoodPos(){
@@ -125,4 +125,13 @@ position randFood(playerControl *player){
     case 7: break;
   }
   return pos;
+}
+
+void storeScore(playerControl *player){
+  FILE *highscore;
+  strcpy(scoreData.name, player->name);
+  scoreData.score = player->score;
+  highscore=fopen("highscore.dat", "a+");
+  fwrite(&scoreData, sizeof(scoreData), 1, highscore);
+  fclose(highscore);
 }
