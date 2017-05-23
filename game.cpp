@@ -291,6 +291,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
 
     }
     cleardevice();
+    storeScore(player);
     settextstyle(8, HORIZ_DIR,30);
     setcolor(WHITE);
     if (player->lives==0){
