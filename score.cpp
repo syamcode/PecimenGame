@@ -88,15 +88,6 @@ void despawnFood(MapController map[20][20], position pos){//Fahmi Rosdiansyah
   bar(pos.x * GRIDSIZE, pos.y* GRIDSIZE, (pos.x * GRIDSIZE) + GRIDSIZE, pos.y*GRIDSIZE + GRIDSIZE);
 }
 
-// void randFoodPos(){
-//   position pos;
-//   do{
-//     pos.x=randomise(0,19);
-//     pos.y=randomise(0,19);
-//   }while(levelMap[pos.x][pos.y].Wall!=0 || ((pos.x==8 || pos.x==9 || pos.x==10 || pos.x==11) && (pos.y==9 || pos.y==10)));
-//   spawnFood(&levelMap[pos.x][pos.y],pos.x, pos.y);
-// }
-
 position randFoodPos(int nodelevel[][2]){
   position pos;
   int i, count=0, arr[nodeCount];
@@ -128,10 +119,58 @@ position randFood(playerControl *player){
 }
 
 void storeScore(playerControl *player){
-  FILE *highscore;
+  dataStore scoreData;
   strcpy(scoreData.name, player->name);
   scoreData.score = player->score;
-  highscore=fopen("highscore.dat", "a+");
+  FILE *highscore;
+  highscore=fopen("assets/files/highscore.dat", "a+");
+  if(highscore==NULL)
+    return;
   fwrite(&scoreData, sizeof(scoreData), 1, highscore);
   fclose(highscore);
+  sortFile("assets/files/highscore.dat");
+}
+
+int scoreCount() {
+  int sum=0;
+  dataStore score;
+  FILE *file;
+  file=fopen("assets/files/highscore.dat", "rb");
+  fread(&score, sizeof(score), 1, file);
+  while(!feof(file)) {
+    fread(&score, sizeof(score), 1, file);
+    sum++;
+  }
+  fclose(file);
+  return sum;
+}
+
+void sortFile(char *filename){
+  int structSize, fileSize, i, j;
+  FILE * file;
+  file = fopen(filename,"rb+");
+  if(file==NULL)
+    return;
+  dataStore pivot, temp;
+  structSize = sizeof(pivot);
+  fseek(file, 0, SEEK_END);
+  fileSize = ftell(file);
+  rewind(file);
+  for (i = 0; i < fileSize; i += structSize){
+    for (j = 0; j < fileSize - structSize; j += structSize){
+      fread(&pivot, structSize, 1, file);
+      fread(&temp, structSize, 1, file);
+      if (pivot.score < temp.score){
+        fseek(file, -(structSize * 2), SEEK_CUR);
+        fwrite(&temp, structSize, 1, file);
+        fwrite(&pivot, structSize, 1, file);
+        fseek(file, -structSize, SEEK_CUR);
+      }
+      else{
+        fseek(file, -structSize, SEEK_CUR);
+      }
+    }
+    rewind(file);
+  }
+  fclose(file);
 }
