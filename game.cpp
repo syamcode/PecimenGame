@@ -37,6 +37,7 @@ void ResetPositionGhost(playerControl *player) {
     player->ghost1.pos.x = player->ghost1.initPos.x;
     player->ghost1.pos.y = player->ghost1.initPos.y;
     player->ghost1.lastNode = levelMap[player->ghost1.pos.x][player->ghost1.pos.y].node;
+    player->ghost1.initNode = levelMap[player->ghost1.pos.x][player->ghost1.pos.y].node;
     player->ghost2.pos.x = player->ghost2.initPos.x;
     player->ghost2.pos.y = player->ghost2.initPos.y;
     player->ghost3.pos.x = player->ghost3.initPos.x;
@@ -57,6 +58,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
     char lepel[2];
     CreateStack(&player->ghost1.path);
     int prev[nodeCount];
+    int prev2[nodeCount];
     int speed,foodghost;
     bool temp=true;
     position pos;
@@ -88,7 +90,13 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
         }
 
         rekamana = player->peciman.lastNode;
-        GeneratePath(prev, player->ghost1.lastNode, player->peciman.lastNode, &player->ghost1.path);
+        if(player->ghost1.stateghost==0){
+            GeneratePath(prev, player->ghost1.lastNode, player->peciman.lastNode, &player->ghost1.path);
+        }
+        else {
+            GeneratePath(prev, player->ghost1.lastNode, player->ghost1.initNode, &player->ghost1.path);
+        }
+
 //        PrintPath(player->ghost1.path);
 //        system("pause");
         while(player->foodCount > 0) {
@@ -156,6 +164,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                     incLives(player, &liveGiven);
                     printLives(player->lives, 627, 405);
                 }
+
                 if (levelMap[player->peciman.pos.x][player->peciman.pos.y].Food==POWER_UP){ //Haya Utami
                     PlaySound("sounds/pacman_extrapac.wav",NULL,SND_ASYNC);
                     player->foodCount--;
@@ -174,7 +183,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                 }
             }
             //speed = (0.5*16);
-            printf("%d %d %d %d\n", player->ghost1.lastNode,player->peciman.lastNode, rekamana, levelMap[player->ghost1.pos.x][player->ghost1.pos.y].node);
+            printf("%d %d %d %d %d\n", player->ghost1.lastNode,player->peciman.lastNode, rekamana, levelMap[player->ghost1.pos.x][player->ghost1.pos.y].node,player->ghost1.initNode);
             if (step%8 == 0) {
 
                 if (Top(player->ghost1.path)!=Nil) {
@@ -214,6 +223,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                     }
 
                 }
+                int ln;
                 if (player->ghost1.lastNode!=player->peciman.lastNode && Top(player->ghost1.path)==Nil){
                     rekamana = player->peciman.lastNode;
                     EmptyStack(&player->ghost1.path);
@@ -222,7 +232,19 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                         case 2 : bfs(player->ghost1.lastNode, prev, GraphLevel2);break;
                         case 3 : bfs(player->ghost1.lastNode, prev, GraphLevel3);break;
                     }
-                    GeneratePath(prev, player->ghost1.lastNode, player->peciman.lastNode, &player->ghost1.path);
+
+                    if(player->ghost1.stateghost==0){
+                        GeneratePath(prev, player->ghost1.lastNode, player->peciman.lastNode, &player->ghost1.path);
+                    }
+                    else {
+                       // GeneratePath(prev, player->ghost1.lastNode, player->ghost1.initNode, &player->ghost1.path);
+                        switch(player->level) {
+                            case 1 : ln = bfs2(player->peciman.lastNode, prev2, GraphLevel1);break;
+                            case 2 : ln = bfs2(player->peciman.lastNode, prev2, GraphLevel2);break;
+                            case 3 : ln = bfs2(player->peciman.lastNode, prev2, GraphLevel3);break;
+                        }
+                        GeneratePath(prev, player->ghost1.lastNode, ln, &player->ghost1.path);
+                    }
                 }
             }
 
@@ -242,7 +264,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
             // printf("%d %d %d\n", player->score, player->lives, time_spent);
             if(time_spent==60){
                 pos = randFood(player);
-                spawnFood(levelMap, pos);
+                spawnFood(&levelMap[pos.x][pos.y],pos.x,pos.y);
                 begin=clock();
             }
             if (foodghost==10) {
@@ -252,7 +274,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
 
             if(pos.x!=-1 && pos.y!=-1){
                 if((time_spent==20 && (levelMap[pos.x][pos.y].Food==FOOD2 || levelMap[pos.x][pos.y].Food==FOOD3)) || (time_spent==15 && levelMap[pos.x][pos.y].Food==FOOD4) || (time_spent==10 && levelMap[pos.x][pos.y].Food==FOOD5)){
-                    despawnFood(levelMap,pos);
+                    despawnFood(&levelMap[pos.x][pos.y],pos.x,pos.y);
                 }
             }
         }
@@ -269,7 +291,6 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
 
     }
     cleardevice();
-    storeScore(player);
     settextstyle(8, HORIZ_DIR,30);
     setcolor(WHITE);
     if (player->lives==0){
@@ -285,3 +306,4 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
          menuutama();
     }
 }
+
