@@ -8,7 +8,7 @@
 #include "includes/score.h"
 #include "includes/interfaces.h"
 #include "includes/list.h"
-#include "includes/multiplayer.h"
+//#include "includes/multiplayer.h"
 #include "map.cpp"
 #include "peciman.cpp"
 #include "ghost.cpp"
@@ -16,7 +16,7 @@
 #include "game.cpp"
 #include "interfaces.cpp"
 #include "list.cpp"
-#include "multiplayer.cpp"
+//#include "multiplayer.cpp"
 
 //playerControl player1;
 
