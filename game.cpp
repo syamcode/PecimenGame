@@ -264,7 +264,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
             // printf("%d %d %d\n", player->score, player->lives, time_spent);
             if(time_spent==60){
                 pos = randFood(player);
-                spawnFood(&levelMap[pos.x][pos.y],pos.x,pos.y);
+                spawnFood(levelMap, pos);
                 begin=clock();
             }
             if (foodghost==10) {
@@ -274,7 +274,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
 
             if(pos.x!=-1 && pos.y!=-1){
                 if((time_spent==20 && (levelMap[pos.x][pos.y].Food==FOOD2 || levelMap[pos.x][pos.y].Food==FOOD3)) || (time_spent==15 && levelMap[pos.x][pos.y].Food==FOOD4) || (time_spent==10 && levelMap[pos.x][pos.y].Food==FOOD5)){
-                    despawnFood(&levelMap[pos.x][pos.y],pos.x,pos.y);
+                    despawnFood(levelMap,pos);
                 }
             }
         }
