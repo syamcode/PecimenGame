@@ -106,19 +106,22 @@ void menuscore()//Auliya Aqma
 {
     cleardevice();
     FILE *highscore;
-    highscore = fopen("highscore.dat","rb");
+    highscore = fopen("assets/files/highscore.dat","rb");
+    dataStore scoreData;
     int y = 275;
     char score[7];
+    int count=0;
     setcolor(15);
     tampilan2();
     outtextxy(275,250,"NAMA");
     outtextxy(525,250,"SCORE");
     fread(&scoreData, sizeof(scoreData), 1, highscore);
-    while(!feof(highscore)){
+    while(!feof(highscore) && count<10){
       outtextxy(225, y, scoreData.name);
       sprintf(score, "%d", scoreData.score);
       outtextxy(500, y, score);
       y+=25;
+      count++;
       fread(&scoreData, sizeof(scoreData), 1, highscore);
     }
     fclose(highscore);

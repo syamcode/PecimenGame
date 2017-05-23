@@ -9,6 +9,7 @@ typedef struct {
     position initPos;
     Stack path;
     int lastNode;
+    int initNode;
     int stateghost;
 }ghostController;
 void DrawGhost(ghostController ghost);

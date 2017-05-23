@@ -162,3 +162,39 @@ void bfs(int v, int prev[], int GraphLevel[]) {
         }
     }
 }
+int bfs2(int v, int prev[], int GraphLevel[]) {
+    Queue Q;
+    CreateQueue(&Q);
+    EnQueue(&Q, v);
+
+    int visited[nodeCount];
+    memset(visited, 0 , sizeof(visited));
+    int node = DeQueue(&Q);
+    visited[v] = 1;
+
+    //printf("%d ", node);
+    int i;
+    for(i=0;i<nodeCount;i++) {
+        prev[i] = -1;
+    }
+    while (1) {
+
+        for(i=0;i<nodeCount;i++) {
+
+            if (GraphLevel[node*nodeCount+i] == 1 && visited[i] == 0) {
+                prev[i] = node;
+                visited[i] = 1;
+                EnQueue(&Q, i);
+            }
+        }
+        if (Front(Q) == Nil) {
+            break;
+        }
+        else {
+            node = DeQueue(&Q);
+            //printf("%d ", node);
+        }
+    }
+    return node;
+}
+

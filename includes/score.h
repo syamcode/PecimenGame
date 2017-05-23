@@ -12,8 +12,6 @@ typedef struct{
 	int score;
 }dataStore;
 
-dataStore scoreData;
-
 void initScore(playerControl *player);
 void initLives(playerControl *player);
 void incScore(int food, playerControl *player);
@@ -26,5 +24,7 @@ void despawnFood(MapController map[20][20], position pos);
 position randFoodPos(int nodelevel[][2]);
 position randFood(playerControl *player);
 void storeScore(playerControl *player);
+int scoreCount();
+void sortFile(char *filename);
 
 #endif // SCORE_H_INCLUDED
