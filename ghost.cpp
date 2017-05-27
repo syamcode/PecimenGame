@@ -74,11 +74,11 @@ void GhostMove(ghostController *ghost) {//M. Hisyam A
     DrawGhost(*ghost);
 }
 
-void GhostAutoMove(ghostController *ghost, int nodepos[]) {//M. Hisyam A
+void GhostAutoMove(ghostController *ghost, int np) {//M. Hisyam A
         int moved =1;
         //printf("am %d %d\n", nodepos[0], nodepos[1]);
-        if (abs(nodepos[0] - ghost->pos.x) > abs(nodepos[1] - ghost->pos.y) && (CanMove(*ghost, RIGHT) || CanMove(*ghost, LEFT))) {
-            if(nodepos[0] > ghost->pos.x && CanMove(*ghost, RIGHT)) {
+        if (abs(nodePos[np*2+0] - ghost->pos.x) > abs(nodePos[np*2+1] - ghost->pos.y) && (CanMove(*ghost, RIGHT) || CanMove(*ghost, LEFT))) {
+            if(nodePos[np*2+0] > ghost->pos.x && CanMove(*ghost, RIGHT)) {
                 ghost->direction = RIGHT;
             }
 
@@ -88,7 +88,7 @@ void GhostAutoMove(ghostController *ghost, int nodepos[]) {//M. Hisyam A
 
         }
         else if (CanMove(*ghost, UP) || CanMove(*ghost, DOWN)){
-            if(nodepos[1] > ghost->pos.y && CanMove(*ghost, DOWN)) {
+            if(nodePos[np*2+1] > ghost->pos.y && CanMove(*ghost, DOWN)) {
                 ghost->direction = DOWN;
             }
             else {
@@ -128,7 +128,7 @@ void PrintPath(Stack path) {
     }
 }
 
-void bfs(int v, int prev[], int GraphLevel[]) {
+int bfs(int v, int prev[]) {
     Queue Q;
     CreateQueue(&Q);
     EnQueue(&Q, v);
@@ -138,7 +138,6 @@ void bfs(int v, int prev[], int GraphLevel[]) {
     int node = DeQueue(&Q);
     visited[v] = 1;
 
-    //printf("%d ", node);
     int i;
     for(i=0;i<nodeCount;i++) {
         prev[i] = -1;
@@ -147,7 +146,7 @@ void bfs(int v, int prev[], int GraphLevel[]) {
 
         for(i=0;i<nodeCount;i++) {
 
-            if (GraphLevel[node*nodeCount+i] == 1 && visited[i] == 0) {
+            if (graph[node*nodeCount+i] == 1 && visited[i] == 0) {
                 prev[i] = node;
                 visited[i] = 1;
                 EnQueue(&Q, i);
@@ -158,41 +157,7 @@ void bfs(int v, int prev[], int GraphLevel[]) {
         }
         else {
             node = DeQueue(&Q);
-            //printf("%d ", node);
-        }
-    }
-}
-int bfs2(int v, int prev[], int GraphLevel[]) {
-    Queue Q;
-    CreateQueue(&Q);
-    EnQueue(&Q, v);
-
-    int visited[nodeCount];
-    memset(visited, 0 , sizeof(visited));
-    int node = DeQueue(&Q);
-    visited[v] = 1;
-
-    //printf("%d ", node);
-    int i;
-    for(i=0;i<nodeCount;i++) {
-        prev[i] = -1;
-    }
-    while (1) {
-
-        for(i=0;i<nodeCount;i++) {
-
-            if (GraphLevel[node*nodeCount+i] == 1 && visited[i] == 0) {
-                prev[i] = node;
-                visited[i] = 1;
-                EnQueue(&Q, i);
-            }
-        }
-        if (Front(Q) == Nil) {
-            break;
-        }
-        else {
-            node = DeQueue(&Q);
-            //printf("%d ", node);
+//            printf("%d ", node);
         }
     }
     return node;

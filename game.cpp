@@ -5,17 +5,17 @@ void InitGame(playerControl *player) {//M. Hisyam A
     player->level = 1;
     InitLevel(player);
 }
-void GameRoundCheck();
+
 
 void InitLevel(playerControl *player) { //M. Hisyam A
     switch(player->level) {
-        case 1 : CreateMap(level1, player);nodeCount=58;createNodes(player, NodeLevel1);break;
-        case 2 : CreateMap(level2, player);nodeCount=70;createNodes(player, NodeLevel2);break;
-        case 3 : CreateMap(level3, player);nodeCount=60;createNodes(player, NodeLevel3);break;
-        case 4 : CreateMap(level4, player);break;
-        case 5 : CreateMap(level5, player);break;
-        case 6 : CreateMap(level6, player);nodeCount=116;createNodes(player, NodeLevel6);break;
-        case 7 : CreateMap(level7, player);nodeCount=12;break;
+        case 1 : CreateMap(level1, player);generateNodes();autoPath();autoNodePos();break;
+        case 2 : CreateMap(level2, player);generateNodes();autoPath();autoNodePos();break;
+        case 3 : CreateMap(level3, player);generateNodes();autoPath();autoNodePos();break;
+        case 4 : CreateMap(level4, player);generateNodes();autoPath();autoNodePos();break;
+        case 5 : CreateMap(level5, player);generateNodes();autoPath();autoNodePos();break;
+        case 6 : CreateMap(level6, player);generateNodes();autoPath();autoNodePos();break;
+        case 7 : CreateMap(level7, player);generateNodes();autoPath();autoNodePos();break;
     }
 }
 void ResetPosition(playerControl *player) {//M. Hisyam A
@@ -83,11 +83,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
         //BlackSquare(24*GRIDSIZE,GRIDSIZE*2.8);
         outtextxy(720,84, lepel);
         EmptyStack(&player->ghost1.path);
-        switch(player->level) {
-            case 1 : bfs(player->ghost1.lastNode, prev, GraphLevel1);break;
-            case 2 : bfs(player->ghost1.lastNode, prev, GraphLevel2);break;
-            case 3 : bfs(player->ghost1.lastNode, prev, GraphLevel3);break;
-        }
+        bfs(player->ghost1.lastNode, prev);
 
         rekamana = player->peciman.lastNode;
         if(player->ghost1.stateghost==0){
@@ -108,11 +104,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                 ResetPositionGhost(player);
                 player->ghost1.stateghost=0;
                 EmptyStack(&player->ghost1.path);
-                switch(player->level) {
-                    case 1 : bfs(player->ghost1.lastNode, prev, GraphLevel1);break;
-                    case 2 : bfs(player->ghost1.lastNode, prev, GraphLevel2);break;
-                    case 3 : bfs(player->ghost1.lastNode, prev, GraphLevel6);break;
-                }
+                bfs(player->ghost1.lastNode, prev);
                 rekamana = player->peciman.lastNode;
                 GeneratePath(prev, player->ghost1.lastNode, player->peciman.lastNode, &player->ghost1.path);
                 delay(1000);
@@ -191,58 +183,28 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                     printf("\n========================\n");
                     PrintPath(player->ghost1.path);
                     printf("\n========================\n");
-                    if (player->level==1) {
-                        if (player->ghost1.pos.x!=NodeLevel1[Info(Top(player->ghost1.path))][0] || player->ghost1.pos.y!=NodeLevel1[Info(Top(player->ghost1.path))][1]) {
-                            GhostAutoMove(&player->ghost1, NodeLevel1[Info(Top(player->ghost1.path))]);
-                            // gotoXY(startX, startY, nodepos[Info(Top(*path))][0], nodepos[Info(Top(*path))][1]);
-                        }
-                        else {
-                            player->ghost1.lastNode = Pop(&player->ghost1.path);
-    //
-                        }
+                    if (player->ghost1.pos.x!=nodePos[Info(Top(player->ghost1.path))*2+0] || player->ghost1.pos.y!=nodePos[Info(Top(player->ghost1.path))*2+1]) {
+                        GhostAutoMove(&player->ghost1, Info(Top(player->ghost1.path)));
                     }
-                    else if (player->level==2) {
-                        if (player->ghost1.pos.x!=NodeLevel2[Info(Top(player->ghost1.path))][0] || player->ghost1.pos.y!=NodeLevel2[Info(Top(player->ghost1.path))][1]) {
-                            GhostAutoMove(&player->ghost1, NodeLevel2[Info(Top(player->ghost1.path))]);
-                            // gotoXY(startX, startY, nodepos[Info(Top(*path))][0], nodepos[Info(Top(*path))][1]);
-                        }
-                        else {
-                            player->ghost1.lastNode = Pop(&player->ghost1.path);
-    //
-                        }
-                    }
-                    else if (player->level==3) {
-                        if (player->ghost1.pos.x!=NodeLevel3[Info(Top(player->ghost1.path))][0] || player->ghost1.pos.y!=NodeLevel3[Info(Top(player->ghost1.path))][1]) {
-                            GhostAutoMove(&player->ghost1, NodeLevel3[Info(Top(player->ghost1.path))]);
-                            // gotoXY(startX, startY, nodepos[Info(Top(*path))][0], nodepos[Info(Top(*path))][1]);
-                        }
-                        else {
-                            player->ghost1.lastNode = Pop(&player->ghost1.path);
-    //
-                        }
+                    else {
+                        player->ghost1.lastNode = Pop(&player->ghost1.path);
                     }
 
+                }
+                if(levelMap[player->ghost1.pos.x][player->ghost1.pos.y].node != -1) {
+                    player->ghost1.lastNode = levelMap[player->ghost1.pos.x][player->ghost1.pos.y].node;
                 }
                 int ln;
                 if (player->ghost1.lastNode!=player->peciman.lastNode && Top(player->ghost1.path)==Nil){
                     rekamana = player->peciman.lastNode;
                     EmptyStack(&player->ghost1.path);
-                    switch(player->level) {
-                        case 1 : bfs(player->ghost1.lastNode, prev, GraphLevel1);break;
-                        case 2 : bfs(player->ghost1.lastNode, prev, GraphLevel2);break;
-                        case 3 : bfs(player->ghost1.lastNode, prev, GraphLevel3);break;
-                    }
+                    bfs(player->ghost1.lastNode, prev);
 
                     if(player->ghost1.stateghost==0){
                         GeneratePath(prev, player->ghost1.lastNode, player->peciman.lastNode, &player->ghost1.path);
                     }
                     else {
-                       // GeneratePath(prev, player->ghost1.lastNode, player->ghost1.initNode, &player->ghost1.path);
-                        switch(player->level) {
-                            case 1 : ln = bfs2(player->peciman.lastNode, prev2, GraphLevel1);break;
-                            case 2 : ln = bfs2(player->peciman.lastNode, prev2, GraphLevel2);break;
-                            case 3 : ln = bfs2(player->peciman.lastNode, prev2, GraphLevel3);break;
-                        }
+                        ln = bfs(player->peciman.lastNode, prev2);
                         GeneratePath(prev, player->ghost1.lastNode, ln, &player->ghost1.path);
                     }
                 }

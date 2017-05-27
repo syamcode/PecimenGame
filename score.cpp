@@ -88,34 +88,26 @@ void despawnFood(MapController map[20][20], position pos){//Fahmi Rosdiansyah
   bar(pos.x * GRIDSIZE, pos.y* GRIDSIZE, (pos.x * GRIDSIZE) + GRIDSIZE, pos.y*GRIDSIZE + GRIDSIZE);
 }
 
-position randFoodPos(int nodelevel[][2]){
+position randFoodPos(){
   position pos;
   int i, count=0, arr[nodeCount];
   for(i=0;i<nodeCount;i++){
-    if(levelMap[nodelevel[i][0]][nodelevel[i][1]].Food==EMPTY){
+    if(levelMap[nodePos[i*2+0]][nodePos[i*2+1]].Food==EMPTY){
       arr[count]=i;
       count++;
     }
   }
   int idx = randomise(0,count-1);
-  pos.x = nodelevel[arr[idx]][0];
-  pos.y = nodelevel[arr[idx]][1];
+  pos.x = nodePos[arr[idx]*2+0];
+  pos.y = nodePos[arr[idx]*2+1];
   return pos;
   // spawnFood(&levelMap[pos.x][pos.y],pos.x, pos.y);
 }
 
 position randFood(playerControl *player){
-  position pos;
-  switch(player->level){
-    case 1: pos = randFoodPos(NodeLevel1);break;
-    case 2: pos = randFoodPos(NodeLevel2);break;
-    case 3: pos = randFoodPos(NodeLevel3);break;
-    case 4: break;
-    case 5: break;
-    case 6: pos = randFoodPos(NodeLevel6);break;
-    case 7: break;
-  }
-  return pos;
+    position pos;
+    pos = randFoodPos();
+    return pos;
 }
 
 void storeScore(playerControl *player){
