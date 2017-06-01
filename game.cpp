@@ -49,10 +49,11 @@ void ResetPositionGhost(playerControl *player) {
 }
 void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
     int rekamana;
-    clock_t begin,foodbegin;
-    clock_t end,foodend;
+    clock_t begin,foodbegin,ghostbegin;
+    clock_t end,foodend,ghostend;
     char choose;
     int time_spent;
+    int ghosttime;
     int step = 0;
     char scoreText[20];
     char livesText[20];
@@ -99,7 +100,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
         DrawMap();
         DrawGhost(player->ghost1);
         DrawPacman(player->peciman);
-        begin = clock();
+        ghostbegin = begin = clock();
         srand(time(NULL));
         PlaySound("sounds/pacman_beginning.wav",NULL,SND_ASYNC);
         printScore(player->score, 660, 285);
@@ -112,7 +113,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
 //        system("pause");
         while(player->foodCount > 0) {
             if((player->peciman.pos.x==player->ghost1.pos.x) && (player->peciman.pos.y == player->ghost1.pos.y))
-            if (player->ghost1.stateghost==1){ //Eat Ghost
+            if (player->ghost1.stateghost==1 || player->ghost1.stateghost==3){ //Eat Ghost
                 PlaySound("sounds/pacman_eatghost.wav",NULL,SND_ASYNC);				//	playsound
                 player->score+=200; // score = score +200;
                 printScore(player->score, 660, 285);
@@ -181,7 +182,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                     player->ghost1.speed = ESCAPESPEED;
                 }
 
-                if (player->ghost1.stateghost==1 && temp==true){
+                if ((player->ghost1.stateghost==1 || player->ghost1.stateghost==3) && temp==true){
                     foodbegin=clock();
                     temp=false;
                 }
@@ -195,14 +196,16 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
             if (step%player->ghost1.speed == 0) {
                 int ln;
                 if (player->ghost1.lastNode!=player->peciman.lastNode && Top(player->ghost1.path)==Nil){
-                                        rekamana = player->peciman.lastNode;
+                    rekamana = player->peciman.lastNode;
                     EmptyStack(&player->ghost1.path);
                     bfs(player->ghost1.lastNode, prev);
                     if(player->ghost1.stateghost==0){
                         GeneratePath(prev, player->ghost1.lastNode, player->peciman.lastNode, &player->ghost1.path);
                     }else if(player->ghost1.stateghost==2){
-                            GeneratePath(prev, player->ghost1.lastNode, player->ghost1.initNode, &player->ghost1.path);
-                        }
+                        GeneratePath(prev, player->ghost1.lastNode, player->ghost1.initNode, &player->ghost1.path);
+                    }else if(player->ghost1.stateghost==3){
+                        GeneratePath(prev, player->ghost1.lastNode, randomise(0, nodeCount-1), &player->ghost1.path);
+                    }
                     else {
                         ln = bfs(player->peciman.lastNode, prev2);
                         GeneratePath(prev, player->ghost1.lastNode, ln, &player->ghost1.path);
@@ -223,8 +226,10 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                         bfs(player->ghost1.lastNode, prev);
                         if(player->ghost1.stateghost==0){
                             GeneratePath(prev, player->ghost1.lastNode, player->peciman.lastNode, &player->ghost1.path);
-                        } else if(player->ghost1.stateghost==2){
+                        }else if(player->ghost1.stateghost==2){
                             GeneratePath(prev, player->ghost1.lastNode, player->ghost1.initNode, &player->ghost1.path);
+                        }else if(player->ghost1.stateghost==3){
+                            GeneratePath(prev, player->ghost1.lastNode, randomise(0, nodeCount-1), &player->ghost1.path);
                         }
                         else {
                             ln = bfs(player->peciman.lastNode, prev2);
@@ -246,8 +251,10 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
             delay(10);
             end = clock();
             foodend = clock();
+            ghostend = clock();
             time_spent = (int)(end - begin) / CLOCKS_PER_SEC; // Ulah di hapus
             foodghost = (int)(foodend - foodbegin) / CLOCKS_PER_SEC;
+            ghosttime = (int)(ghostend - ghostbegin) / CLOCKS_PER_SEC;
             // printf("%d %d %d\n", player->score, player->lives, time_spent);
             if(time_spent==60){
                 pos = randFood(player);
@@ -255,9 +262,18 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                 begin=clock();
             }
             if (foodghost==10) {
-                player->ghost1.stateghost=0;
+                player->ghost1.stateghost=3;
                 foodend=clock();
                 player->ghost1.speed = DEFAULTSPEED;
+            }
+            if(ghosttime==30){
+                if(player->ghost1.stateghost==0){
+                    player->ghost1.stateghost = 3;
+                }
+                else if(player->ghost1.stateghost==3){
+                    player->ghost1.stateghost = 0;
+                }
+                ghostbegin = clock();
             }
 
             if(pos.x!=-1 && pos.y!=-1){
