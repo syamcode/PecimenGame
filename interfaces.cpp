@@ -399,7 +399,7 @@ void printScore(int score, int posX, int posY){//Fahmi Rosdiansyah
 void printLives(int lives, int posX, int posY){//Fahmi Rosdiansyah
   int i, x=posX;
   for(i=0;i<lives;i++){
-    readimagefile("assets/images/PacmanRightOpen.bmp", x, posY, x+GRIDSIZE, posY+GRIDSIZE);
+    readimagefile("assets/images/RedPacman/PacmanRightOpen.bmp", x, posY, x+GRIDSIZE, posY+GRIDSIZE);
     x+=GRIDSIZE;
     if((i+1)%5==0){
       posY+=GRIDSIZE;
