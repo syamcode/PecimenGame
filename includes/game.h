@@ -2,6 +2,8 @@
 #define GAME_H_INCLUDED
 #include "peciman.h"
 #define MAX_LIVES 10
+#define DEFAULTSPEED 8
+#define ESCAPESPEED 6
 
 typedef struct{
 	char name[15];

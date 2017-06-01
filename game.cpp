@@ -117,7 +117,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                 printScore(player->score, 660, 285);
                 ResetPositionGhost(player);
                 player->ghost1.stateghost=0;
-                player->ghost1.speed = 8;
+                player->ghost1.speed = DEFAULTSPEED;
                 delay(1000);
             } else {
                 break;
@@ -177,7 +177,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                     player->ghost1.stateghost=1;
                     temp=true;
                     levelMap[player->peciman.pos.x][player->peciman.pos.y].Food=EMPTY;
-                    player->ghost1.speed = 4;
+                    player->ghost1.speed = ESCAPESPEED;
                 }
 
                 if (player->ghost1.stateghost==1 && temp==true){
@@ -252,7 +252,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
             if (foodghost==10) {
                 player->ghost1.stateghost=0;
                 foodend=clock();
-                player->ghost1.speed = 8;
+                player->ghost1.speed = DEFAULTSPEED;
             }
 
             if(pos.x!=-1 && pos.y!=-1){
