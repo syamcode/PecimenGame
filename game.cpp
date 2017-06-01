@@ -273,13 +273,13 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
     storeScore(player);
     setcolor(WHITE);
     if (player->lives==0){
-        readimagefile("picture/kalah.bmp",20,100,755,590);
+        readimagefile("assets/images/kalah.bmp",20,100,755,590);
         PlaySound("sounds/pacman_intermission.wav",NULL,SND_ASYNC);
         delay(2000);
          menuutama();
     }
     else{
-        readimagefile("picture/menang.bmp",20,100,755,590);
+        readimagefile("assets/images/menang.bmp",20,100,755,590);
         PlaySound("sounds/pacman_intermission.wav",NULL,SND_ASYNC);
         delay(2000);
          menuutama();
