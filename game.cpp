@@ -274,18 +274,17 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
     }
     cleardevice();
     storeScore(player);
-    settextstyle(8, HORIZ_DIR,30);
     setcolor(WHITE);
     if (player->lives==0){
-        outtext("GAME OVER");
+        readimagefile("assets/images/kalah.bmp",20,100,755,590);
         PlaySound("sounds/pacman_intermission.wav",NULL,SND_ASYNC);
-        delay(1000);
+        delay(2000);
          menuutama();
     }
     else{
-        outtext("PLAYER WIN");
+        readimagefile("assets/images/menang.bmp",20,100,755,590);
         PlaySound("sounds/pacman_intermission.wav",NULL,SND_ASYNC);
-        delay(1000);
+        delay(2000);
          menuutama();
     }
 }
