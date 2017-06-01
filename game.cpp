@@ -31,6 +31,7 @@ void ResetPosition(playerControl *player) {//M. Hisyam A
     player->ghost4.pos.x = player->ghost4.initPos.x;
     player->ghost4.pos.y = player->ghost4.initPos.y;
 
+    player->ghost1.initNode = levelMap[player->ghost1.pos.x][player->ghost1.pos.y].node;
     player->ghost1.lastNode = levelMap[player->ghost1.pos.x][player->ghost1.pos.y].node;
     player->peciman.lastNode = levelMap[player->peciman.pos.x][player->peciman.pos.y].node;
 }
