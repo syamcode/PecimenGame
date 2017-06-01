@@ -111,12 +111,13 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
 //        system("pause");
         while(player->foodCount > 0) {
             if((player->peciman.pos.x==player->ghost1.pos.x) && (player->peciman.pos.y == player->ghost1.pos.y))
-            if (player->ghost1.stateghost==1){
+            if (player->ghost1.stateghost==1){ //Eat Ghost
                 PlaySound("sounds/pacman_eatghost.wav",NULL,SND_ASYNC);				//	playsound
                 player->score+=200; // score = score +200;
                 printScore(player->score, 660, 285);
                 ResetPositionGhost(player);
                 player->ghost1.stateghost=0;
+                player->ghost1.speed = 8;
                 delay(1000);
             } else {
                 break;
