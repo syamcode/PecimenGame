@@ -64,6 +64,30 @@ void versusmode()//Auliya Aqma
     tampilan();
 }
 
+void chooseskin(){
+    settextstyle(8, HORIZ_DIR,4);
+    outtextxy(297,300, "Choose Skin\n");
+    readimagefile("assets/images/RedPacman/PacmanRightOpen.bmp",200,400,300,500);
+    readimagefile("assets/images/PacmanLeftOpen.bmp",500,400,600,500);
+    while(1)
+    {
+        GetCursorPos(&cursorPosition);
+        mX=cursorPosition.x;
+        mY=cursorPosition.y;
+
+       if (GetAsyncKeyState(VK_LBUTTON) && mX>=200 && mX<=300 && mY>=400 && mY<=500)
+       {
+           menuutama();//GANTI DISINI DIT
+           break;
+       }
+        else if (GetAsyncKeyState(VK_LBUTTON) && mX>=500 && mX<=600 && mY>=400&& mY<=500)
+       {
+            menuscore();//GANTI DISINI DIT
+            break;
+       }
+    }
+}
+
 void menuplay()//Auliya Aqma
 {
     cleardevice();
