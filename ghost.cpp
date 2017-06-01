@@ -134,6 +134,7 @@ int bfs(int v, int prev[]) {
     EnQueue(&Q, v);
 
     int visited[nodeCount];
+    memset(prev, 0, sizeof(prev));
     memset(visited, 0 , sizeof(visited));
     int node = DeQueue(&Q);
     visited[v] = 1;

@@ -100,9 +100,12 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
             //printf("%d ",player->foodCount);
             step++;
 //                        int i, j;
-//            for(i=0;i<20;i++) {
-//                for(j=0;j<20;j++) {
-//                    printf("%d ", levelMap[j][i].node);
+//            for(i=0;i<nodeCount;i++) {
+//                printf("%d : ", i);
+//                for(j=0;j<nodeCount;j++) {
+//                    if (graph[i*nodeCount+j]==1) {
+//                        printf("%d ", j);
+//                    }
 //                }
 //                printf("\n");
 //            }
@@ -166,6 +169,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                 int ln;
                 if (player->ghost1.lastNode!=player->peciman.lastNode && Top(player->ghost1.path)==Nil){
                     rekamana = player->peciman.lastNode;
+                    EmptyStack(&player->ghost1.path);
                     bfs(player->ghost1.lastNode, prev);
                     if(player->ghost1.stateghost==0){
                         GeneratePath(prev, player->ghost1.lastNode, player->peciman.lastNode, &player->ghost1.path);
@@ -185,6 +189,16 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                     }
                     else {
                         player->ghost1.lastNode = Pop(&player->ghost1.path);
+                        rekamana = player->peciman.lastNode;
+                        EmptyStack(&player->ghost1.path);
+                        bfs(player->ghost1.lastNode, prev);
+                        if(player->ghost1.stateghost==0){
+                            GeneratePath(prev, player->ghost1.lastNode, player->peciman.lastNode, &player->ghost1.path);
+                        }
+                        else {
+                            ln = bfs(player->peciman.lastNode, prev2);
+                            GeneratePath(prev, player->ghost1.lastNode, ln, &player->ghost1.path);
+                        }
                     }
 
                 }
