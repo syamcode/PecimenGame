@@ -234,7 +234,7 @@ int level7[20][20]={
 };
 
 int findPath(int posX, int posY, int direction) {
-    if ((levelMap[posX][posY].Wall!=0 && levelMap[posX][posY].Wall!=22) || posX>19 || posY>19) {
+    if ((levelMap[posX][posY].Wall!=0 && levelMap[posX][posY].Wall!=22) || posX>19 || posY>19 ||posX<0 || posY<0) {
         return -1;
     }
     else if (levelMap[posX][posY].node!=-1) {
