@@ -54,6 +54,7 @@ void storymode()//Auliya Aqma
     playerControl player1;
     cleardevice();
     inputnama(&player1);
+    chooseskin(&player1);
     InitGame(&player1);
     GameStart(&player1);
 }
@@ -62,6 +63,31 @@ void versusmode()//Auliya Aqma
 {
     cleardevice();
     tampilan();
+}
+
+void chooseskin(playerControl * player){
+    tampilan();
+    settextstyle(8, HORIZ_DIR,4);
+    outtextxy(297,300, "Choose Skin\n");
+    readimagefile("assets/images/RedPacman/PacmanRightOpen.bmp",200,400,300,500);
+    readimagefile("assets/images/GreenPacman/PacmanLeftOpen.bmp",500,400,600,500);
+    while(1)
+    {
+        GetCursorPos(&cursorPosition);
+        mX=cursorPosition.x;
+        mY=cursorPosition.y;
+
+       if (GetAsyncKeyState(VK_LBUTTON) && mX>=200 && mX<=300 && mY>=400 && mY<=500)
+       {
+           player->peciman.skin = 1;//GANTI DISINI DIT
+           break;
+       }
+        else if (GetAsyncKeyState(VK_LBUTTON) && mX>=500 && mX<=600 && mY>=400&& mY<=500)
+       {
+            player->peciman.skin = 2;//GANTI DISINI DIT
+            break;
+       }
+    }
 }
 
 void menuplay()//Auliya Aqma
@@ -373,7 +399,7 @@ void printScore(int score, int posX, int posY){//Fahmi Rosdiansyah
 void printLives(int lives, int posX, int posY){//Fahmi Rosdiansyah
   int i, x=posX;
   for(i=0;i<lives;i++){
-    readimagefile("assets/images/PacmanRightOpen.bmp", x, posY, x+GRIDSIZE, posY+GRIDSIZE);
+    readimagefile("assets/images/RedPacman/PacmanRightOpen.bmp", x, posY, x+GRIDSIZE, posY+GRIDSIZE);
     x+=GRIDSIZE;
     if((i+1)%5==0){
       posY+=GRIDSIZE;

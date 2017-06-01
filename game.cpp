@@ -4,6 +4,7 @@ void InitGame(playerControl *player) {//M. Hisyam A
     initLives(player);
     player->level = 1;
     InitLevel(player);
+    player->ghost1.speed = 8;
 }
 
 
@@ -175,6 +176,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                     player->ghost1.stateghost=1;
                     temp=true;
                     levelMap[player->peciman.pos.x][player->peciman.pos.y].Food=EMPTY;
+                    player->ghost1.speed = 4;
                 }
 
                 if (player->ghost1.stateghost==1 && temp==true){
@@ -188,7 +190,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
             }
             //speed = (0.5*16);
             printf("%d %d %d %d %d\n", player->ghost1.lastNode,player->peciman.lastNode, rekamana, levelMap[player->ghost1.pos.x][player->ghost1.pos.y].node,player->ghost1.initNode);
-            if (step%8 == 0) {
+            if (step%player->ghost1.speed == 0) {
                 int ln;
                 if (player->ghost1.lastNode!=player->peciman.lastNode && Top(player->ghost1.path)==Nil){
                     rekamana = player->peciman.lastNode;
@@ -249,6 +251,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
             if (foodghost==10) {
                 player->ghost1.stateghost=0;
                 foodend=clock();
+                player->ghost1.speed = 8;
             }
 
             if(pos.x!=-1 && pos.y!=-1){
@@ -271,18 +274,17 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
     }
     cleardevice();
     storeScore(player);
-    settextstyle(8, HORIZ_DIR,30);
     setcolor(WHITE);
     if (player->lives==0){
-        outtext("GAME OVER");
+        readimagefile("assets/images/kalah.bmp",20,100,755,590);
         PlaySound("sounds/pacman_intermission.wav",NULL,SND_ASYNC);
-        delay(1000);
+        delay(2000);
          menuutama();
     }
     else{
-        outtext("PLAYER WIN");
+        readimagefile("assets/images/menang.bmp",20,100,755,590);
         PlaySound("sounds/pacman_intermission.wav",NULL,SND_ASYNC);
-        delay(1000);
+        delay(2000);
          menuutama();
     }
 }
