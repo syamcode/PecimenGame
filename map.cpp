@@ -259,7 +259,7 @@ int *graph;
 int *nodePos;
 void autoPath() {
     graph = (int * ) realloc(graph, nodeCount * nodeCount * sizeof(int));
-    memset(graph, 0, nodeCount*nodeCount);
+    memset(graph, 0, sizeof(graph));
     int i, j, path, k;
     for(i=0;i<20;i++) {
         for(j=0;j<20;j++) {
@@ -282,7 +282,7 @@ void autoPath() {
 }
 void autoNodePos() {
     nodePos = (int * ) realloc(nodePos, nodeCount * 2 * sizeof(int));
-    memset(nodePos, 0, nodeCount*2);
+    memset(nodePos, 0, sizeof(nodePos));
     int i, j, path, k=0;
     for(i=0;i<20;i++) {
         for(j=0;j<20;j++) {
