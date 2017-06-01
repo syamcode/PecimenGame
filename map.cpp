@@ -59,7 +59,7 @@ void DrawMap()
             pos.y = j;
             if(levelMap[i][j].Wall!=0) //pengecekan jika kondisi isi array menunjukan WALL
             {
-                DrawWall(levelMap[i][j].Wall,pos);
+ //               DrawWall(levelMap[i][j].Wall,pos);
             }
             if(levelMap[i][j].Food!=0) //pengecekan jika kondisi isi array menunjukan food
             {

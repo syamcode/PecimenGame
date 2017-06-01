@@ -56,6 +56,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
     char livesText[20];
     int liveGiven=0;
     char lepel[2];
+
     CreateStack(&player->ghost1.path);
     int prev[nodeCount];
     int prev2[nodeCount];
@@ -65,9 +66,31 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
     pos.x=-1;
     pos.y=-1;
     //PrintPath(path);
+
     while (player->lives>0 && player->level<=7) {
-        cleardevice();
-        DrawSideMenu();
+     //   cleardevice();
+     //   DrawSideMenu();
+        if(player->level==1){
+          readimagefile("assets/images/Map1.bmp",0,0,800,600);
+        }
+        if(player->level==2){
+          readimagefile("assets/images/Map2.bmp",0,0,800,600);
+        }
+        if(player->level==3){
+          readimagefile("assets/images/Map3.bmp",0,0,800,600);
+        }
+        if(player->level==4){
+          readimagefile("assets/images/Map4.bmp",0,0,800,600);
+        }
+        if(player->level==5){
+          readimagefile("assets/images/Map5.bmp",0,0,800,600);
+        }
+        if(player->level==6){
+          readimagefile("assets/images/Map6.bmp",0,0,800,600);
+        }
+        if(player->level==7){
+          readimagefile("assets/images/Map7.bmp",0,0,800,600);
+        }
         settextstyle(8, HORIZ_DIR,1);
         outtextxy(660, 165,player->name);
         ResetPosition(player);
