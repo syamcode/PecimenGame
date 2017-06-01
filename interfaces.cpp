@@ -54,6 +54,7 @@ void storymode()//Auliya Aqma
     playerControl player1;
     cleardevice();
     inputnama(&player1);
+    chooseskin(&player1);
     InitGame(&player1);
     GameStart(&player1);
 }
@@ -64,11 +65,12 @@ void versusmode()//Auliya Aqma
     tampilan();
 }
 
-void chooseskin(){
+void chooseskin(playerControl * player){
+    tampilan();
     settextstyle(8, HORIZ_DIR,4);
     outtextxy(297,300, "Choose Skin\n");
     readimagefile("assets/images/RedPacman/PacmanRightOpen.bmp",200,400,300,500);
-    readimagefile("assets/images/PacmanLeftOpen.bmp",500,400,600,500);
+    readimagefile("assets/images/GreenPacman/PacmanLeftOpen.bmp",500,400,600,500);
     while(1)
     {
         GetCursorPos(&cursorPosition);
@@ -77,12 +79,12 @@ void chooseskin(){
 
        if (GetAsyncKeyState(VK_LBUTTON) && mX>=200 && mX<=300 && mY>=400 && mY<=500)
        {
-           menuutama();//GANTI DISINI DIT
+           player->peciman.skin = 1;//GANTI DISINI DIT
            break;
        }
         else if (GetAsyncKeyState(VK_LBUTTON) && mX>=500 && mX<=600 && mY>=400&& mY<=500)
        {
-            menuscore();//GANTI DISINI DIT
+            player->peciman.skin = 2;//GANTI DISINI DIT
             break;
        }
     }

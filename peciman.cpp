@@ -16,27 +16,54 @@ void DrawPacman(pacmanController peciman)//A. Fadhitya
     int posX = peciman.pos.x * GRIDSIZE;
     //peciman.pos.x *= GRIDSIZE;
     int posY = peciman.pos.y * GRIDSIZE;
+    char *str1 = "assets/images/";
+
+    char *strpacman11 = "PacmanUpOpen.bmp";
+    char *strpacman10 = "PacmanUpClose.bmp";
+    char *strpacman21 = "PacmanDownOpen.bmp";
+    char *strpacman20 = "PacmanDownClose.bmp";
+    char *strpacman31 = "PacmanRightOpen.bmp";
+    char *strpacman30 = "PacmanRightClose.bmp";
+    char *strpacman41 = "PacmanLeftOpen.bmp";
+    char *strpacman40 = "PacmanLeftClose.bmp";
+
+
+    char temp[255];
+    strcpy(temp,str1);
+
+    switch (peciman.skin)
+    {
+        case 1: strcat(temp,"RedPacman/");
+                break;
+        case 2:strcat(temp,"GreenPacman/");
+                break;
+    }
+
     switch (peciman.direction) {
       case UP:
           if (peciman.state == 1) // if open
           {
-            readimagefile("assets/images/RedPacman/PacmanUpOpen.bmp", posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+            strcat(temp,strpacman11);
+            readimagefile(temp, posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
 
           }
           else  // close
           {
-            readimagefile("assets/images/RedPacman/PacmanUpClose.bmp", posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+            strcat(temp,strpacman10);
+            readimagefile(temp, posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
           }
       break;
 
       case DOWN:
               if (peciman.state == 1) // if open
               {
-                readimagefile("assets/images/RedPacman/PacmanDownOpen.bmp", posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+                strcat(temp,strpacman21);
+                readimagefile(temp, posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
               }
               else // close
               {
-                readimagefile("assets/images/RedPacman/PacmanDownClose.bmp", posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+                strcat(temp,strpacman20);
+                readimagefile(temp, posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
               }
 
       break;
@@ -44,22 +71,26 @@ void DrawPacman(pacmanController peciman)//A. Fadhitya
       case RIGHT:
               if (peciman.state == 1) // if open
               {
-                readimagefile("assets/images/RedPacman/PacmanRightOpen.bmp", posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+                strcat(temp,strpacman31);
+                readimagefile(temp, posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
               }
               else // close
               {
-                readimagefile("assets/images/RedPacman/PacmanRightClose.bmp", posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+                strcat(temp,strpacman30);
+                readimagefile(temp, posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
               }
               break;
 
       case LEFT:
               if (peciman.state == 1) // if open
               {
-                readimagefile("assets/images/RedPacman/PacmanLeftOpen.bmp", posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+                strcat(temp,strpacman41);
+                readimagefile(temp, posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
               }
               else// close
               {
-                readimagefile("assets/images/RedPacman/PacmanLeftClose.bmp", posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+                strcat(temp,strpacman40);
+                readimagefile(temp, posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
               }
       break;
     }
