@@ -115,11 +115,11 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                 PlaySound("sounds/pacman_eatghost.wav",NULL,SND_ASYNC);				//	playsound
                 player->score+=200; // score = score +200;
                 printScore(player->score, 660, 285);
-                ResetPositionGhost(player);
-                player->ghost1.stateghost=0;
+               // ResetPositionGhost(player);
+                player->ghost1.stateghost=2;
                 player->ghost1.speed = DEFAULTSPEED;
                 delay(1000);
-            } else {
+            } else if (player->ghost1.stateghost == 0){
                 break;
             }
             //printf("%d ",player->foodCount);
@@ -194,12 +194,14 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
             if (step%player->ghost1.speed == 0) {
                 int ln;
                 if (player->ghost1.lastNode!=player->peciman.lastNode && Top(player->ghost1.path)==Nil){
-                    rekamana = player->peciman.lastNode;
+                                        rekamana = player->peciman.lastNode;
                     EmptyStack(&player->ghost1.path);
                     bfs(player->ghost1.lastNode, prev);
                     if(player->ghost1.stateghost==0){
                         GeneratePath(prev, player->ghost1.lastNode, player->peciman.lastNode, &player->ghost1.path);
-                    }
+                    }else if(player->ghost1.stateghost==2){
+                            GeneratePath(prev, player->ghost1.lastNode, player->ghost1.initNode, &player->ghost1.path);
+                        }
                     else {
                         ln = bfs(player->peciman.lastNode, prev2);
                         GeneratePath(prev, player->ghost1.lastNode, ln, &player->ghost1.path);
@@ -220,6 +222,8 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                         bfs(player->ghost1.lastNode, prev);
                         if(player->ghost1.stateghost==0){
                             GeneratePath(prev, player->ghost1.lastNode, player->peciman.lastNode, &player->ghost1.path);
+                        } else if(player->ghost1.stateghost==2){
+                            GeneratePath(prev, player->ghost1.lastNode, player->ghost1.initNode, &player->ghost1.path);
                         }
                         else {
                             ln = bfs(player->peciman.lastNode, prev2);
