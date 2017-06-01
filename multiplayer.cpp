@@ -323,7 +323,7 @@ void GameStart2(playerControl1 *player1,playerControl1 *player2) { //Hisyam, Fad
         if (player1->foodCount == 0) {
             printf("Game End");
             player1->level++;
-            InitLevel(player1);
+            InitLevel2(player1);
         }
         else {
             PlaySound("sounds/pacman_death.wav",NULL,SND_ASYNC);

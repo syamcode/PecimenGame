@@ -20,23 +20,23 @@ void DrawPacman(pacmanController peciman)//A. Fadhitya
       case UP:
           if (peciman.state == 1) // if open
           {
-            readimagefile("assets/images/PacmanUpOpen.bmp", posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+            readimagefile("assets/images/RedPacman/PacmanUpOpen.bmp", posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
 
           }
           else  // close
           {
-            readimagefile("assets/images/PacmanUpClose.bmp", posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+            readimagefile("assets/images/RedPacman/PacmanUpClose.bmp", posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
           }
       break;
 
       case DOWN:
               if (peciman.state == 1) // if open
               {
-                readimagefile("assets/images/PacmanDownOpen.bmp", posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+                readimagefile("assets/images/RedPacman/PacmanDownOpen.bmp", posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
               }
               else // close
               {
-                readimagefile("assets/images/PacmanDownClose.bmp", posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+                readimagefile("assets/images/RedPacman/PacmanDownClose.bmp", posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
               }
 
       break;
@@ -44,22 +44,22 @@ void DrawPacman(pacmanController peciman)//A. Fadhitya
       case RIGHT:
               if (peciman.state == 1) // if open
               {
-                readimagefile("assets/images/PacmanRightOpen.bmp", posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+                readimagefile("assets/images/RedPacman/PacmanRightOpen.bmp", posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
               }
               else // close
               {
-                readimagefile("assets/images/PacmanRightClose.bmp", posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+                readimagefile("assets/images/RedPacman/PacmanRightClose.bmp", posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
               }
               break;
 
       case LEFT:
               if (peciman.state == 1) // if open
               {
-                readimagefile("assets/images/PacmanLeftOpen.bmp", posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+                readimagefile("assets/images/RedPacman/PacmanLeftOpen.bmp", posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
               }
               else// close
               {
-                readimagefile("assets/images/PacmanLeftClose.bmp", posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
+                readimagefile("assets/images/RedPacman/PacmanLeftClose.bmp", posX, posY, posX + GRIDSIZE, posY + GRIDSIZE);
               }
       break;
     }
