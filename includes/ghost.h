@@ -1,6 +1,12 @@
 #ifndef GHOST_H_INCLUDED
 #define GHOST_H_INCLUDED
 #include "list.h"
+
+#define ROAMING 3
+#define CHASING 0
+#define BEING_CHASED 1
+#define DEAD 2
+
 typedef struct {
     int direction;
     int speed;
