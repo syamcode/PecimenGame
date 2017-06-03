@@ -258,7 +258,7 @@ int findPath(int posX, int posY, int direction) {
 int *graph;
 int *nodePos;
 void autoPath() {
-    graph = (int * ) realloc(graph, nodeCount * nodeCount * sizeof(int));
+    graph = (int * ) malloc(nodeCount * nodeCount * sizeof(int));
     memset(graph, 0, sizeof(graph));
     int i, j, path, k;
     for(i=0;i<20;i++) {
@@ -281,7 +281,7 @@ void autoPath() {
     }
 }
 void autoNodePos() {
-    nodePos = (int * ) realloc(nodePos, nodeCount * 2 * sizeof(int));
+    nodePos = (int * ) malloc(nodeCount * 2 * sizeof(int));
     memset(nodePos, 0, sizeof(nodePos));
     int i, j, path, k=0;
     for(i=0;i<20;i++) {
