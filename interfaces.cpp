@@ -407,3 +407,37 @@ void printLives(int lives, int posX, int posY){//Fahmi Rosdiansyah
     }
   }
 }
+
+void DrawStory(int level) {
+    switch(level){
+        case 1 :
+          readimagefile("assets/images/noir.bmp",0,0,800,600);
+          readimagefile("assets/images/story1.bmp",20,100,755,400);
+          break;
+        case 2 :
+          readimagefile("assets/images/noir.bmp",0,0,800,600);
+          readimagefile("assets/images/story2.bmp",20,100,755,400);
+          break;
+        case 3 :
+          readimagefile("assets/images/noir.bmp",0,0,800,600);
+          readimagefile("assets/images/story3.bmp",20,100,755,400);
+          break;
+        case 4 :
+          readimagefile("assets/images/noir.bmp",0,0,800,600);
+          readimagefile("assets/images/story4.bmp",20,100,755,400);
+          break;
+        case 5 :
+          readimagefile("assets/images/noir.bmp",0,0,800,600);
+          readimagefile("assets/images/story5.bmp",20,100,755,400);
+          break;
+        case 6 :
+           readimagefile("assets/images/noir.bmp",0,0,800,600);
+          readimagefile("assets/images/story6.bmp",20,100,755,400);
+          break;
+        case 7 :
+          readimagefile("assets/images/noir.bmp",0,0,800,600);
+          readimagefile("assets/images/story7.bmp",20,100,755,400);
+          break;
+        }
+        delay(5000);
+}

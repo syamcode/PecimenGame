@@ -65,23 +65,25 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
     CreateStack(&player->ghost1.path);
     CreateStack(&player->ghost2.path);
     int speed,foodghost;
-    bool temp=true;
+    bool temp=true, firstRun=true;
     position pos, posIN, posOUT;
     pos.x=-1;
     pos.y=-1;
     //PrintPath(path);
 
     while (player->lives>0 && player->level<=7) {
-     //   cleardevice();
-    DrawWall(player->level);
-    DrawMap(player->level);
+        if(firstRun){
+            DrawStory(player->level);
+            firstRun=false;
+        }
+        DrawWall(player->level);
+        DrawMap(player->level);
 
 
         settextstyle(8, HORIZ_DIR,1);
         outtextxy(660, 165,player->name);
         ResetPosition(player);
 
-        //DrawFood(player->level);
         DrawGhost(player->ghost1);
         DrawPacman(player->peciman);
         ghostbegin = bonusbegin = bonusbegin2 = clock();
@@ -90,38 +92,22 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
         printScore(player->score, 660, 285);
         printLives(player->lives, 627, 405);
         sprintf(lepel, "%d", player->level);
-        //BlackSquare(24*GRIDSIZE,GRIDSIZE*2.8);
         outtextxy(720,84, lepel);
         EmptyStack(&player->ghost1.path);
         EmptyStack(&player->ghost2.path);
-//        PrintPath(player->ghost1.path);
-//        system("pause");
         while(player->foodCount > 0) {
             if((player->peciman.pos.x==player->ghost1.pos.x) && (player->peciman.pos.y == player->ghost1.pos.y))
-            if (player->ghost1.stateghost==BEING_CHASED){ //Eat Ghost
-                PlaySound("sounds/pacman_eatghost.wav",NULL,SND_ASYNC);				//	playsound
-                player->score+=200; // score = score +200;
-                printScore(player->score, 660, 285);
-               // ResetPositionGhost(player);
-                player->ghost1.stateghost=DEAD;
-                player->ghost1.speed = DEFAULTSPEED;
-                delay(1000);
-            } else if (player->ghost1.stateghost== CHASING || player->ghost1.stateghost==ROAMING){
-                break;
-            }
-            //printf("%d ",player->foodCount);
+                if (player->ghost1.stateghost==BEING_CHASED){ //Eat Ghost
+                    PlaySound("sounds/pacman_eatghost.wav",NULL,SND_ASYNC);				//	playsound
+                    player->score+=200; // score = score +200;
+                    printScore(player->score, 660, 285);
+                    player->ghost1.stateghost=DEAD;
+                    player->ghost1.speed = DEFAULTSPEED;
+                    delay(1000);
+                } else if (player->ghost1.stateghost== CHASING || player->ghost1.stateghost==ROAMING){
+                    break;
+                }
             step++;
-//                        int i, j;
-//            for(i=0;i<nodeCount;i++) {
-//                printf("%d : ", i);
-//                for(j=0;j<nodeCount;j++) {
-//                    if (graph[i*nodeCount+j]==1) {
-//                        printf("%d ", j);
-//                    }
-//                }
-//                printf("\n");
-//            }
-//            system("pause");
             if(kbhit())
             {
                 choose = getch();
@@ -142,7 +128,6 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                      player->peciman.nextDirection = UP;
                     break;
 
-                //case 13: spawnFood(&levelMap[9][12],9,12); break;
                 }
             }
             if (step%8 == 0){
@@ -162,21 +147,18 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                     PlaySound("sounds/pacman_extrapac.wav",NULL,SND_ASYNC);
                     player->foodCount--;
                     player->ghost1.stateghost=BEING_CHASED;
+                    player->ghost2.stateghost=BEING_CHASED;
                     temp=true;
                     levelMap[player->peciman.pos.x][player->peciman.pos.y].Food=EMPTY;
                     player->ghost1.speed = ESCAPESPEED;
-                }
-
-                if (player->ghost1.stateghost==BEING_CHASED && temp==true){
+                    player->ghost2.speed = ESCAPESPEED;
                     foodbegin=clock();
-                    temp=false;
                 }
                 changeState(&player->peciman); // mengubah keadaan pacman dari membuka menjadi tertutup
                 if(levelMap[player->peciman.pos.x][player->peciman.pos.y].node != -1) {
                     player->peciman.lastNode = levelMap[player->peciman.pos.x][player->peciman.pos.y].node;
                 }
             }
-            //speed = (0.5*16);
             printf("%d %d %d %d %d\n", player->ghost1.lastNode,player->peciman.lastNode, rekamana, levelMap[player->ghost1.pos.x][player->ghost1.pos.y].node,player->ghost1.initNode);
             if (step%player->ghost1.speed == 0) {
                 ghostMoveAsli(&player->ghost1, player->peciman.lastNode);
@@ -202,7 +184,6 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
             bonustime2 = (int)(bonusend2 - bonusbegin2) / CLOCKS_PER_SEC;
             foodghost = (int)(foodend - foodbegin) / CLOCKS_PER_SEC;
             ghosttime = (int)(ghostend - ghostbegin) / CLOCKS_PER_SEC;
-            // printf("%d %d %d\n", player->score, player->lives, bonustime);
             if(bonustime==60){
                 pos = randFood(player);
                 spawnFood(levelMap, pos);
@@ -221,7 +202,6 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                 }while(posOUT.x == 8 || posOUT.x == 9|| posOUT.x == 10 || posOUT.x == 11 || posOUT.y == 9 || posOUT.y == 10);
                 spawnPortal(levelMap, posOUT, 0);
                 bonusbegin2=clock();
-                bool masuk = true;
             }
             if(player->peciman.pos.x == posIN.x && player->peciman.pos.y == posIN.y)
             {
@@ -230,11 +210,17 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                 posIN.x = 99;
                 posIN.y = 99;
             }
-             if (foodghost==10 && player->ghost1.stateghost != DEAD) //Auliya
+             if (foodghost==10) //Auliya
 			 {
-                player->ghost1.stateghost=ROAMING;
+                if (player->ghost1.stateghost != DEAD) {
+                    player->ghost1.stateghost=ROAMING;
+                    player->ghost1.speed = DEFAULTSPEED;
+                }
+                if (player->ghost2.stateghost != DEAD) {
+                    player->ghost2.stateghost=ROAMING;
+                    player->ghost2.speed = DEFAULTSPEED;
+                }
                 foodbegin=clock();
-                player->ghost1.speed = DEFAULTSPEED;
             }
             if(player->ghost1.lastNode == player->ghost1.initNode && player->ghost1.stateghost == DEAD) //Auliya
             {
@@ -266,6 +252,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
         if (player->foodCount == 0) {
             printf("Game End");
             player->level++;
+            firstRun=true;
             InitLevel(player);
         }
         else {

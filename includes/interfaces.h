@@ -22,4 +22,5 @@ void drawNumber(int x, int posX, int posY, int posisi);//Fahmi Rosdiansyah
 void printScore(int score, int posX, int posY);//Fahmi Rosdiansyah
 void printLives(int lives, int posX, int posY);//Fahmi Rosdiansyah
 void chooseskin(playerControl * player);
+void DrawStory(int level);
 #endif
