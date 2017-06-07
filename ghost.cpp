@@ -2,7 +2,7 @@ void DrawGhost(ghostController ghost) { //M. Hisyam A
     int posX = ghost.pos.x * GRIDSIZE;
     int posY = ghost.pos.y * GRIDSIZE;
     switch(ghost.ghostType) {
-        case KUNTILANAK : if(ghost.stateghost==0){
+        case KUNTILANAK : if(ghost.stateghost==0 || ghost.stateghost == 2){
                             readimagefile("assets/images/Ghost1.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);}
                             else if(ghost.stateghost==3){
                                 readimagefile("assets/images/Ghost2.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);
