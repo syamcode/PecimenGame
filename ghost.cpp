@@ -4,6 +4,9 @@ void DrawGhost(ghostController ghost) { //M. Hisyam A
     switch(ghost.ghostType) {
         case KUNTILANAK : if(ghost.stateghost==0){
                             readimagefile("assets/images/Ghost1.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);}
+                            else if(ghost.stateghost==2){
+                                readimagefile("assets/images/eye_ghost.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);
+                            }
                             else if(ghost.stateghost==3){
                                 readimagefile("assets/images/Ghost2.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);
                             }
