@@ -59,6 +59,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
     pos.y=-1;
     //PrintPath(path);
 
+    srand(time(NULL));
     while (player->lives>0 && player->level<=7) {
         if(firstRun){
             DrawStory(player->level);
@@ -75,7 +76,6 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
         DrawGhost(player->ghost1);
         DrawPacman(player->peciman);
         ghostbegin = bonusbegin = bonusbegin2 = clock();
-        srand(time(NULL));
         PlaySound("sounds/pacman_beginning.wav",NULL,SND_ASYNC);
         printScore(player->score, 660, 285);
         printLives(player->lives, 627, 405);
@@ -175,7 +175,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
             foodghost = (int)(foodend - foodbegin) / CLOCKS_PER_SEC;
             ghosttime = (int)(ghostend - ghostbegin) / CLOCKS_PER_SEC;
             if(bonustime==60){
-                pos = randFood(player);
+                pos = FindAndRandomEmptyNode();
                 spawnFood(levelMap, pos);
                 bonusbegin=clock();
             }
@@ -183,12 +183,12 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
             {
                 do
                 {
-                    posIN = randObject(player);
+                    posIN = FindAndRandomEmptyNodeObject();
                 }while(posIN.x == 8 || posIN.x == 9|| posIN.x == 10 || posIN.x == 11 || posIN.y == 9 || posIN.y == 10);
                 spawnPortal(levelMap, posIN, 1);
                 do
                 {
-                    posOUT = randObject(player);
+                    posOUT = FindAndRandomEmptyNodeObject();
                 }while(posOUT.x == 8 || posOUT.x == 9|| posOUT.x == 10 || posOUT.x == 11 || posOUT.y == 9 || posOUT.y == 10);
                 spawnPortal(levelMap, posOUT, 0);
                 bonusbegin2=clock();

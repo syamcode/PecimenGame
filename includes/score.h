@@ -25,7 +25,6 @@ void spawnPortal(MapController map[20][20], position pos, int in);
 void despawnPortal(MapController map[20][20], position INp, position OUTp);
 position FindAndRandomEmptyNodeObject();
 position FindAndRandomEmptyNode();
-position randFood(playerControl *player);
 void storeScore(playerControl *player);
 int scoreCount();
 void sortFile(char *filename);
