@@ -247,7 +247,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                 spawnFood(levelMap, pos);
                 bonusbegin=clock();
             }
-            if(bonustime2==10)
+            if(bonustime2==20)
             {
                 do
                 {
@@ -266,6 +266,8 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
             {
                 player->peciman.pos = posOUT;
                 despawnPortal(levelMap, posIN, posOUT);
+                posIN.x = 99;
+                posIN.y = 99;
             }
             if (foodghost==10) {
                 player->ghost1.stateghost=ROAMING;
@@ -286,7 +288,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                 if((bonustime==20 && (levelMap[pos.x][pos.y].Food==FOOD2 || levelMap[pos.x][pos.y].Food==FOOD3)) || (bonustime==15 && levelMap[pos.x][pos.y].Food==FOOD4) || (bonustime==10 && levelMap[pos.x][pos.y].Food==FOOD5)){
                     despawnFood(levelMap,pos);
                 }
-                if(bonustime2==20 && levelMap[posIN.x][posIN.y].Object == IN_PORTAL && levelMap[posOUT.x][posOUT.y].Object == OUT_PORTAL)
+                if(bonustime2==10 && levelMap[posIN.x][posIN.y].Object == IN_PORTAL && levelMap[posOUT.x][posOUT.y].Object == OUT_PORTAL)
                 {
                     despawnPortal(levelMap, posIN, posOUT);
                 }
