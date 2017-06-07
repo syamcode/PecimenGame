@@ -1,56 +1,29 @@
 int nodeCount = 1;
 //prosedur untuk mengambar Wall menggunakan sprite sesuai kondisi di array dengan parameter jenis wall , posisi x, posisi y (by pega)
 void DrawWall(int level) {
-//    pos.x *= GRIDSIZE;
-//    pos.y *= GRIDSIZE;
     switch(level){
-            //   DrawSideMenu();
         case 1 :
-          readimagefile("assets/images/noir.bmp",0,0,800,600);
-          readimagefile("assets/images/story1.bmp",20,100,755,400);
-        delay(5000);
           readimagefile("assets/images/Map1.bmp",0,0,800,600);
           break;
         case 2 :
-          readimagefile("assets/images/noir.bmp",0,0,800,600);
-          readimagefile("assets/images/story2.bmp",20,100,755,400);
-        delay(5000);
           readimagefile("assets/images/Map2.bmp",0,0,800,600);
           break;
         case 3 :
-          readimagefile("assets/images/noir.bmp",0,0,800,600);
-          readimagefile("assets/images/story3.bmp",20,100,755,400);
-        delay(5000);
           readimagefile("assets/images/Map3.bmp",0,0,800,600);
           break;
         case 4 :
-          readimagefile("assets/images/noir.bmp",0,0,800,600);
-          readimagefile("assets/images/story4.bmp",20,100,755,400);
-        delay(5000);
           readimagefile("assets/images/Map4.bmp",0,0,800,600);
           break;
         case 5 :
-          readimagefile("assets/images/noir.bmp",0,0,800,600);
-          readimagefile("assets/images/story5.bmp",20,100,755,400);
-        delay(5000);
           readimagefile("assets/images/Map5.bmp",0,0,800,600);
           break;
         case 6 :
-           readimagefile("assets/images/noir.bmp",0,0,800,600);
-          readimagefile("assets/images/story6.bmp",20,100,755,400);
-        delay(5000);
           readimagefile("assets/images/Map6.bmp",0,0,800,600);
           break;
         case 7 :
-          readimagefile("assets/images/noir.bmp",0,0,800,600);
-          readimagefile("assets/images/story7.bmp",20,100,755,400);
-        delay(5000);
           readimagefile("assets/images/Map7.bmp",0,0,800,600);
           break;
         }
-//        if(wall==WALL_GHOST){
-//                readimagefile("assets/images/Ghost_Wall.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
-//        }
 }
 //prosedur untuk mengambar food menggunakan sprite sesuai kondisi di array dengan parameter jenis food , posisi x , posisi y (by pega)
 void Food(int food,position pos) {
