@@ -35,8 +35,8 @@ void BlackSquareCheck(position pos) {//M. Hisyam A
         Food(levelMap[pos.x][pos.y].Food, pos);
     }
     else if (levelMap[pos.x][pos.y].Wall == WALL_GHOST){
-//        DrawWall(WALL_GHOST, pos);
-          BlackSquare(pos.x, pos.y);
+        readimagefile("assets/images/Ghost_Wall.bmp",pos.x*GRIDSIZE, pos.y*GRIDSIZE, (pos.x*GRIDSIZE) + GRIDSIZE, (pos.y*GRIDSIZE) + GRIDSIZE);
+          //BlackSquare(pos.x, pos.y);
     }
     else {
         BlackSquare(pos.x, pos.y);

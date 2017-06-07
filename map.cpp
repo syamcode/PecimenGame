@@ -1,8 +1,8 @@
 int nodeCount = 1;
 //prosedur untuk mengambar Wall menggunakan sprite sesuai kondisi di array dengan parameter jenis wall , posisi x, posisi y (by pega)
-void DrawWall(int wall, position pos, int level) {
-    pos.x *= GRIDSIZE;
-    pos.y *= GRIDSIZE;
+void DrawWall(int level) {
+//    pos.x *= GRIDSIZE;
+//    pos.y *= GRIDSIZE;
     switch(level){
             //   DrawSideMenu();
         case 1 :
@@ -27,9 +27,9 @@ void DrawWall(int wall, position pos, int level) {
           readimagefile("assets/images/Map7.bmp",0,0,800,600);
           break;
         }
-        if(wall==WALL_GHOST){
-                readimagefile("assets/images/Ghost_Wall.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
-        }
+//        if(wall==WALL_GHOST){
+//                readimagefile("assets/images/Ghost_Wall.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
+//        }
 }
 //prosedur untuk mengambar food menggunakan sprite sesuai kondisi di array dengan parameter jenis food , posisi x , posisi y (by pega)
 void Food(int food,position pos) {
@@ -60,23 +60,11 @@ void DrawMap(int level)
         for(j=0;j<20;j++) { //Mengecek posisi array ke arah x
             pos.x = i;
             pos.y = j;
-            if(levelMap[i][j].Wall!=0) //pengecekan jika kondisi isi array menunjukan WALL
+            if(levelMap[i][j].Wall==WALL_GHOST)//pengecekan jika kondisi isi array menunjukan WALL
             {
-                DrawWall(levelMap[i][j].Wall,pos,level);
+                readimagefile("assets/images/Ghost_Wall.bmp",pos.x*GRIDSIZE, pos.y*GRIDSIZE, (pos.x*GRIDSIZE) + GRIDSIZE, (pos.y*GRIDSIZE) + GRIDSIZE);
+//                DrawWall(levelMap[i][j].Wall,pos,level);
             }
-
-        }
-    }
-}
-
-void DrawFood(int level)
-{
-    position pos;
-    int i, j;
-    for (i=0;i<20;i++) { //mengecek posisi array ke arah y
-        for(j=0;j<20;j++) { //Mengecek posisi array ke arah x
-            pos.x = i;
-            pos.y = j;
             if(levelMap[i][j].Food!=0) //pengecekan jika kondisi isi array menunjukan food
             {
                 Food(levelMap[i][j].Food,pos);
@@ -84,6 +72,7 @@ void DrawFood(int level)
         }
     }
 }
+
 
 //struktur data aray untuk level 1 berukuran 20x20 (by Pega)
 int level1[20][20]= {
