@@ -267,10 +267,15 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                 player->peciman.pos = posOUT;
                 despawnPortal(levelMap, posIN, posOUT);
             }
-            if (foodghost==10) {
+             if (foodghost==10 && player->ghost1.stateghost != DEAD) //Auliya
+			 { 
                 player->ghost1.stateghost=ROAMING;
                 foodbegin=clock();
                 player->ghost1.speed = DEFAULTSPEED;
+            }
+            if(player->ghost1.lastNode == player->ghost1.initNode && player->ghost1.stateghost == DEAD) //Auliya
+            {
+                player->ghost1.stateghost = ROAMING;
             }
             if(ghosttime==30){
                 if(player->ghost1.stateghost==CHASING){
