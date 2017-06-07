@@ -97,16 +97,16 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
         EmptyStack(&player->ghost2.path);
         while(player->foodCount > 0) {
             if((player->peciman.pos.x==player->ghost1.pos.x) && (player->peciman.pos.y == player->ghost1.pos.y))
-            if (player->ghost1.stateghost==BEING_CHASED){ //Eat Ghost
-                PlaySound("sounds/pacman_eatghost.wav",NULL,SND_ASYNC);				//	playsound
-                player->score+=200; // score = score +200;
-                printScore(player->score, 660, 285);
-                player->ghost1.stateghost=DEAD;
-                player->ghost1.speed = DEFAULTSPEED;
-                delay(1000);
-            } else if (player->ghost1.stateghost== CHASING || player->ghost1.stateghost==ROAMING){
-                break;
-            }
+                if (player->ghost1.stateghost==BEING_CHASED){ //Eat Ghost
+                    PlaySound("sounds/pacman_eatghost.wav",NULL,SND_ASYNC);				//	playsound
+                    player->score+=200; // score = score +200;
+                    printScore(player->score, 660, 285);
+                    player->ghost1.stateghost=DEAD;
+                    player->ghost1.speed = DEFAULTSPEED;
+                    delay(1000);
+                } else if (player->ghost1.stateghost== CHASING || player->ghost1.stateghost==ROAMING){
+                    break;
+                }
             step++;
             if(kbhit())
             {
@@ -147,14 +147,12 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                     PlaySound("sounds/pacman_extrapac.wav",NULL,SND_ASYNC);
                     player->foodCount--;
                     player->ghost1.stateghost=BEING_CHASED;
+                    player->ghost2.stateghost=BEING_CHASED;
                     temp=true;
                     levelMap[player->peciman.pos.x][player->peciman.pos.y].Food=EMPTY;
                     player->ghost1.speed = ESCAPESPEED;
-                }
-
-                if (player->ghost1.stateghost==BEING_CHASED && temp==true){
+                    player->ghost2.speed = ESCAPESPEED;
                     foodbegin=clock();
-                    temp=false;
                 }
                 changeState(&player->peciman); // mengubah keadaan pacman dari membuka menjadi tertutup
                 if(levelMap[player->peciman.pos.x][player->peciman.pos.y].node != -1) {
@@ -213,11 +211,17 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                 posIN.x = 99;
                 posIN.y = 99;
             }
-             if (foodghost==10 && player->ghost1.stateghost != DEAD) //Auliya
+             if (foodghost==10) //Auliya
 			 {
-                player->ghost1.stateghost=ROAMING;
+                if (player->ghost1.stateghost != DEAD) {
+                    player->ghost1.stateghost=ROAMING;
+                    player->ghost1.speed = DEFAULTSPEED;
+                }
+                if (player->ghost2.stateghost != DEAD) {
+                    player->ghost2.stateghost=ROAMING;
+                    player->ghost2.speed = DEFAULTSPEED;
+                }
                 foodbegin=clock();
-                player->ghost1.speed = DEFAULTSPEED;
             }
             if(player->ghost1.lastNode == player->ghost1.initNode && player->ghost1.stateghost == DEAD) //Auliya
             {

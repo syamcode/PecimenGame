@@ -13,7 +13,17 @@ void DrawGhost(ghostController ghost) { //M. Hisyam A
                             readimagefile("assets/images/Ghost1.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);
                             }
                         break;
-        case POCONG : readimagefile("assets/images/Ghost2.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);break;
+        case POCONG :
+                        if(ghost.stateghost==DEAD){
+                            readimagefile("assets/images/eye_ghost.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);
+                        }
+                        else if(ghost.stateghost==BEING_CHASED){
+                            readimagefile("assets/images/Ghost1PU.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);
+                        }
+                        else {
+                        readimagefile("assets/images/Ghost2.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);
+                        }
+                        break;
         case TENGKORAK : readimagefile("assets/images/Ghost3.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);break;
         case TUYUL : readimagefile("assets/images/Ghost4.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);break;
     }
