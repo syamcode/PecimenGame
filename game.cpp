@@ -247,11 +247,17 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                 spawnFood(levelMap, pos);
                 bonusbegin=clock();
             }
-            if(bonustime2==60)
+            if(bonustime2==10)
             {
-                posIN = randFood(player);
+                do
+                {
+                    posIN = randObject(player);
+                }while(posIN.x == 8 || posIN.x == 9|| posIN.x == 10 || posIN.x == 11 || posIN.y == 9 || posIN.y == 10);
                 spawnPortal(levelMap, posIN, 1);
-                posOUT = randFood(player);
+                do
+                {
+                    posOUT = randObject(player);
+                }while(posOUT.x == 8 || posOUT.x == 9|| posOUT.x == 10 || posOUT.x == 11 || posOUT.y == 9 || posOUT.y == 10);
                 spawnPortal(levelMap, posOUT, 0);
                 bonusbegin2=clock();
                 bool masuk = true;

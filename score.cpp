@@ -107,6 +107,22 @@ void despawnPortal(MapController map[20][20], position INp, position OUTp)
   bar(OUTp.x * GRIDSIZE, OUTp.y* GRIDSIZE, (OUTp.x * GRIDSIZE) + GRIDSIZE, OUTp.y*GRIDSIZE + GRIDSIZE);
 }
 
+position FindAndRandomEmptyNodeObject(){
+  position pos;
+  int i, count=0, arr[nodeCount];
+  for(i=0;i<nodeCount;i++){
+    if(levelMap[nodePos[i*2+0]][nodePos[i*2+1]].Object==EMPTY){
+      arr[count]=i;
+      count++;
+    }
+  }
+  int idx = randomise(0,count-1);
+  pos.x = nodePos[arr[idx]*2+0];
+  pos.y = nodePos[arr[idx]*2+1];
+  return pos;
+  // spawnFood(&levelMap[pos.x][pos.y],pos.x, pos.y);
+}
+
 position FindAndRandomEmptyNode(){
   position pos;
   int i, count=0, arr[nodeCount];
@@ -121,6 +137,12 @@ position FindAndRandomEmptyNode(){
   pos.y = nodePos[arr[idx]*2+1];
   return pos;
   // spawnFood(&levelMap[pos.x][pos.y],pos.x, pos.y);
+}
+
+position randObject(playerControl *player){
+    position pos;
+    pos = FindAndRandomEmptyNodeObject();
+    return pos;
 }
 
 position randFood(playerControl *player){
