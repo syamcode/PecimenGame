@@ -49,10 +49,11 @@ void ResetPositionGhost(playerControl *player) {
 }
 void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
     int rekamana;
-    clock_t bonusbegin,foodbegin,ghostbegin;
-    clock_t bonusend,foodend,ghostend;
+    clock_t bonusbegin,foodbegin,ghostbegin, bonusbegin2;
+    clock_t bonusend,foodend,ghostend, bonusend2;
     char choose;
     int bonustime;
+    int bonustime2;
     int ghosttime;
     int step = 0;
     char scoreText[20];
@@ -65,7 +66,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
     int prev2[nodeCount];
     int speed,foodghost;
     bool temp=true;
-    position pos;
+    position pos, posIN, posOUT;
     pos.x=-1;
     pos.y=-1;
     //PrintPath(path);
@@ -83,7 +84,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
         //DrawFood(player->level);
         DrawGhost(player->ghost1);
         DrawPacman(player->peciman);
-        ghostbegin = bonusbegin = clock();
+        ghostbegin = bonusbegin = bonusbegin2 = clock();
         srand(time(NULL));
         PlaySound("sounds/pacman_beginning.wav",NULL,SND_ASYNC);
         printScore(player->score, 660, 285);
@@ -235,7 +236,9 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
             bonusend = clock();
             foodend = clock();
             ghostend = clock();
+            bonusend2 = clock();
             bonustime = (int)(bonusend - bonusbegin) / CLOCKS_PER_SEC; // Ulah di hapus
+            bonustime2 = (int)(bonusend2 - bonusbegin2) / CLOCKS_PER_SEC;
             foodghost = (int)(foodend - foodbegin) / CLOCKS_PER_SEC;
             ghosttime = (int)(ghostend - ghostbegin) / CLOCKS_PER_SEC;
             // printf("%d %d %d\n", player->score, player->lives, bonustime);
@@ -243,6 +246,26 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                 pos = randFood(player);
                 spawnFood(levelMap, pos);
                 bonusbegin=clock();
+            }
+            if(bonustime2==10)
+            {
+                do
+                {
+                    posIN = randObject(player);
+                }while(posIN.x == 8 || posIN.x == 9|| posIN.x == 10 || posIN.x == 11 || posIN.y == 9 || posIN.y == 10);
+                spawnPortal(levelMap, posIN, 1);
+                do
+                {
+                    posOUT = randObject(player);
+                }while(posOUT.x == 8 || posOUT.x == 9|| posOUT.x == 10 || posOUT.x == 11 || posOUT.y == 9 || posOUT.y == 10);
+                spawnPortal(levelMap, posOUT, 0);
+                bonusbegin2=clock();
+                bool masuk = true;
+            }
+            if(player->peciman.pos.x == posIN.x && player->peciman.pos.y == posIN.y)
+            {
+                player->peciman.pos = posOUT;
+                despawnPortal(levelMap, posIN, posOUT);
             }
             if (foodghost==10) {
                 player->ghost1.stateghost=ROAMING;
@@ -262,6 +285,10 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
             if(pos.x!=-1 && pos.y!=-1){
                 if((bonustime==20 && (levelMap[pos.x][pos.y].Food==FOOD2 || levelMap[pos.x][pos.y].Food==FOOD3)) || (bonustime==15 && levelMap[pos.x][pos.y].Food==FOOD4) || (bonustime==10 && levelMap[pos.x][pos.y].Food==FOOD5)){
                     despawnFood(levelMap,pos);
+                }
+                if(bonustime2==20 && levelMap[posIN.x][posIN.y].Object == IN_PORTAL && levelMap[posOUT.x][posOUT.y].Object == OUT_PORTAL)
+                {
+                    despawnPortal(levelMap, posIN, posOUT);
                 }
             }
         }

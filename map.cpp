@@ -51,6 +51,18 @@ void Food(int food,position pos) {
     }
 }
 
+void DrawPortal(int portal, position pos)
+{
+    pos.x *= GRIDSIZE;
+    pos.y *= GRIDSIZE;
+    switch(portal){
+        case IN_PORTAL : readimagefile("assets/images/IN_portal.bmp", pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
+        break;
+        case OUT_PORTAL : readimagefile("assets/images/OUT_portal.bmp", pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
+        break;
+    }
+}
+
 //prosedure untuk menggambar arena dengan struktur data array berukuran 20x20 dengan ukuran pixel 30 (by pega)
 void DrawMap(int level)
 {
