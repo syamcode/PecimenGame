@@ -5,23 +5,10 @@ void DrawWall(int level) {
         case 1 :
           readimagefile("assets/images/Map1.bmp",0,0,800,600);
           break;
-<<<<<<< HEAD
         case 3 :
-          readimagefile("assets/images/noir.bmp",0,0,800,600);
-          readimagefile("assets/images/story2.bmp",20,100,755,400);
-        delay(5000);
           readimagefile("assets/images/Map2.bmp",0,0,800,600);
           break;
         case 2 :
-          readimagefile("assets/images/noir.bmp",0,0,800,600);
-          readimagefile("assets/images/story3.bmp",20,100,755,400);
-        delay(5000);
-=======
-        case 2 :
-          readimagefile("assets/images/Map2.bmp",0,0,800,600);
-          break;
-        case 3 :
->>>>>>> 034c3616c5f39c09dabeccce26f871d1d5d3b3a8
           readimagefile("assets/images/Map3.bmp",0,0,800,600);
           break;
         case 4 :
