@@ -115,7 +115,7 @@ int level3[20][20]= {
                     {7 , 7,  7,  7,  7, 13,  7,  7,  7,  7,  7,  7,  7,  7, 13,  7,  7,  7,  7,  7},
                     {18, 7, 15, 14,  7, 13,  7, 15, 21, 22, 22, 20, 14,  7, 13,  7, 15, 14,  7, 18},
                     {13, 7, 17, 16,  7, 19,  7, 13,  1,  1,  1,  1, 13,  7, 19,  7, 17, 16,  7, 13},
-                    {13, 7,  7,  7,  7,  7,  7, 13,  3,  1,  1,  1, 13,  7,  7,  7,  7,  7,  7, 13},
+                    {13, 7,  7,  7,  7,  7,  7, 13,  3,  4,  1,  1, 13,  7,  7,  7,  7,  7,  7, 13},
                     {19, 7, 20, 21,  7, 20, 21, 17, 12, 12, 12, 12, 16, 20, 21,  7, 20, 21,  7, 19},
                     {7 , 7,  7,  7,  7,  7,  7,  7,  2,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7,  7},
                     {15,12, 12, 12, 21,  7, 20, 21,  7, 20, 21,  7, 20, 21,  7, 20, 12, 12, 12, 14},
@@ -268,6 +268,8 @@ int findPath(int posX, int posY, int direction) {
 }
 int *graph;
 int *nodePos;
+int **prevs;
+int *longest;
 void autoPath() {
     graph = (int * ) malloc(nodeCount * nodeCount * sizeof(int));
     memset(graph, 0, sizeof(graph));
@@ -329,7 +331,17 @@ void generateNodes() {
         }
     }
 }
-
+void generatePrev() {
+    prevs = (int ** ) malloc(nodeCount * sizeof(int*));
+    longest = (int * ) malloc(nodeCount * sizeof(int));
+    memset(prevs, 0, sizeof(prevs));
+    memset(longest, 0, sizeof(longest));
+    int i;
+    for(i=0;i<nodeCount;i++) {
+        prevs[i] = (int *) malloc(nodeCount * sizeof(int));
+        longest[i] = bfs(i, prevs[i]);
+    }
+}
 //Prosedure untuk membuat map dengan parameter
 void CreateMap(int maps[20][20], playerControl *player)//Pega Kurniawan
 {
@@ -431,4 +443,11 @@ void CreateMap(int maps[20][20], playerControl *player)//Pega Kurniawan
             }
         }
     }
+}
+
+void freeAll() {
+    free(graph);
+    free(nodePos);
+    free(prevs);
+    free(longest);
 }

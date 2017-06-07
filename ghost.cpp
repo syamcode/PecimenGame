@@ -182,21 +182,20 @@ int bfs(int v, int prev[]) {
 }
 
 void ghostRealMove(ghostController * ghost, int dest) {
-    int prev[nodeCount];
-    int prev2[nodeCount];
+//    int prev[nodeCount];
+//    int prev2[nodeCount];
     EmptyStack(&ghost->path);
-    bfs(ghost->lastNode, prev);
+    //bfs(ghost->lastNode, prev);
 //    system("pause");
     if(ghost->stateghost==CHASING){
-        GeneratePath(prev, ghost->lastNode, dest, &ghost->path);
+        GeneratePath(prevs[ghost->lastNode], ghost->lastNode, dest, &ghost->path);
     }else if(ghost->stateghost==DEAD){
-        GeneratePath(prev, ghost->lastNode, ghost->initNode, &ghost->path);
+        GeneratePath(prevs[ghost->lastNode], ghost->lastNode, ghost->initNode, &ghost->path);
     }else if(ghost->stateghost==ROAMING){
-        GeneratePath(prev, ghost->lastNode, randomise(0, nodeCount-1), &ghost->path);
+        GeneratePath(prevs[ghost->lastNode], ghost->lastNode, randomise(0, nodeCount-1), &ghost->path);
     }
     else {
-        int ln = bfs(dest, prev2);
-        GeneratePath(prev, ghost->lastNode, ln, &ghost->path);
+        GeneratePath(prevs[ghost->lastNode], ghost->lastNode, longest[dest], &ghost->path);
     }
 }
 

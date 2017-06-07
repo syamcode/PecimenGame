@@ -26,8 +26,7 @@
 #define WALL_LIMIT_LEFT 20
 #define WALL_LIMIT_RIGHT 21
 #define WALL_GHOST 22
-
-
+#include "ghost.h"
 typedef struct{
     int Object;
     int Wall;

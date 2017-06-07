@@ -24,4 +24,5 @@ int CanMove(ghostController ghost, int direction);
 void GhostAutoMove(ghostController *ghost, pacmanController pacman);
 void InitGhost(ghostController *ghost, position pos, int ghostType);
 void BlackSquareCheck(position pos);
+int bfs(int v, int prev[]);
 #endif

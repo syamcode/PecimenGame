@@ -2,20 +2,20 @@ void InitLevel(playerControl *player);
 void InitGame(playerControl *player) {//M. Hisyam A
     initScore(player);
     initLives(player);
-    player->level = 3;
+    player->level = 1;
     InitLevel(player);
 }
 
 
 void InitLevel(playerControl *player) { //M. Hisyam A
     switch(player->level) {
-        case 1 : CreateMap(level1, player);generateNodes();autoPath();autoNodePos();break;
-        case 2 : CreateMap(level2, player);generateNodes();autoPath();autoNodePos();break;
-        case 3 : CreateMap(level3, player);generateNodes();autoPath();autoNodePos();break;
-        case 4 : CreateMap(level4, player);generateNodes();autoPath();autoNodePos();break;
-        case 5 : CreateMap(level5, player);generateNodes();autoPath();autoNodePos();break;
-        case 6 : CreateMap(level6, player);generateNodes();autoPath();autoNodePos();break;
-        case 7 : CreateMap(level7, player);generateNodes();autoPath();autoNodePos();break;
+        case 1 : freeAll();CreateMap(level1, player);generateNodes();autoPath();autoNodePos();generatePrev();break;
+        case 2 : freeAll();CreateMap(level2, player);generateNodes();autoPath();autoNodePos();generatePrev();break;
+        case 3 : freeAll();CreateMap(level3, player);generateNodes();autoPath();autoNodePos();generatePrev();break;
+        case 4 : freeAll();CreateMap(level4, player);generateNodes();autoPath();autoNodePos();generatePrev();break;
+        case 5 : freeAll();CreateMap(level5, player);generateNodes();autoPath();autoNodePos();generatePrev();break;
+        case 6 : freeAll();CreateMap(level6, player);generateNodes();autoPath();autoNodePos();generatePrev();break;
+        case 7 : freeAll();CreateMap(level7, player);generateNodes();autoPath();autoNodePos();generatePrev();break;
     }
 }
 void ResetPosition(playerControl *player) {//M. Hisyam A
