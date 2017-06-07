@@ -21,7 +21,7 @@ int randomise(int min, int max);
 int foodType(int x);
 void spawnFood(MapController map[20][20], position pos);
 void despawnFood(MapController map[20][20], position pos);
-position randFoodPos(int nodelevel[][2]);
+position FindAndRandomEmptyNode();
 position randFood(playerControl *player);
 void storeScore(playerControl *player);
 int scoreCount();

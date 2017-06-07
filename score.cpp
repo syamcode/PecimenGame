@@ -88,7 +88,26 @@ void despawnFood(MapController map[20][20], position pos){//Fahmi Rosdiansyah
   bar(pos.x * GRIDSIZE, pos.y* GRIDSIZE, (pos.x * GRIDSIZE) + GRIDSIZE, pos.y*GRIDSIZE + GRIDSIZE);
 }
 
-position randFoodPos(){
+void spawnPortal(MapController map[20][20], position pos, int in)
+{
+  if(in)
+    map[pos.x][pos.y].Object=33;
+  else
+    map[pos.x][pos.y].Object=34;
+  DrawPortal(map[pos.x][pos.y].Object, pos);
+}
+
+void despawnPortal(MapController map[20][20], position INp, position OUTp)
+{
+  map[INp.x][INp.y].Object=EMPTY;
+  setcolor(BLACK);
+  bar(INp.x * GRIDSIZE, INp.y* GRIDSIZE, (INp.x * GRIDSIZE) + GRIDSIZE, INp.y*GRIDSIZE + GRIDSIZE);
+  map[OUTp.x][OUTp.y].Object=EMPTY;
+  setcolor(BLACK);
+  bar(OUTp.x * GRIDSIZE, OUTp.y* GRIDSIZE, (OUTp.x * GRIDSIZE) + GRIDSIZE, OUTp.y*GRIDSIZE + GRIDSIZE);
+}
+
+position FindAndRandomEmptyNode(){
   position pos;
   int i, count=0, arr[nodeCount];
   for(i=0;i<nodeCount;i++){
@@ -106,7 +125,7 @@ position randFoodPos(){
 
 position randFood(playerControl *player){
     position pos;
-    pos = randFoodPos();
+    pos = FindAndRandomEmptyNode();
     return pos;
 }
 

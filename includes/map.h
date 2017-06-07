@@ -13,6 +13,8 @@
 #define FOOD4 10
 #define FOOD5 11
 #define POWER_UP 32 //oiii//
+#define IN_PORTAL 33 
+#define OUT_PORTAL 34
 #define WALL_HOR 12
 #define WALL_VER 13
 #define WALL_COR_UPRIGHT 14
