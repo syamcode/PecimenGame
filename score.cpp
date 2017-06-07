@@ -139,18 +139,6 @@ position FindAndRandomEmptyNode(){
   // spawnFood(&levelMap[pos.x][pos.y],pos.x, pos.y);
 }
 
-position randObject(playerControl *player){
-    position pos;
-    pos = FindAndRandomEmptyNodeObject();
-    return pos;
-}
-
-position randFood(playerControl *player){
-    position pos;
-    pos = FindAndRandomEmptyNode();
-    return pos;
-}
-
 void storeScore(playerControl *player){
   dataStore scoreData;
   strcpy(scoreData.name, player->name);

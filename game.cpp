@@ -1,4 +1,3 @@
-void InitLevel(playerControl *player);
 void InitGame(playerControl *player) {//M. Hisyam A
     initScore(player);
     initLives(player);
@@ -36,18 +35,7 @@ void ResetPosition(playerControl *player) {//M. Hisyam A
     player->ghost2.lastNode = player->ghost2.initNode;
     player->peciman.lastNode = levelMap[player->peciman.pos.x][player->peciman.pos.y].node;
 }
-void ResetPositionGhost(playerControl *player) {
-    player->ghost1.pos.x = player->ghost1.initPos.x;
-    player->ghost1.pos.y = player->ghost1.initPos.y;
-    player->ghost1.lastNode = levelMap[player->ghost1.pos.x][player->ghost1.pos.y].node;
-    player->ghost1.initNode = levelMap[player->ghost1.pos.x][player->ghost1.pos.y].node;
-    player->ghost2.pos.x = player->ghost2.initPos.x;
-    player->ghost2.pos.y = player->ghost2.initPos.y;
-    player->ghost3.pos.x = player->ghost3.initPos.x;
-    player->ghost3.pos.y = player->ghost3.initPos.y;
-    player->ghost4.pos.x = player->ghost4.initPos.x;
-    player->ghost4.pos.y = player->ghost4.initPos.y;
-}
+
 void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
     int rekamana;
     clock_t bonusbegin,foodbegin,ghostbegin, bonusbegin2;
@@ -65,12 +53,13 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
     CreateStack(&player->ghost1.path);
     CreateStack(&player->ghost2.path);
     int speed,foodghost;
-    bool temp=true, firstRun=true;
+    bool firstRun=true;
     position pos, posIN, posOUT;
     pos.x=-1;
     pos.y=-1;
     //PrintPath(path);
 
+    srand(time(NULL));
     while (player->lives>0 && player->level<=7) {
         if(firstRun){
             DrawStory(player->level);
@@ -87,7 +76,6 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
         DrawGhost(player->ghost1);
         DrawPacman(player->peciman);
         ghostbegin = bonusbegin = bonusbegin2 = clock();
-        srand(time(NULL));
         PlaySound("sounds/pacman_beginning.wav",NULL,SND_ASYNC);
         printScore(player->score, 660, 285);
         printLives(player->lives, 627, 405);
@@ -150,7 +138,6 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                     player->foodCount--;
                     player->ghost1.stateghost=BEING_CHASED;
                     player->ghost2.stateghost=BEING_CHASED;
-                    temp=true;
                     levelMap[player->peciman.pos.x][player->peciman.pos.y].Food=EMPTY;
                     player->ghost1.speed = ESCAPESPEED;
                     player->ghost2.speed = ESCAPESPEED;
@@ -187,7 +174,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
             foodghost = (int)(foodend - foodbegin) / CLOCKS_PER_SEC;
             ghosttime = (int)(ghostend - ghostbegin) / CLOCKS_PER_SEC;
             if(bonustime==60){
-                pos = randFood(player);
+                pos = FindAndRandomEmptyNode();
                 spawnFood(levelMap, pos);
                 bonusbegin=clock();
             }
@@ -195,12 +182,12 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
             {
                 do
                 {
-                    posIN = randObject(player);
+                    posIN = FindAndRandomEmptyNodeObject();
                 }while(posIN.x == 8 || posIN.x == 9|| posIN.x == 10 || posIN.x == 11 || posIN.y == 9 || posIN.y == 10);
                 spawnPortal(levelMap, posIN, 1);
                 do
                 {
-                    posOUT = randObject(player);
+                    posOUT = FindAndRandomEmptyNodeObject();
                 }while(posOUT.x == 8 || posOUT.x == 9|| posOUT.x == 10 || posOUT.x == 11 || posOUT.y == 9 || posOUT.y == 10);
                 spawnPortal(levelMap, posOUT, 0);
                 bonusbegin2=clock();

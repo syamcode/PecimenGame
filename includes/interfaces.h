@@ -10,17 +10,15 @@ DWORD screenHeight = GetSystemMetrics (SM_CYSCREEN);
 void DrawSideMenu(); //Haya Utami
 void tampilan();//Auliya Aqma
 void tampilan2();//Auliya Aqma
-void menuutama();//Auliya Aqma
 void storymode();//Auliya Aqma
-void versusmode();//Auliya Aqma
-void menuplay();//Auliya Aqma
+void chooseskin(playerControl * player);
 void menuscore();//Auliya Aqma
 void howtoplay();//Auliya Aqma
 void aboutus();//Haya Utami
+void menuutama();//Auliya Aqma
 void inputnama(playerControl *player);//Haya Utami
 void drawNumber(int x, int posX, int posY, int posisi);//Fahmi Rosdiansyah
 void printScore(int score, int posX, int posY);//Fahmi Rosdiansyah
 void printLives(int lives, int posX, int posY);//Fahmi Rosdiansyah
-void chooseskin(playerControl * player);
 void DrawStory(int level);
 #endif

@@ -18,11 +18,17 @@ typedef struct {
     int initNode;
     int stateghost;
 }ghostController;
+
 void DrawGhost(ghostController ghost);
-void GhostMove(ghostController *ghost);
-int CanMove(ghostController ghost, int direction);
-void GhostAutoMove(ghostController *ghost, pacmanController pacman);
 void InitGhost(ghostController *ghost, position pos, int ghostType);
+int CanMove(ghostController ghost, int direction);
 void BlackSquareCheck(position pos);
-int bfs(int v, int prev[]);
+void GhostMove(ghostController *ghost);
+void GhostAutoMove(ghostController *ghost, pacmanController pacman);
+void GeneratePath(int prev[], int start, int End, Stack *path);
+void PrintPath(Stack path);
+int bfs(int v, int prev[]) ;
+void ghostRealMove(ghostController * ghost, int dest);
+void ghostMoveAsli(ghostController * ghost, int dest);
+void printState(int state);
 #endif

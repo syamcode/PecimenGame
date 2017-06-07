@@ -35,8 +35,15 @@ typedef struct{
 } MapController;
 
 MapController levelMap[20][20];
-//void CreateMap(int maps);
-void DrawMap();
+
+void DrawWall(int level);
+void Food(int food,position pos);
+void DrawPortal(int portal, position pos);
+void DrawMap(int level);
+int findPath(int posX, int posY, int direction);
+void autoPath();
+void autoNodePos();
+void generateNodes();
 void CreateMap(int maps[20][20], pacmanController *peciman);
 
 
