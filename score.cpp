@@ -95,14 +95,14 @@ void spawnPortal(MapController map[20][20], position pos, int in)
   else
     map[pos.x][pos.y].Object=34;
   DrawPortal(map[pos.x][pos.y].Object, pos);
+  map[pos.x][pos.y].Object=0;
+  map[pos.x][pos.y].Object=0;
 }
 
 void despawnPortal(MapController map[20][20], position INp, position OUTp)
 {
-  map[INp.x][INp.y].Object=EMPTY;
   setcolor(BLACK);
   bar(INp.x * GRIDSIZE, INp.y* GRIDSIZE, (INp.x * GRIDSIZE) + GRIDSIZE, INp.y*GRIDSIZE + GRIDSIZE);
-  map[OUTp.x][OUTp.y].Object=EMPTY;
   setcolor(BLACK);
   bar(OUTp.x * GRIDSIZE, OUTp.y* GRIDSIZE, (OUTp.x * GRIDSIZE) + GRIDSIZE, OUTp.y*GRIDSIZE + GRIDSIZE);
 }
