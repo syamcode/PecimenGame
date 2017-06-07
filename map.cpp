@@ -1,35 +1,35 @@
 int nodeCount = 1;
 //prosedur untuk mengambar Wall menggunakan sprite sesuai kondisi di array dengan parameter jenis wall , posisi x, posisi y (by pega)
-void DrawWall(int wall, position pos) {
+void DrawWall(int wall, position pos, int level) {
     pos.x *= GRIDSIZE;
     pos.y *= GRIDSIZE;
-    switch(wall){
-        case WALL_HOR : readimagefile("assets/images/Wall_Hor.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
-        break;
-        case WALL_VER : readimagefile("assets/images/Wall_Ver.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
-        break;
-        case WALL_COR_UNDERLEFT : readimagefile("assets/images/Wall_Cor_DownLeft.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
-        break;
-        case WALL_COR_UNDERRIGHT : readimagefile("assets/images/Wall_Cor_DownRight.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
-        break;
-        case WALL_COR_UPLEFT : readimagefile("assets/images/Wall_Cor_UPLEFT.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
-        break;
-        case WALL_COR_UPRIGHT : readimagefile("assets/images/Wall_Cor_UPRIGHT.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
-        break;
-        case WALL_LIMIT_UP : readimagefile("assets/images/Wall_Limit_Up.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
-        break;
-        case WALL_LIMIT_DOWN : readimagefile("assets/images/Wall_Limit_Down.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
-        break;
-        case WALL_LIMIT_LEFT : readimagefile("assets/images/Wall_Limit_Left.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
-        break;
-        case WALL_LIMIT_RIGHT : readimagefile("assets/images/Wall_Limit_Right.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
-        break;
-        case WALL_GHOST : readimagefile("assets/images/Wall_Ghost.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
-        break;
+    switch(level){
+             //   DrawSideMenu();
+        case 1 :
+          readimagefile("assets/images/Map1.bmp",0,0,800,600);
+          break;
+        case 2 :
+          readimagefile("assets/images/Map2.bmp",0,0,800,600);
+          break;
+        case 3 :
+          readimagefile("assets/images/Map3.bmp",0,0,800,600);
+          break;
+        case 4 :
+          readimagefile("assets/images/Map4.bmp",0,0,800,600);
+          break;
+        case 5 :
+          readimagefile("assets/images/Map5.bmp",0,0,800,600);
+          break;
+        case 6 :
+          readimagefile("assets/images/Map6.bmp",0,0,800,600);
+          break;
+        case 7 :
+          readimagefile("assets/images/Map7.bmp",0,0,800,600);
+          break;
     }
 }
 //prosedur untuk mengambar food menggunakan sprite sesuai kondisi di array dengan parameter jenis food , posisi x , posisi y (by pega)
-void DrawFood(int food,position pos) {
+void Food(int food,position pos) {
     pos.x *= GRIDSIZE;
     pos.y *= GRIDSIZE;
     switch(food){
@@ -49,7 +49,7 @@ void DrawFood(int food,position pos) {
 }
 
 //prosedure untuk menggambar arena dengan struktur data array berukuran 20x20 dengan ukuran pixel 30 (by pega)
-void DrawMap()
+void DrawMap(int level)
 {
     position pos;
     int i, j;
@@ -59,11 +59,26 @@ void DrawMap()
             pos.y = j;
             if(levelMap[i][j].Wall!=0) //pengecekan jika kondisi isi array menunjukan WALL
             {
- //               DrawWall(levelMap[i][j].Wall,pos);
+                DrawWall(levelMap[i][j].Wall,pos,level);
             }
+             if(levelMap[i][j].Wall==WALL_GHOST){
+                readimagefile("assets/images/Wall_Ghost.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
+            }
+        }
+    }
+}
+
+void DrawFood(int level)
+{
+    position pos;
+    int i, j;
+    for (i=0;i<20;i++) { //mengecek posisi array ke arah y
+        for(j=0;j<20;j++) { //Mengecek posisi array ke arah x
+            pos.x = i;
+            pos.y = j;
             if(levelMap[i][j].Food!=0) //pengecekan jika kondisi isi array menunjukan food
             {
-                DrawFood(levelMap[i][j].Food,pos);
+                Food(levelMap[i][j].Food,pos);
             }
         }
     }
@@ -164,7 +179,7 @@ int level4[20][20]= {
                     };
 
 int level5[20][20]={
-                    {18, 12,12,	12,	12,	12,	12,	12,	12,	 7,	 7,	12,	12,	12,	12,	12,	12,	12,	12,	18},
+                    {18, 1,12,	12,	12,	12,	12,	12,	12,	12,	12,	12,	12,	12,	12,	12,	12,	12,	1,	18},
                     {13, 32,	 7,	 7,	 7,	 7,	20,	21,	 7,	20,	21,	 7,	20,	21,	 7,	 7,	 7,	 7,	 32,	13},
                     {13, 7,	18,	 7,	18,	 7,	 7,	 7,	 7,	 7,	 7,	 7,	 7,	 7,	 7,	18,	 7,	18,	 7,	13},
                     {13, 7,	17,	12,	16,	 7,	20,	21,	 7,	20,	21,	 7,	20,	21,	 7,	17,	12,	16,	 7,	13},
@@ -182,13 +197,13 @@ int level5[20][20]={
                     {13,20,	12,	12,	21,	 7,	19,	 7,	 7,	13,	13,	 7,	 7,	19,	 7,	20,	12,	12,	21,	13},
                     {13, 7,	 7,	 7,	 7,	 7,	 7,	 7,	 7,	13,	13,	 7,	 7,	 7,	 7,	 7,	 7,	 7,	 7,	13},
                     {13, 7,	20,	12,	12,	21,	 7,	20,	12,	16,	17,	12,	21,	 7,	20,	12,	12,	21,	 7,	13},
-                    {13, 32,	 7,	 7,	 7,	 7,	 7,	 7,	 7,	 7,	 7,	 7,	 7,	 7,	 7,	 7,	 7,	 7,	 32,	13},
-                    {17,12,	12,	12,	12,	12,	12,	12,	21,	 7,	 7,	20,	12,	12,	12,	12,	12,	12,	12,	16}
+                    {13, 32, 7,	 7,	 7,	 7,	 7,	 7,	 7,	 7,	 7,	 7,	 7,	 7,	 7,	 7,	 7,	 7,	 32,13},
+                    {17,  1,12,	12,	12,	12,	12,	12,	12,	 12, 12,12,	12,	12,	12,	12,	12,	12,	 1,	16}
                     };
 
 
 int level6[20][20]={
-                  {20,	7,	12,	12,	12,	12,	21,	12,	12,	12,	12,	12,	12,	12,	12,	12,	12,	12,	12,	18},
+                  {20,	 7,	12,	12,	12,	12,	21,	12,	12,	12,	12,	12,	12,	12,	12,	12,	12,	12,	 7,	18},
                   {18,	 3,	18,	 7,	 7,	 7,	18,	 7,	 7,	 7,	 7,	 7,	 7,	18,	 7,	 7,	 7,	 7,	32, 13},
                   {18,	 32,13,	 7,	18,	 7,	13,	21,	 7,	20,	21,	 7,	20,	13,	 7,	20,	12,	12,	21,	13},
                   {13,	 7,	19,	 7,	19,	 7,	19,	 7,	 7,	 7,	 7,	 7,	 7,	19,	 7,	 7,	 7,	 7,	 7,	13},
@@ -207,7 +222,7 @@ int level6[20][20]={
                   {13,	 7,	 7,	 7,	 7,	 7,	 7,	 7,	 7,	20,	21,	 7,	 7,	 7,	 7,	 7,	 7,	 7,	 7,	13},
                   { 7,	 7,	15,	21,	 7,	20,	21,	 7,	 7,	 7,	 7,	 7,	 7,	20,	21,	 7,	20,	14,	 7,	 7},
                   {13,	 32,19,	 7,	 7,	 7,	 7,	 7,	20,	12,	12,	21,	 7,	 7,	 7,	 7,	 7,	19,	32, 13},
-                  {19,	 7,	20,	12,	12,	12,	12,	 7,	12,	12,	12,	12,	12,	12,	12,	12,	12,	12,	12,	21}
+                  {19,	 7,	20,	12,	12,	12,	12,	 12,12,	12,	12,	12,	12,	12,	12,	12,	12,	12,	 7,	21}
 };
 
 int level7[20][20]={

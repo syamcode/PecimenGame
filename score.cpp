@@ -79,7 +79,7 @@ void spawnFood(MapController map[20][20], position pos){//Fahmi Rosdiansyah
   // pos.x = posX;
   // pos.y = posY;
   map[pos.x][pos.y].Food=foodType(randomise(1,100));
-  DrawFood(map[pos.x][pos.y].Food, pos);
+  Food(map[pos.x][pos.y].Food, pos);
 }
 
 void despawnFood(MapController map[20][20], position pos){//Fahmi Rosdiansyah

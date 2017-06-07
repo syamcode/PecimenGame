@@ -32,7 +32,7 @@ int CanMove(ghostController ghost, int direction) {//M. Hisyam A
 }
 void BlackSquareCheck(position pos) {//M. Hisyam A
     if (levelMap[pos.x][pos.y].Food!= EMPTY) {
-        DrawFood(levelMap[pos.x][pos.y].Food, pos);
+        Food(levelMap[pos.x][pos.y].Food, pos);
     }
     else if (levelMap[pos.x][pos.y].Wall == WALL_GHOST){
 //        DrawWall(WALL_GHOST, pos);
