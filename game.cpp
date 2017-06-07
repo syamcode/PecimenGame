@@ -53,7 +53,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
     CreateStack(&player->ghost1.path);
     CreateStack(&player->ghost2.path);
     int speed,foodghost;
-    bool temp=true, firstRun=true;
+    bool firstRun=true;
     position pos, posIN, posOUT;
     pos.x=-1;
     pos.y=-1;
@@ -138,7 +138,6 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                     player->foodCount--;
                     player->ghost1.stateghost=BEING_CHASED;
                     player->ghost2.stateghost=BEING_CHASED;
-                    temp=true;
                     levelMap[player->peciman.pos.x][player->peciman.pos.y].Food=EMPTY;
                     player->ghost1.speed = ESCAPESPEED;
                     player->ghost2.speed = ESCAPESPEED;

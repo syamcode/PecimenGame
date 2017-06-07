@@ -122,7 +122,7 @@ void menuscore()//Auliya Aqma
 
 void howtoplay()//Auliya Aqma
 {
-    int a=5,b=32,c=17;
+        int a=10,b=35,c=25;
     cleardevice();
     setcolor(15);
     readimagefile("picture/pacman1.bmp",200, 5, 225, 30);
@@ -130,37 +130,28 @@ void howtoplay()//Auliya Aqma
     settextstyle(8,HORIZ_DIR,3);
     outtextxy(320,5, "How To Play");
     settextstyle(8,HORIZ_DIR,1);
-    outtextxy(a,b,"> Game ini dapat dimainkan 1 � 2 Orang  ");
+    outtextxy(a,b,"> Game ini dapat dimainkan oleh 1 Orang  ");
     outtextxy(a,b+(1*c),"> Peci-men dikontrol menggunakan keyboard. ");
-    outtextxy(a,b+(2*c),"> Setiap player menggerakan 1 Peci-men. ");
-    outtextxy(a,b+(3*c),"> Kontrol Player 1 :   ");
+    outtextxy(a,b+(2*c),"> Player menggerakan 1 Peci-men. ");
+    outtextxy(a,b+(3*c),"> Kontrol Player :   ");
     outtextxy(a+50,b+(4*c),"o Arrow atas untuk menggerakan ke atas ");
     outtextxy(a+50,b+(5*c),"o Arrow bawah untuk menggerakan ke bawah  ");
     outtextxy(a+50,b+(6*c),"o Arrow kanan untuk menggerakan ke kanan  ");
     outtextxy(a+50,b+(7*c),"o Arrow kiri untuk menggerakan ke kiri ");
-    outtextxy(a,b+(8*c),"> Kontrol Player 2 :   ");
-	outtextxy(a+50,b+(9*c),"o Tombol W untuk menggerakan ke atas  ");
-	outtextxy(a+50,b+(10*c),"o Tombol S untuk menggerakan ke bawah  ");
-	outtextxy(a+50,b+(11*c),"o Tombol D untuk menggerakan ke kanan  ");
-	outtextxy(a+50,b+(12*c),"o Tombol A untuk menggerakan ke kiri  ");
-    outtextxy(a,b+(13*c),"> Peci-Men tidak dapat menembus pembatas/dinding labirin  ");
-    outtextxy(a,b+(14*c),"> Pada sisi kanan dan kiri ada pintu khusus yang membuat Peci-Men");
-    outtextxy(a,b+(15*c),"  berpindah tempat / teleport dari satu sisi ke sisi lainnya.  ");
-    outtextxy(a,b+(16*c),"> Setiap player diberikan 3 Nyawa ? Terdapat bonus / sesajen untuk");
-    outtextxy(a,b+(17*c),"  menambah skor dan lives (nyawa) dari karakter Pac-Man yang dimainkan.  ");
-    outtextxy(a,b+(18*c),"> Dalam mode multi-player, Peci-Men yang paling cepat menghabiskan");
-    outtextxy(a,b+(19*c),"  dan mendapat skor yang paling tinggi menjadi pemenangnya  ");
-    outtextxy(a,b+(20*c),"> Peci-Men dapat memakan musuh dengan memakan �bonus�, sehingga musuh");
-    outtextxy(a,b+(21*c),"  berubah warna dan mencoba menghindari Peci-Men.  ");
-    outtextxy(a,b+(22*c),"> Kondisi menang ditentukan saat semua �Pac-Dot� termakan oleh karakter");
-    outtextxy(a,b+(23*c),"  Peci-Men ? Player akan dinyatakan kalah / Game Over jika Peci-Men");
-    outtextxy(a,b+(24*c),"  terkena musuh.");
-    outtextxy(a,b+(25*c),"> Jika nyawa Peci-Men habis maka game akan dihentikan.  ");
-    outtextxy(a,b+(26*c),"> Kemampuan tiap hantu :  ");
-	outtextxy(a+50,b+(27*c),"o Tuyul : Lari cepat dan mengambil skor ")  ;
-	outtextxy(a+50,b+(28*c),"o Kuntilanak : Bisa menembut 1 tembok  ");
-	outtextxy(a+50,b+(29*c),"o Pocong : Meloncat 2 petak  ");
-	outtextxy(a+50,b+(30*c),"o Tengkorak : Mengfreze peci-men ");
+    outtextxy(a,b+(8*c),"> Peci-Men tidak dapat menembus pembatas/dinding labirin  ");
+    outtextxy(a,b+(9*c),"> Pada sisi kanan dan kiri ada pintu khusus yang membuat Peci-Men");
+    outtextxy(a,b+(10*c),"  berpindah tempat / teleport dari satu sisi ke sisi lainnya.  ");
+    outtextxy(a,b+(11*c),"> Player diberikan 5 Nyawa. Terdapat bonus / sesajen untuk");
+    outtextxy(a,b+(12*c),"  menambah skor dan lives (nyawa) dari karakter Pac-Man yang dimainkan.  ");
+    outtextxy(a,b+(13*c),"> Peci-Men dapat memakan musuh dengan memakan 'Power Up', sehingga");
+    outtextxy(a,b+(14*c),"  musuh berubah warna dan mencoba menghindari Peci-Men.  ");
+    outtextxy(a,b+(15*c),"> Kondisi menang ditentukan saat semua ‘Pac-Dot’ termakan oleh ");
+    outtextxy(a,b+(16*c),"  karakter Peci-Men dan Player dapat menyelesaikan seluruh level ");
+    outtextxy(a,b+(17*c),"(7 level).");
+    outtextxy(a,b+(17*c),"> Player akan dinyatakan kalah / Game Over jika Peci-Men terkena musuh");
+    outtextxy(a,b+(18*c),"  dan nyawa habis.");
+    outtextxy(a,b+(19*c),"> Terdapat portal (masuk dan keluar) yang secara random muncul.  ");
+
 	readimagefile("picture/pacman1.bmp",335, 565, 360, 590);
 	readimagefile("picture/pacman3.bmp",515, 565, 540, 590);
 	setcolor(4);
@@ -291,6 +282,7 @@ void inputnama(playerControl *player) //Haya Utami
         do
         {
             cleardevice();
+            setcolor(15);
             readimagefile("picture/pecimen.bmp",100,10,700,160);
             rectangle(100,250,700,400);
             settextstyle(3, HORIZ_DIR,4);
