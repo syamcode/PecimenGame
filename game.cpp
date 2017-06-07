@@ -204,7 +204,6 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                 }while(posOUT.x == 8 || posOUT.x == 9|| posOUT.x == 10 || posOUT.x == 11 || posOUT.y == 9 || posOUT.y == 10);
                 spawnPortal(levelMap, posOUT, 0);
                 bonusbegin2=clock();
-                bool masuk = true;
             }
             if(player->peciman.pos.x == posIN.x && player->peciman.pos.y == posIN.y)
             {
