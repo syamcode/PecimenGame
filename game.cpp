@@ -72,11 +72,11 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
 
     while (player->lives>0 && player->level<=7) {
      //   cleardevice();
-
+    DrawMap(player->level);
         settextstyle(8, HORIZ_DIR,1);
         outtextxy(660, 165,player->name);
         ResetPosition(player);
-        DrawMap(player->level);
+
         DrawFood(player->level);
         DrawGhost(player->ghost1);
         DrawPacman(player->peciman);

@@ -4,7 +4,7 @@ void DrawWall(int wall, position pos, int level) {
     pos.x *= GRIDSIZE;
     pos.y *= GRIDSIZE;
     switch(level){
-             //   DrawSideMenu();
+            //   DrawSideMenu();
         case 1 :
           readimagefile("assets/images/Map1.bmp",0,0,800,600);
           break;
@@ -26,7 +26,10 @@ void DrawWall(int wall, position pos, int level) {
         case 7 :
           readimagefile("assets/images/Map7.bmp",0,0,800,600);
           break;
-    }
+        }
+        if(wall==WALL_GHOST){
+                readimagefile("assets/images/Ghost_Wall.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
+        }
 }
 //prosedur untuk mengambar food menggunakan sprite sesuai kondisi di array dengan parameter jenis food , posisi x , posisi y (by pega)
 void Food(int food,position pos) {
@@ -61,9 +64,7 @@ void DrawMap(int level)
             {
                 DrawWall(levelMap[i][j].Wall,pos,level);
             }
-             if(levelMap[i][j].Wall==WALL_GHOST){
-                readimagefile("assets/images/Wall_Ghost.bmp",pos.x, pos.y, pos.x + GRIDSIZE, pos.y + GRIDSIZE);
-            }
+
         }
     }
 }
