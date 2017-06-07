@@ -107,6 +107,8 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                 } else if (player->ghost1.stateghost== CHASING || player->ghost1.stateghost==ROAMING){
                     break;
                 }
+            printf("Ghost 1 : ");printState(player->ghost1.stateghost);
+            printf("Ghost 2 : ");printState(player->ghost2.stateghost);
             step++;
             if(kbhit())
             {

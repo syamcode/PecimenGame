@@ -219,3 +219,12 @@ void ghostMoveAsli(ghostController * ghost, int dest) {
 
     }
 }
+
+void printState(int state) {
+    switch(state) {
+        case CHASING : printf("Chasing\n");break;
+        case BEING_CHASED : printf("Being Chased\n");break;
+        case ROAMING : printf("Roaming\n");break;
+        case DEAD : printf("Dead\n");break;
+    }
+}
