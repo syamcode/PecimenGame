@@ -2,7 +2,7 @@ void InitLevel(playerControl *player);
 void InitGame(playerControl *player) {//M. Hisyam A
     initScore(player);
     initLives(player);
-    player->level = 3;
+    player->level = 1;
     InitLevel(player);
 }
 
