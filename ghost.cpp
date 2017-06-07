@@ -171,3 +171,41 @@ int bfs(int v, int prev[]) {
     return node;
 }
 
+void ghostRealMove(ghostController * ghost, int dest) {
+    int prev[nodeCount];
+    int prev2[nodeCount];
+    EmptyStack(&ghost->path);
+    bfs(ghost->lastNode, prev);
+//    system("pause");
+    if(ghost->stateghost==CHASING){
+        GeneratePath(prev, ghost->lastNode, dest, &ghost->path);
+    }else if(ghost->stateghost==DEAD){
+        GeneratePath(prev, ghost->lastNode, ghost->initNode, &ghost->path);
+    }else if(ghost->stateghost==ROAMING){
+        GeneratePath(prev, ghost->lastNode, randomise(0, nodeCount-1), &ghost->path);
+    }
+    else {
+        int ln = bfs(dest, prev2);
+        GeneratePath(prev, ghost->lastNode, ln, &ghost->path);
+    }
+}
+
+void ghostMoveAsli(ghostController * ghost, int dest) {
+    if (ghost->lastNode!=dest && Top(ghost->path)==Nil){
+        ghostRealMove(ghost, dest);
+    }
+    if (Top(ghost->path)!=Nil) {
+        printf("%d\n", Top(ghost->path));
+        printf("\n========================\n");
+        PrintPath(ghost->path);
+        printf("\n========================\n");
+        if (ghost->pos.x!=nodePos[Info(Top(ghost->path))*2+0] || ghost->pos.y!=nodePos[Info(Top(ghost->path))*2+1]) {
+            GhostAutoMove(ghost, Info(Top(ghost->path)));
+        }
+        else {
+            ghost->lastNode = Pop(&ghost->path);
+            ghostRealMove(ghost, dest);
+        }
+
+    }
+}
