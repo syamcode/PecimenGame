@@ -62,8 +62,6 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
     char lepel[2];
 
     CreateStack(&player->ghost1.path);
-    int prev[nodeCount];
-    int prev2[nodeCount];
     int speed,foodghost;
     bool temp=true;
     position pos, posIN, posOUT;
@@ -178,50 +176,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
             //speed = (0.5*16);
             printf("%d %d %d %d %d\n", player->ghost1.lastNode,player->peciman.lastNode, rekamana, levelMap[player->ghost1.pos.x][player->ghost1.pos.y].node,player->ghost1.initNode);
             if (step%player->ghost1.speed == 0) {
-                int ln;
-                if (player->ghost1.lastNode!=player->peciman.lastNode && Top(player->ghost1.path)==Nil){
-                    rekamana = player->peciman.lastNode;
-                    EmptyStack(&player->ghost1.path);
-                    bfs(player->ghost1.lastNode, prev);
-                    if(player->ghost1.stateghost==CHASING){
-                        GeneratePath(prev, player->ghost1.lastNode, player->peciman.lastNode, &player->ghost1.path);
-                    }else if(player->ghost1.stateghost==DEAD){
-                        GeneratePath(prev, player->ghost1.lastNode, player->ghost1.initNode, &player->ghost1.path);
-                    }else if(player->ghost1.stateghost==ROAMING){
-                        GeneratePath(prev, player->ghost1.lastNode, randomise(0, nodeCount-1), &player->ghost1.path);
-                    }
-                    else {
-                        ln = bfs(player->peciman.lastNode, prev2);
-                        GeneratePath(prev, player->ghost1.lastNode, ln, &player->ghost1.path);
-                    }
-                }
-                if (Top(player->ghost1.path)!=Nil) {
-                    printf("%d\n", Top(player->ghost1.path));
-                    printf("\n========================\n");
-                    PrintPath(player->ghost1.path);
-                    printf("\n========================\n");
-                    if (player->ghost1.pos.x!=nodePos[Info(Top(player->ghost1.path))*2+0] || player->ghost1.pos.y!=nodePos[Info(Top(player->ghost1.path))*2+1]) {
-                        GhostAutoMove(&player->ghost1, Info(Top(player->ghost1.path)));
-                    }
-                    else {
-                        player->ghost1.lastNode = Pop(&player->ghost1.path);
-                        rekamana = player->peciman.lastNode;
-                        EmptyStack(&player->ghost1.path);
-                        bfs(player->ghost1.lastNode, prev);
-                        if(player->ghost1.stateghost==CHASING){
-                            GeneratePath(prev, player->ghost1.lastNode, player->peciman.lastNode, &player->ghost1.path);
-                        }else if(player->ghost1.stateghost==DEAD){
-                            GeneratePath(prev, player->ghost1.lastNode, player->ghost1.initNode, &player->ghost1.path);
-                        }else if(player->ghost1.stateghost==ROAMING){
-                            GeneratePath(prev, player->ghost1.lastNode, randomise(0, nodeCount-1), &player->ghost1.path);
-                        }
-                        else {
-                            ln = bfs(player->peciman.lastNode, prev2);
-                            GeneratePath(prev, player->ghost1.lastNode, ln, &player->ghost1.path);
-                        }
-                    }
-
-                }
+                ghostMoveAsli(&player->ghost1, player->peciman.lastNode);
             }
 
             GetCursorPos(&cursorPosition);
@@ -270,7 +225,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
                 posIN.y = 99;
             }
              if (foodghost==10 && player->ghost1.stateghost != DEAD) //Auliya
-			 { 
+			 {
                 player->ghost1.stateghost=ROAMING;
                 foodbegin=clock();
                 player->ghost1.speed = DEFAULTSPEED;
