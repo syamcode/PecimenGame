@@ -175,7 +175,6 @@ int bfs(int v, int prev[]) {
         }
         else {
             node = DeQueue(&Q);
-//            printf("%d ", node);
         }
     }
     return node;
@@ -186,7 +185,6 @@ void ghostRealMove(ghostController * ghost, int dest) {
     int prev2[nodeCount];
     EmptyStack(&ghost->path);
     bfs(ghost->lastNode, prev);
-//    system("pause");
     if(ghost->stateghost==CHASING){
         GeneratePath(prev, ghost->lastNode, dest, &ghost->path);
     }else if(ghost->stateghost==DEAD){

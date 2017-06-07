@@ -33,13 +33,6 @@ void DrawSideMenu() { //Haya Utami
 void tampilan() //Auliya Aqma
 {
     readimagefile("assets/images/background.bmp",0, 0 , 800, 600);
-//    readimagefile("picture/pecimen.bmp",100, 10 , 700, 210);
-//    readimagefile("picture/pacman.bmp",50, 250, 300, 550);
-//    readimagefile("assets/images/ghost1.bmp",550, 300, 600, 350);
-//    readimagefile("assets/images/ghost2.bmp",700, 350, 750, 400);
-//    readimagefile("assets/images/ghost3.bmp",600, 400, 650, 450);
-//    readimagefile("assets/images/ghost4.bmp",700, 450, 750, 500);
-//    readimagefile("assets/images/ghost5.bmp",550, 500, 600, 550);
 }
 
 void tampilan2()//Auliya Aqma
@@ -57,12 +50,6 @@ void storymode()//Auliya Aqma
     chooseskin(&player1);
     InitGame(&player1);
     GameStart(&player1);
-}
-
-void versusmode()//Auliya Aqma
-{
-    cleardevice();
-    tampilan();
 }
 
 void chooseskin(playerControl * player){
@@ -90,43 +77,7 @@ void chooseskin(playerControl * player){
     }
 }
 
-void menuplay()//Auliya Aqma
-{
-    cleardevice();
-    tampilan();
-    setcolor(15);
-    settextstyle(9,HORIZ_DIR,2);
-    outtextxy(375,300, "PLAYER");
-    settextstyle(8,HORIZ_DIR,1);
-    setcolor(9);
-    outtextxy(385,355, "STORY MODE");
-    outtextxy(380,382, "VERSUS MODE");
-    setcolor(4);
-    outtextxy(370,408, "BACK TO MENU");
-    setcolor(15);
-    while(1)
-    {
-        GetCursorPos(&cursorPosition);
-        mX=cursorPosition.x;
-        mY=cursorPosition.y;
 
-       if (GetAsyncKeyState(VK_LBUTTON) && mX>=400 && mX<=470 && mY>=382 && mY<=407)
-       {
-           storymode();
-           break;
-       }
-        else if (GetAsyncKeyState(VK_LBUTTON) && mX>=400 && mX<=470 && mY>=408&& mY<=432)
-       {
-           versusmode();
-            break;
-       }
-        else if (GetAsyncKeyState(VK_LBUTTON) && mX>=400 && mX<=470 && mY>=440&& mY<=464)
-       {
-           menuutama();
-            break;
-       }
-    }
-}
 
 void menuscore()//Auliya Aqma
 {
@@ -151,7 +102,6 @@ void menuscore()//Auliya Aqma
       fread(&scoreData, sizeof(scoreData), 1, highscore);
     }
     fclose(highscore);
-    // outtextxy(225, y, "Hab");
     setcolor(4);
     readimagefile("picture/pacman1.bmp",335, 565, 360, 590);
     readimagefile("picture/pacman3.bmp",515, 565, 540, 590);
@@ -180,7 +130,7 @@ void howtoplay()//Auliya Aqma
     settextstyle(8,HORIZ_DIR,3);
     outtextxy(320,5, "How To Play");
     settextstyle(8,HORIZ_DIR,1);
-    outtextxy(a,b,"> Game ini dapat dimainkan 1 – 2 Orang  ");
+    outtextxy(a,b,"> Game ini dapat dimainkan 1 ï¿½ 2 Orang  ");
     outtextxy(a,b+(1*c),"> Peci-men dikontrol menggunakan keyboard. ");
     outtextxy(a,b+(2*c),"> Setiap player menggerakan 1 Peci-men. ");
     outtextxy(a,b+(3*c),"> Kontrol Player 1 :   ");
@@ -200,9 +150,9 @@ void howtoplay()//Auliya Aqma
     outtextxy(a,b+(17*c),"  menambah skor dan lives (nyawa) dari karakter Pac-Man yang dimainkan.  ");
     outtextxy(a,b+(18*c),"> Dalam mode multi-player, Peci-Men yang paling cepat menghabiskan");
     outtextxy(a,b+(19*c),"  dan mendapat skor yang paling tinggi menjadi pemenangnya  ");
-    outtextxy(a,b+(20*c),"> Peci-Men dapat memakan musuh dengan memakan ‘bonus’, sehingga musuh");
+    outtextxy(a,b+(20*c),"> Peci-Men dapat memakan musuh dengan memakan ï¿½bonusï¿½, sehingga musuh");
     outtextxy(a,b+(21*c),"  berubah warna dan mencoba menghindari Peci-Men.  ");
-    outtextxy(a,b+(22*c),"> Kondisi menang ditentukan saat semua ‘Pac-Dot’ termakan oleh karakter");
+    outtextxy(a,b+(22*c),"> Kondisi menang ditentukan saat semua ï¿½Pac-Dotï¿½ termakan oleh karakter");
     outtextxy(a,b+(23*c),"  Peci-Men ? Player akan dinyatakan kalah / Game Over jika Peci-Men");
     outtextxy(a,b+(24*c),"  terkena musuh.");
     outtextxy(a,b+(25*c),"> Jika nyawa Peci-Men habis maka game akan dihentikan.  ");
@@ -301,7 +251,7 @@ void menuutama()//Auliya Aqma
 
        if (GetAsyncKeyState(VK_LBUTTON) && mX>=400 && mX<=470 && mY>=380 && mY<=404)
        {
-           menuplay();
+           storymode();
             break;
        }
         else if (GetAsyncKeyState(VK_LBUTTON) && mX>=400 && mX<=470 && mY>=405&& mY<=429)

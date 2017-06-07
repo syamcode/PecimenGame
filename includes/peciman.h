@@ -28,8 +28,11 @@ typedef struct{
     int skin;
 }pacmanController;
 
+int CanMovePeciman(pacmanController peciman, int nextDirection);
 void DrawPacman(pacmanController peciman);
-void mainPeciman(pacmanController peciman);
 void InitPacman(pacmanController *peciman, int i, int j);
+void changeState(pacmanController *peciman);
+void BlackSquare(int posX, int posY);
+void Move(pacmanController *peciman);
 
 #endif // PECIMAN_H_INCLUDED

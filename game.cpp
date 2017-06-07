@@ -1,4 +1,3 @@
-void InitLevel(playerControl *player);
 void InitGame(playerControl *player) {//M. Hisyam A
     initScore(player);
     initLives(player);
@@ -36,18 +35,7 @@ void ResetPosition(playerControl *player) {//M. Hisyam A
     player->ghost2.lastNode = player->ghost2.initNode;
     player->peciman.lastNode = levelMap[player->peciman.pos.x][player->peciman.pos.y].node;
 }
-void ResetPositionGhost(playerControl *player) {
-    player->ghost1.pos.x = player->ghost1.initPos.x;
-    player->ghost1.pos.y = player->ghost1.initPos.y;
-    player->ghost1.lastNode = levelMap[player->ghost1.pos.x][player->ghost1.pos.y].node;
-    player->ghost1.initNode = levelMap[player->ghost1.pos.x][player->ghost1.pos.y].node;
-    player->ghost2.pos.x = player->ghost2.initPos.x;
-    player->ghost2.pos.y = player->ghost2.initPos.y;
-    player->ghost3.pos.x = player->ghost3.initPos.x;
-    player->ghost3.pos.y = player->ghost3.initPos.y;
-    player->ghost4.pos.x = player->ghost4.initPos.x;
-    player->ghost4.pos.y = player->ghost4.initPos.y;
-}
+
 void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
     int rekamana;
     clock_t bonusbegin,foodbegin,ghostbegin, bonusbegin2;
