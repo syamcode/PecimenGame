@@ -2,16 +2,15 @@ void DrawGhost(ghostController ghost) { //M. Hisyam A
     int posX = ghost.pos.x * GRIDSIZE;
     int posY = ghost.pos.y * GRIDSIZE;
     switch(ghost.ghostType) {
-        case KUNTILANAK : if(ghost.stateghost==0){
-                            readimagefile("assets/images/Ghost1.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);}
-                            else if(ghost.stateghost==2){
+        case KUNTILANAK :
+                            if(ghost.stateghost==DEAD){
                                 readimagefile("assets/images/eye_ghost.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);
                             }
-                            else if(ghost.stateghost==3){
-                                readimagefile("assets/images/Ghost2.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);
+                            else if(ghost.stateghost==BEING_CHASED){
+                                readimagefile("assets/images/Ghost1PU.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);
                             }
                             else {
-                                readimagefile("assets/images/Ghost1PU.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);
+                            readimagefile("assets/images/Ghost1.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);
                             }
                         break;
         case POCONG : readimagefile("assets/images/Ghost2.bmp", posX, posY, posX+GRIDSIZE, posY+GRIDSIZE);break;
@@ -24,13 +23,14 @@ void InitGhost(ghostController *ghost, position pos, int ghostType) {//M. Hisyam
     ghost->initPos.y = pos.y;
     ghost->ghostType = ghostType;
     ghost->stateghost= 3;
+    ghost->speed = DEFAULTSPEED;
 }
 int CanMove(ghostController ghost, int direction) {//M. Hisyam A
     switch(direction) {
-        case RIGHT : return ((levelMap[ghost.pos.x+1][ghost.pos.y].Wall == EMPTY || levelMap[ghost.pos.x+1][ghost.pos.y].Wall == WALL_GHOST) && (levelMap[ghost.pos.x+1][ghost.pos.y].Object == EMPTY || levelMap[ghost.pos.x+1][ghost.pos.y].Object == PACMAN));
-        case LEFT : return ((levelMap[ghost.pos.x-1][ghost.pos.y].Wall == EMPTY || levelMap[ghost.pos.x-1][ghost.pos.y].Wall == WALL_GHOST) && (levelMap[ghost.pos.x-1][ghost.pos.y].Object == EMPTY  || levelMap[ghost.pos.x-1][ghost.pos.y].Object == PACMAN));
-        case UP : return ((levelMap[ghost.pos.x][ghost.pos.y-1].Wall == EMPTY || levelMap[ghost.pos.x][ghost.pos.y-1].Wall == WALL_GHOST) && (levelMap[ghost.pos.x][ghost.pos.y-1].Object == EMPTY  || levelMap[ghost.pos.x][ghost.pos.y-1].Object == PACMAN));
-        case DOWN : return ((levelMap[ghost.pos.x][ghost.pos.y+1].Wall == EMPTY || levelMap[ghost.pos.x][ghost.pos.y+1].Wall == WALL_GHOST) && (levelMap[ghost.pos.x][ghost.pos.y+1].Object == EMPTY  || levelMap[ghost.pos.x][ghost.pos.y+1].Object == PACMAN));
+        case RIGHT : return ((levelMap[ghost.pos.x+1][ghost.pos.y].Wall == EMPTY || levelMap[ghost.pos.x+1][ghost.pos.y].Wall == WALL_GHOST) && (levelMap[ghost.pos.x+1][ghost.pos.y].Object != PACMAN));
+        case LEFT : return ((levelMap[ghost.pos.x-1][ghost.pos.y].Wall == EMPTY || levelMap[ghost.pos.x-1][ghost.pos.y].Wall == WALL_GHOST) && (levelMap[ghost.pos.x-1][ghost.pos.y].Object != PACMAN));
+        case UP : return ((levelMap[ghost.pos.x][ghost.pos.y-1].Wall == EMPTY || levelMap[ghost.pos.x][ghost.pos.y-1].Wall == WALL_GHOST) && (levelMap[ghost.pos.x][ghost.pos.y-1].Object != PACMAN));
+        case DOWN : return ((levelMap[ghost.pos.x][ghost.pos.y+1].Wall == EMPTY || levelMap[ghost.pos.x][ghost.pos.y+1].Wall == WALL_GHOST) && (levelMap[ghost.pos.x][ghost.pos.y+1].Object != PACMAN));
     }
 }
 void BlackSquareCheck(position pos) {//M. Hisyam A

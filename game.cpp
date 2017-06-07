@@ -4,7 +4,6 @@ void InitGame(playerControl *player) {//M. Hisyam A
     initLives(player);
     player->level = 1;
     InitLevel(player);
-    player->ghost1.speed = 8;
 }
 
 
@@ -32,7 +31,9 @@ void ResetPosition(playerControl *player) {//M. Hisyam A
     player->ghost4.pos.y = player->ghost4.initPos.y;
 
     player->ghost1.initNode = levelMap[player->ghost1.pos.x][player->ghost1.pos.y].node;
-    player->ghost1.lastNode = levelMap[player->ghost1.pos.x][player->ghost1.pos.y].node;
+    player->ghost1.lastNode = player->ghost1.initNode;
+    player->ghost2.initNode = levelMap[player->ghost2.pos.x][player->ghost2.pos.y].node;
+    player->ghost2.lastNode = player->ghost2.initNode;
     player->peciman.lastNode = levelMap[player->peciman.pos.x][player->peciman.pos.y].node;
 }
 void ResetPositionGhost(playerControl *player) {
@@ -62,6 +63,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
     char lepel[2];
 
     CreateStack(&player->ghost1.path);
+    CreateStack(&player->ghost2.path);
     int speed,foodghost;
     bool temp=true;
     position pos, posIN, posOUT;
@@ -91,6 +93,7 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
         //BlackSquare(24*GRIDSIZE,GRIDSIZE*2.8);
         outtextxy(720,84, lepel);
         EmptyStack(&player->ghost1.path);
+        EmptyStack(&player->ghost2.path);
 //        PrintPath(player->ghost1.path);
 //        system("pause");
         while(player->foodCount > 0) {
@@ -177,6 +180,9 @@ void GameStart(playerControl *player) { //Hisyam, Fadhit, Fahmi
             printf("%d %d %d %d %d\n", player->ghost1.lastNode,player->peciman.lastNode, rekamana, levelMap[player->ghost1.pos.x][player->ghost1.pos.y].node,player->ghost1.initNode);
             if (step%player->ghost1.speed == 0) {
                 ghostMoveAsli(&player->ghost1, player->peciman.lastNode);
+            }
+            if (step%player->ghost2.speed == 0) {
+                ghostMoveAsli(&player->ghost2, player->peciman.lastNode);
             }
 
             GetCursorPos(&cursorPosition);
